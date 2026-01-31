@@ -36,12 +36,5 @@ coverage/
 # Bun
 bun.lockb
 
-# Large files (use Git LFS or download separately)
-*.tflite
-*.wav
-*.webm
-*.mp3
-*.mid
-test-audio/
-test_songs/
+# Test results (generated)
 test-results/
