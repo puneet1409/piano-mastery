@@ -1,0 +1,3447 @@
+{
+  "test_date": "2026-01-25",
+  "total_tests": 27,
+  "corruption_types": [
+    "timing_early",
+    "timing_late",
+    "timing_very_late",
+    "pitch_half_step",
+    "pitch_whole_step",
+    "extra_notes",
+    "missing_notes",
+    "velocity_soft",
+    "velocity_loud"
+  ],
+  "results": [
+    {
+      "corruption_type": "timing_early",
+      "clean_file": "chord_progression.mid",
+      "corrupted_file": "chord_progression_timing_early.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 456.0,
+          "duration": 456.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 456.0,
+          "duration": 456.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 456.0,
+          "duration": 456.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 456.0,
+          "offset": 912.0,
+          "duration": 456.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 456.0,
+          "offset": 912.0,
+          "duration": 456.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 456.0,
+          "offset": 912.0,
+          "duration": 456.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 912.0,
+          "offset": 1368.0,
+          "duration": 456.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 912.0,
+          "offset": 1368.0,
+          "duration": 456.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 912.0,
+          "offset": 1368.0,
+          "duration": 456.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 1368.0,
+          "offset": 1824.0,
+          "duration": 456.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 1368.0,
+          "offset": 1824.0,
+          "duration": 456.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1368.0,
+          "offset": 1824.0,
+          "duration": 456.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 6,
+        "pitch_errors": 0,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "timing_late",
+      "clean_file": "chord_progression.mid",
+      "corrupted_file": "chord_progression_timing_late.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 24.0,
+          "offset": 576.0,
+          "duration": 552.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 48.0,
+          "offset": 600.0,
+          "duration": 552.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 72.0,
+          "offset": 624.0,
+          "duration": 552.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 648.0,
+          "offset": 1200.0,
+          "duration": 552.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 672.0,
+          "offset": 1224.0,
+          "duration": 552.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 696.0,
+          "offset": 1248.0,
+          "duration": 552.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1272.0,
+          "offset": 1824.0,
+          "duration": 552.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1296.0,
+          "offset": 1848.0,
+          "duration": 552.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 1320.0,
+          "offset": 1872.0,
+          "duration": 552.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 1896.0,
+          "offset": 2448.0,
+          "duration": 552.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 1920.0,
+          "offset": 2472.0,
+          "duration": 552.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1944.0,
+          "offset": 2496.0,
+          "duration": 552.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 11,
+        "pitch_errors": 0,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "timing_very_late",
+      "clean_file": "chord_progression.mid",
+      "corrupted_file": "chord_progression_timing_very_late.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 72.0,
+          "offset": 768.0,
+          "duration": 696.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 144.0,
+          "offset": 840.0,
+          "duration": 696.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 216.0,
+          "offset": 912.0,
+          "duration": 696.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 984.0,
+          "offset": 1680.0,
+          "duration": 696.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1056.0,
+          "offset": 1752.0,
+          "duration": 696.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 1128.0,
+          "offset": 1824.0,
+          "duration": 696.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1896.0,
+          "offset": 2592.0,
+          "duration": 696.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1968.0,
+          "offset": 2664.0,
+          "duration": 696.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 2040.0,
+          "offset": 2736.0,
+          "duration": 696.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 2808.0,
+          "offset": 3504.0,
+          "duration": 696.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 2880.0,
+          "offset": 3576.0,
+          "duration": 696.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 2952.0,
+          "offset": 3648.0,
+          "duration": 696.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 12,
+        "pitch_errors": 0,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "pitch_half_step",
+      "clean_file": "chord_progression.mid",
+      "corrupted_file": "chord_progression_pitch_half_step.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 0.0,
+          "offset": 960.0,
+          "duration": 960.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 0,
+        "pitch_errors": 1,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 11
+      }
+    },
+    {
+      "corruption_type": "pitch_whole_step",
+      "clean_file": "chord_progression.mid",
+      "corrupted_file": "chord_progression_pitch_whole_step.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 0.0,
+          "offset": 960.0,
+          "duration": 960.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 480.0,
+          "offset": 1440.0,
+          "duration": 960.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 480.0,
+          "offset": 1440.0,
+          "duration": 960.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 480.0,
+          "offset": 1440.0,
+          "duration": 960.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 2,
+        "pitch_errors": 4,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 8
+      }
+    },
+    {
+      "corruption_type": "extra_notes",
+      "clean_file": "chord_progression.mid",
+      "corrupted_file": "chord_progression_extra_notes.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 0,
+        "pitch_errors": 0,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "missing_notes",
+      "clean_file": "chord_progression.mid",
+      "corrupted_file": "chord_progression_missing_notes.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 2,
+        "pitch_errors": 6,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 2
+      }
+    },
+    {
+      "corruption_type": "velocity_soft",
+      "clean_file": "chord_progression.mid",
+      "corrupted_file": "chord_progression_velocity_soft.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 30
+        }
+      ],
+      "differences": {
+        "timing_errors": 0,
+        "pitch_errors": 0,
+        "velocity_errors": 12,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "velocity_loud",
+      "clean_file": "chord_progression.mid",
+      "corrupted_file": "chord_progression_velocity_loud.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 74,
+          "note_name": "D5",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 110
+        }
+      ],
+      "differences": {
+        "timing_errors": 0,
+        "pitch_errors": 0,
+        "velocity_errors": 12,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "timing_early",
+      "clean_file": "c_major_scale.mid",
+      "corrupted_file": "c_major_scale_timing_early.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 240.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 240.0,
+          "offset": 480.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 480.0,
+          "offset": 720.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 720.0,
+          "offset": 960.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1200.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1200.0,
+          "offset": 1440.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1440.0,
+          "offset": 1680.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 1680.0,
+          "offset": 1920.0,
+          "duration": 240.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 216.0,
+          "duration": 216.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 216.0,
+          "offset": 432.0,
+          "duration": 216.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 432.0,
+          "offset": 648.0,
+          "duration": 216.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 648.0,
+          "offset": 864.0,
+          "duration": 216.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 864.0,
+          "offset": 1080.0,
+          "duration": 216.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1080.0,
+          "offset": 1296.0,
+          "duration": 216.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1296.0,
+          "offset": 1512.0,
+          "duration": 216.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 1512.0,
+          "offset": 1728.0,
+          "duration": 216.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 6,
+        "pitch_errors": 0,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "timing_late",
+      "clean_file": "c_major_scale.mid",
+      "corrupted_file": "c_major_scale_timing_late.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 240.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 240.0,
+          "offset": 480.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 480.0,
+          "offset": 720.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 720.0,
+          "offset": 960.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1200.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1200.0,
+          "offset": 1440.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1440.0,
+          "offset": 1680.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 1680.0,
+          "offset": 1920.0,
+          "duration": 240.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 24.0,
+          "offset": 288.0,
+          "duration": 264.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 312.0,
+          "offset": 576.0,
+          "duration": 264.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 600.0,
+          "offset": 864.0,
+          "duration": 264.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 888.0,
+          "offset": 1152.0,
+          "duration": 264.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1176.0,
+          "offset": 1440.0,
+          "duration": 264.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1464.0,
+          "offset": 1728.0,
+          "duration": 264.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1752.0,
+          "offset": 2016.0,
+          "duration": 264.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 2040.0,
+          "offset": 2304.0,
+          "duration": 264.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 7,
+        "pitch_errors": 0,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "timing_very_late",
+      "clean_file": "c_major_scale.mid",
+      "corrupted_file": "c_major_scale_timing_very_late.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 240.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 240.0,
+          "offset": 480.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 480.0,
+          "offset": 720.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 720.0,
+          "offset": 960.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1200.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1200.0,
+          "offset": 1440.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1440.0,
+          "offset": 1680.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 1680.0,
+          "offset": 1920.0,
+          "duration": 240.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 72.0,
+          "offset": 384.0,
+          "duration": 312.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 456.0,
+          "offset": 768.0,
+          "duration": 312.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 840.0,
+          "offset": 1152.0,
+          "duration": 312.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 1224.0,
+          "offset": 1536.0,
+          "duration": 312.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 1608.0,
+          "offset": 1920.0,
+          "duration": 312.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1992.0,
+          "offset": 2304.0,
+          "duration": 312.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 2376.0,
+          "offset": 2688.0,
+          "duration": 312.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 2760.0,
+          "offset": 3072.0,
+          "duration": 312.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 8,
+        "pitch_errors": 0,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "pitch_half_step",
+      "clean_file": "c_major_scale.mid",
+      "corrupted_file": "c_major_scale_pitch_half_step.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 240.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 240.0,
+          "offset": 480.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 480.0,
+          "offset": 720.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 720.0,
+          "offset": 960.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1200.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1200.0,
+          "offset": 1440.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1440.0,
+          "offset": 1680.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 1680.0,
+          "offset": 1920.0,
+          "duration": 240.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 480.0,
+          "offset": 960.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 1440.0,
+          "offset": 1920.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 2,
+        "pitch_errors": 2,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 6
+      }
+    },
+    {
+      "corruption_type": "pitch_whole_step",
+      "clean_file": "c_major_scale.mid",
+      "corrupted_file": "c_major_scale_pitch_whole_step.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 240.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 240.0,
+          "offset": 480.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 480.0,
+          "offset": 720.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 720.0,
+          "offset": 960.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1200.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1200.0,
+          "offset": 1440.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1440.0,
+          "offset": 1680.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 1680.0,
+          "offset": 1920.0,
+          "duration": 240.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 240.0,
+          "offset": 720.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 720.0,
+          "offset": 1200.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 960.0,
+          "offset": 1440.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1200.0,
+          "offset": 1680.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 3,
+        "pitch_errors": 5,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 3
+      }
+    },
+    {
+      "corruption_type": "extra_notes",
+      "clean_file": "c_major_scale.mid",
+      "corrupted_file": "c_major_scale_extra_notes.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 240.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 240.0,
+          "offset": 480.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 480.0,
+          "offset": 720.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 720.0,
+          "offset": 960.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1200.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1200.0,
+          "offset": 1440.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1440.0,
+          "offset": 1680.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 1680.0,
+          "offset": 1920.0,
+          "duration": 240.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 240.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 240.0,
+          "offset": 480.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 480.0,
+          "offset": 720.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 720.0,
+          "offset": 960.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1200.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1200.0,
+          "offset": 1440.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1440.0,
+          "offset": 1680.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 1680.0,
+          "offset": 1920.0,
+          "duration": 240.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 0,
+        "pitch_errors": 0,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "missing_notes",
+      "clean_file": "c_major_scale.mid",
+      "corrupted_file": "c_major_scale_missing_notes.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 240.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 240.0,
+          "offset": 480.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 480.0,
+          "offset": 720.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 720.0,
+          "offset": 960.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1200.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1200.0,
+          "offset": 1440.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1440.0,
+          "offset": 1680.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 1680.0,
+          "offset": 1920.0,
+          "duration": 240.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 240.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 240.0,
+          "offset": 480.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 480.0,
+          "offset": 720.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1200.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1200.0,
+          "offset": 1440.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 1680.0,
+          "offset": 1920.0,
+          "duration": 240.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 3,
+        "pitch_errors": 3,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 2
+      }
+    },
+    {
+      "corruption_type": "velocity_soft",
+      "clean_file": "c_major_scale.mid",
+      "corrupted_file": "c_major_scale_velocity_soft.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 240.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 240.0,
+          "offset": 480.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 480.0,
+          "offset": 720.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 720.0,
+          "offset": 960.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1200.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1200.0,
+          "offset": 1440.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1440.0,
+          "offset": 1680.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 1680.0,
+          "offset": 1920.0,
+          "duration": 240.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 240.0,
+          "duration": 240.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 240.0,
+          "offset": 480.0,
+          "duration": 240.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 480.0,
+          "offset": 720.0,
+          "duration": 240.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 720.0,
+          "offset": 960.0,
+          "duration": 240.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1200.0,
+          "duration": 240.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1200.0,
+          "offset": 1440.0,
+          "duration": 240.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1440.0,
+          "offset": 1680.0,
+          "duration": 240.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 1680.0,
+          "offset": 1920.0,
+          "duration": 240.0,
+          "velocity": 30
+        }
+      ],
+      "differences": {
+        "timing_errors": 0,
+        "pitch_errors": 0,
+        "velocity_errors": 8,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "velocity_loud",
+      "clean_file": "c_major_scale.mid",
+      "corrupted_file": "c_major_scale_velocity_loud.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 240.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 240.0,
+          "offset": 480.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 480.0,
+          "offset": 720.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 720.0,
+          "offset": 960.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1200.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1200.0,
+          "offset": 1440.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1440.0,
+          "offset": 1680.0,
+          "duration": 240.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 1680.0,
+          "offset": 1920.0,
+          "duration": 240.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 240.0,
+          "duration": 240.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 62,
+          "note_name": "D4",
+          "onset": 240.0,
+          "offset": 480.0,
+          "duration": 240.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 480.0,
+          "offset": 720.0,
+          "duration": 240.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 65,
+          "note_name": "F4",
+          "onset": 720.0,
+          "offset": 960.0,
+          "duration": 240.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 960.0,
+          "offset": 1200.0,
+          "duration": 240.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 69,
+          "note_name": "A4",
+          "onset": 1200.0,
+          "offset": 1440.0,
+          "duration": 240.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 71,
+          "note_name": "B4",
+          "onset": 1440.0,
+          "offset": 1680.0,
+          "duration": 240.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 72,
+          "note_name": "C5",
+          "onset": 1680.0,
+          "offset": 1920.0,
+          "duration": 240.0,
+          "velocity": 110
+        }
+      ],
+      "differences": {
+        "timing_errors": 0,
+        "pitch_errors": 0,
+        "velocity_errors": 8,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "timing_early",
+      "clean_file": "c_major_chord.mid",
+      "corrupted_file": "c_major_chord_timing_early.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 456.0,
+          "duration": 456.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 456.0,
+          "duration": 456.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 456.0,
+          "duration": 456.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 0,
+        "pitch_errors": 0,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "timing_late",
+      "clean_file": "c_major_chord.mid",
+      "corrupted_file": "c_major_chord_timing_late.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 24.0,
+          "offset": 576.0,
+          "duration": 552.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 48.0,
+          "offset": 600.0,
+          "duration": 552.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 72.0,
+          "offset": 624.0,
+          "duration": 552.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 2,
+        "pitch_errors": 0,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "timing_very_late",
+      "clean_file": "c_major_chord.mid",
+      "corrupted_file": "c_major_chord_timing_very_late.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 72.0,
+          "offset": 768.0,
+          "duration": 696.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 144.0,
+          "offset": 840.0,
+          "duration": 696.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 216.0,
+          "offset": 912.0,
+          "duration": 696.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 3,
+        "pitch_errors": 0,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "pitch_half_step",
+      "clean_file": "c_major_chord.mid",
+      "corrupted_file": "c_major_chord_pitch_half_step.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [],
+      "differences": {
+        "timing_errors": 0,
+        "pitch_errors": 0,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 3
+      }
+    },
+    {
+      "corruption_type": "pitch_whole_step",
+      "clean_file": "c_major_chord.mid",
+      "corrupted_file": "c_major_chord_pitch_whole_step.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [],
+      "differences": {
+        "timing_errors": 0,
+        "pitch_errors": 0,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 3
+      }
+    },
+    {
+      "corruption_type": "extra_notes",
+      "clean_file": "c_major_chord.mid",
+      "corrupted_file": "c_major_chord_extra_notes.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 0,
+        "pitch_errors": 0,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "missing_notes",
+      "clean_file": "c_major_chord.mid",
+      "corrupted_file": "c_major_chord_missing_notes.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "differences": {
+        "timing_errors": 0,
+        "pitch_errors": 0,
+        "velocity_errors": 0,
+        "extra_notes": 0,
+        "missing_notes": 1
+      }
+    },
+    {
+      "corruption_type": "velocity_soft",
+      "clean_file": "c_major_chord.mid",
+      "corrupted_file": "c_major_chord_velocity_soft.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 30
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 30
+        }
+      ],
+      "differences": {
+        "timing_errors": 0,
+        "pitch_errors": 0,
+        "velocity_errors": 3,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    },
+    {
+      "corruption_type": "velocity_loud",
+      "clean_file": "c_major_chord.mid",
+      "corrupted_file": "c_major_chord_velocity_loud.mid",
+      "clean_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 80
+        }
+      ],
+      "corrupted_notes": [
+        {
+          "midi_note": 60,
+          "note_name": "C4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 64,
+          "note_name": "E4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 110
+        },
+        {
+          "midi_note": 67,
+          "note_name": "G4",
+          "onset": 0.0,
+          "offset": 480.0,
+          "duration": 480.0,
+          "velocity": 110
+        }
+      ],
+      "differences": {
+        "timing_errors": 0,
+        "pitch_errors": 0,
+        "velocity_errors": 3,
+        "extra_notes": 0,
+        "missing_notes": 0
+      }
+    }
+  ]
+}

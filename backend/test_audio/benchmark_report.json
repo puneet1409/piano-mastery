@@ -1,0 +1,146 @@
+{
+  "test_date": "2026-01-25",
+  "dataset": "GitHub Piano Samples + Mixed Chords",
+  "algorithm": "FFT-based Polyphonic Detection",
+  "results": {
+    "single_note": {
+      "accuracy": 1.0,
+      "total_tests": 8,
+      "correct": 8,
+      "details": [
+        {
+          "expected": "C3",
+          "detected": "C3",
+          "confidence": 1.0,
+          "match": true
+        },
+        {
+          "expected": "D3",
+          "detected": "D3",
+          "confidence": 1.0,
+          "match": true
+        },
+        {
+          "expected": "E3",
+          "detected": "E3",
+          "confidence": 1.0,
+          "match": true
+        },
+        {
+          "expected": "F3",
+          "detected": "F3",
+          "confidence": 1.0,
+          "match": true
+        },
+        {
+          "expected": "G3",
+          "detected": "G3",
+          "confidence": 1.0,
+          "match": true
+        },
+        {
+          "expected": "A3",
+          "detected": "A3",
+          "confidence": 1.0,
+          "match": true
+        },
+        {
+          "expected": "B3",
+          "detected": "B3",
+          "confidence": 1.0,
+          "match": true
+        },
+        {
+          "expected": "C4",
+          "detected": "C4",
+          "confidence": 1.0,
+          "match": true
+        }
+      ]
+    },
+    "chord": {
+      "accuracy": 1.0,
+      "total_tests": 5,
+      "perfect_matches": 5,
+      "details": [
+        {
+          "chord_name": "C Major",
+          "expected": [
+            "C3",
+            "E3",
+            "G3"
+          ],
+          "detected": [
+            "C3",
+            "E3",
+            "G3"
+          ],
+          "match_percent": 1.0,
+          "confidence": 0.8324065202387058
+        },
+        {
+          "chord_name": "F Major",
+          "expected": [
+            "F3",
+            "A3",
+            "C4"
+          ],
+          "detected": [
+            "F3",
+            "A3",
+            "C4"
+          ],
+          "match_percent": 1.0,
+          "confidence": 0.9172215911893158
+        },
+        {
+          "chord_name": "G Major",
+          "expected": [
+            "G3",
+            "B3",
+            "D3"
+          ],
+          "detected": [
+            "D3",
+            "G3",
+            "B3"
+          ],
+          "match_percent": 1.0,
+          "confidence": 0.8190209788221124
+        },
+        {
+          "chord_name": "C-E Interval",
+          "expected": [
+            "C3",
+            "E3"
+          ],
+          "detected": [
+            "C3",
+            "E3"
+          ],
+          "match_percent": 1.0,
+          "confidence": 0.7724930254460465
+        },
+        {
+          "chord_name": "E-G Interval",
+          "expected": [
+            "E3",
+            "G3"
+          ],
+          "detected": [
+            "E3",
+            "G3",
+            "G6"
+          ],
+          "match_percent": 1.0,
+          "confidence": 0.7096094697113909
+        }
+      ]
+    }
+  },
+  "benchmarks": {
+    "human_annotators": 0.8,
+    "deep_learning_btc": 0.75,
+    "feature_fusion": 0.77
+  }
+}

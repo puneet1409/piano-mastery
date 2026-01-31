@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Speaker-to-Mic Audio Test</title>
+  <style>
+    body { font-family: system-ui; max-width: 800px; margin: 40px auto; padding: 20px; background: #1a1a2e; color: #eee; }
+    button { padding: 12px 24px; margin: 8px; font-size: 16px; cursor: pointer; border-radius: 8px; border: none; }
+    .start { background: #4CAF50; color: white; }
+    .stop { background: #f44336; color: white; }
+    .play { background: #2196F3; color: white; }
+    .download { background: #9C27B0; color: white; }
+    #status { padding: 16px; margin: 16px 0; background: #16213e; border-radius: 8px; }
+    #waveform { width: 100%; height: 100px; background: #0f0f23; border-radius: 8px; margin: 16px 0; }
+    #log { background: #0f0f23; padding: 16px; border-radius: 8px; font-family: monospace; font-size: 12px; max-height: 300px; overflow-y: auto; white-space: pre-wrap; }
+    h2 { color: #00d4ff; }
+  </style>
+</head>
+<body>
+  <h1>Speaker → Mic Audio Test</h1>
+  <p>This test captures what the microphone hears (with echo cancellation DISABLED, like the piano app).</p>
+
+  <h2>Step 1: Play Test Audio Through Speakers</h2>
+  <button class="play" onclick="playTestAudio()">Play C Major Scale</button>
+  <button class="play" onclick="playNote(261.63)">Play C4 (261 Hz)</button>
+  <button class="play" onclick="playNote(440)">Play A4 (440 Hz)</button>
+
+  <h2>Step 2: Record from Microphone</h2>
+  <button class="start" onclick="startRecording()">Start Recording</button>
+  <button class="stop" onclick="stopRecording()">Stop Recording</button>
+
+  <h2>Step 3: Download Recording</h2>
+  <button class="play" onclick="playRecording()">Play Recording</button>
+  <button class="download" onclick="downloadRecording()">Download WAV</button>
+
+  <div id="status">Status: Ready</div>
+  <canvas id="waveform"></canvas>
+  <div id="log"></div>
+
+  <script>
+    let mediaRecorder;
+    let recordedChunks = [];
+    let audioContext;
+    let analyser;
+    let recordedBlob;
+    let animationId;
+
+    function log(msg) {
+      const logEl = document.getElementById('log');
+      const time = new Date().toLocaleTimeString();
+      logEl.textContent = `[${time}] ${msg}\n` + logEl.textContent;
+      console.log(msg);
+    }
+
+    function setStatus(msg) {
+      document.getElementById('status').textContent = 'Status: ' + msg;
+    }
+
+    async function startRecording() {
+      try {
+        setStatus('Requesting microphone with echoCancellation: false...');
+
+        const stream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            echoCancellation: false,
+            noiseSuppression: false,
+            autoGainControl: false,
+            sampleRate: 44100
+          }
+        });
+
+        log('Got microphone stream with constraints: echoCancellation=false, noiseSuppression=false, autoGainControl=false');
+
+        // Log actual track settings
+        const track = stream.getAudioTracks()[0];
+        const settings = track.getSettings();
+        log('Actual track settings: ' + JSON.stringify(settings, null, 2));
+
+        // Set up audio context for visualization
+        audioContext = new AudioContext({ sampleRate: 44100 });
+        const source = audioContext.createMediaStreamSource(stream);
+        analyser = audioContext.createAnalyser();
+        analyser.fftSize = 2048;
+        source.connect(analyser);
+
+        // Start visualization
+        visualize();
+
+        // Start recording
+        recordedChunks = [];
+        mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+
+        mediaRecorder.ondataavailable = (e) => {
+          if (e.data.size > 0) {
+            recordedChunks.push(e.data);
+            log(`Recorded chunk: ${e.data.size} bytes`);
+          }
+        };
+
+        mediaRecorder.onstop = async () => {
+          log('Recording stopped, processing...');
+          recordedBlob = new Blob(recordedChunks, { type: 'audio/webm' });
+          log(`Total recording: ${recordedBlob.size} bytes`);
+          setStatus(`Recording complete: ${recordedBlob.size} bytes`);
+
+          // Analyze audio level
+          await analyzeRecording(recordedBlob);
+        };
+
+        mediaRecorder.start(100); // Collect data every 100ms
+        setStatus('Recording... (speak into mic or play audio through speakers)');
+        log('Recording started');
+
+      } catch (err) {
+        log('Error: ' + err.message);
+        setStatus('Error: ' + err.message);
+      }
+    }
+
+    function stopRecording() {
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+        mediaRecorder.stream.getTracks().forEach(t => t.stop());
+        if (animationId) cancelAnimationFrame(animationId);
+        log('Stopped recording');
+      }
+    }
+
+    function visualize() {
+      const canvas = document.getElementById('waveform');
+      const ctx = canvas.getContext('2d');
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+
+      const bufferLength = analyser.frequencyBinCount;
+      const dataArray = new Uint8Array(bufferLength);
+
+      function draw() {
+        animationId = requestAnimationFrame(draw);
+        analyser.getByteTimeDomainData(dataArray);
+
+        ctx.fillStyle = '#0f0f23';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#00d4ff';
+        ctx.beginPath();
+
+        const sliceWidth = canvas.width / bufferLength;
+        let x = 0;
+        let maxVal = 0;
+
+        for (let i = 0; i < bufferLength; i++) {
+          const v = dataArray[i] / 128.0;
+          const y = v * canvas.height / 2;
+          maxVal = Math.max(maxVal, Math.abs(v - 1));
+
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+          x += sliceWidth;
+        }
+
+        ctx.lineTo(canvas.width, canvas.height / 2);
+        ctx.stroke();
+
+        // Show current level
+        ctx.fillStyle = '#00d4ff';
+        ctx.fillText(`Level: ${(maxVal * 100).toFixed(1)}%`, 10, 20);
+      }
+      draw();
+    }
+
+    async function analyzeRecording(blob) {
+      try {
+        const arrayBuffer = await blob.arrayBuffer();
+        const tempCtx = new AudioContext({ sampleRate: 44100 });
+        const audioBuffer = await tempCtx.decodeAudioData(arrayBuffer);
+
+        const channelData = audioBuffer.getChannelData(0);
+        let maxAmp = 0;
+        let sumSquares = 0;
+
+        for (let i = 0; i < channelData.length; i++) {
+          const sample = Math.abs(channelData[i]);
+          maxAmp = Math.max(maxAmp, sample);
+          sumSquares += channelData[i] * channelData[i];
+        }
+
+        const rms = Math.sqrt(sumSquares / channelData.length);
+        const maxDb = 20 * Math.log10(maxAmp || 0.0001);
+        const rmsDb = 20 * Math.log10(rms || 0.0001);
+
+        log(`Audio Analysis:`);
+        log(`  Duration: ${audioBuffer.duration.toFixed(2)}s`);
+        log(`  Sample rate: ${audioBuffer.sampleRate} Hz`);
+        log(`  Max amplitude: ${maxAmp.toFixed(4)} (${maxDb.toFixed(1)} dB)`);
+        log(`  RMS level: ${rms.toFixed(4)} (${rmsDb.toFixed(1)} dB)`);
+
+        if (maxAmp < 0.01) {
+          log('WARNING: Very low audio level - mic may not be capturing speaker audio');
+        } else if (maxAmp > 0.1) {
+          log('Good audio level detected!');
+        }
+
+        tempCtx.close();
+      } catch (err) {
+        log('Analysis error: ' + err.message);
+      }
+    }
+
+    function playRecording() {
+      if (recordedBlob) {
+        const url = URL.createObjectURL(recordedBlob);
+        const audio = new Audio(url);
+        audio.play();
+        log('Playing recording...');
+      } else {
+        log('No recording available');
+      }
+    }
+
+    async function downloadRecording() {
+      if (!recordedBlob) {
+        log('No recording to download');
+        return;
+      }
+
+      // Convert webm to wav for analysis
+      log('Converting to WAV...');
+      try {
+        const arrayBuffer = await recordedBlob.arrayBuffer();
+        const tempCtx = new AudioContext({ sampleRate: 44100 });
+        const audioBuffer = await tempCtx.decodeAudioData(arrayBuffer);
+
+        // Create WAV file
+        const wavBlob = audioBufferToWav(audioBuffer);
+
+        const url = URL.createObjectURL(wavBlob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'speaker_mic_recording.wav';
+        a.click();
+
+        log(`Downloaded WAV: ${wavBlob.size} bytes`);
+        tempCtx.close();
+      } catch (err) {
+        log('Download error: ' + err.message);
+        // Fallback to webm download
+        const url = URL.createObjectURL(recordedBlob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'recording.webm';
+        a.click();
+      }
+    }
+
+    function audioBufferToWav(buffer) {
+      const numChannels = 1;
+      const sampleRate = buffer.sampleRate;
+      const format = 1; // PCM
+      const bitDepth = 16;
+
+      const channelData = buffer.getChannelData(0);
+      const samples = new Int16Array(channelData.length);
+
+      for (let i = 0; i < channelData.length; i++) {
+        const s = Math.max(-1, Math.min(1, channelData[i]));
+        samples[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+      }
+
+      const dataSize = samples.length * 2;
+      const buffer2 = new ArrayBuffer(44 + dataSize);
+      const view = new DataView(buffer2);
+
+      // WAV header
+      writeString(view, 0, 'RIFF');
+      view.setUint32(4, 36 + dataSize, true);
+      writeString(view, 8, 'WAVE');
+      writeString(view, 12, 'fmt ');
+      view.setUint32(16, 16, true);
+      view.setUint16(20, format, true);
+      view.setUint16(22, numChannels, true);
+      view.setUint32(24, sampleRate, true);
+      view.setUint32(28, sampleRate * numChannels * bitDepth / 8, true);
+      view.setUint16(32, numChannels * bitDepth / 8, true);
+      view.setUint16(34, bitDepth, true);
+      writeString(view, 36, 'data');
+      view.setUint32(40, dataSize, true);
+
+      // Write samples
+      const offset = 44;
+      for (let i = 0; i < samples.length; i++) {
+        view.setInt16(offset + i * 2, samples[i], true);
+      }
+
+      return new Blob([buffer2], { type: 'audio/wav' });
+    }
+
+    function writeString(view, offset, string) {
+      for (let i = 0; i < string.length; i++) {
+        view.setUint8(offset + i, string.charCodeAt(i));
+      }
+    }
+
+    // Play test audio through speakers
+    function playTestAudio() {
+      const ctx = new AudioContext({ sampleRate: 44100 });
+      const notes = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25]; // C major scale
+      const duration = 0.5;
+
+      log('Playing C major scale through speakers...');
+
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'triangle';
+        osc.frequency.value = freq;
+
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * duration);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + (i + 1) * duration - 0.05);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(ctx.currentTime + i * duration);
+        osc.stop(ctx.currentTime + (i + 1) * duration);
+      });
+
+      setStatus('Playing C major scale...');
+      setTimeout(() => setStatus('Playback complete'), notes.length * duration * 1000);
+    }
+
+    function playNote(freq) {
+      const ctx = new AudioContext({ sampleRate: 44100 });
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'triangle';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.3, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.8);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start();
+      osc.stop(ctx.currentTime + 1);
+
+      log(`Playing ${freq} Hz...`);
+    }
+
+    log('Page loaded. Ready to test speaker-to-mic capture.');
+  </script>
+</body>
+</html>

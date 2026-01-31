@@ -1,0 +1,161 @@
+{
+  "skills": [
+    {
+      "skill_id": "K0.1",
+      "name": "Find Middle C",
+      "level": 0,
+      "prerequisites": [],
+      "encompasses": {},
+      "test_criteria": {
+        "notes": ["C4"],
+        "tempo": 60,
+        "bars": 1,
+        "success_threshold": {
+          "proficient": {
+            "pitch_accuracy": ">70%",
+            "consecutive_attempts": 3
+          },
+          "mastered": {
+            "pitch_accuracy": ">90%",
+            "consecutive_attempts": 5
+          }
+        }
+      },
+      "common_errors": [
+        {
+          "type": "pitch",
+          "pattern": "plays D instead of C",
+          "drill": "middle_c_isolation",
+          "parameters": {
+            "repetitions": 10,
+            "tempo": 60
+          }
+        }
+      ],
+      "visual_aids": {
+        "keyboard_highlight": ["C4"],
+        "sheet_music": "/assets/sheet_music/k0_1_middle_c.svg",
+        "reference_audio": "/assets/audio/k0_1_middle_c.mp3"
+      }
+    },
+    {
+      "skill_id": "K0.2",
+      "name": "Play C-D-E Sequence",
+      "level": 0,
+      "prerequisites": ["K0.1"],
+      "encompasses": {
+        "K0.1": 0.3
+      },
+      "test_criteria": {
+        "notes": ["C4", "D4", "E4"],
+        "timing_pattern": [1, 1, 1],
+        "tempo": 60,
+        "bars": 1,
+        "success_threshold": {
+          "proficient": {
+            "pitch_accuracy": ">70%",
+            "timing_accuracy": ">60%",
+            "consecutive_attempts": 3
+          },
+          "mastered": {
+            "pitch_accuracy": ">90%",
+            "timing_accuracy": ">80%",
+            "consecutive_attempts": 5
+          }
+        }
+      },
+      "common_errors": [
+        {
+          "type": "timing",
+          "pattern": "uneven rhythm between notes",
+          "drill": "metronome_practice",
+          "parameters": {
+            "tempo": 40,
+            "duration_minutes": 5
+          }
+        },
+        {
+          "type": "fingering",
+          "pattern": "incorrect finger placement",
+          "drill": "finger_position_drill",
+          "parameters": {
+            "hand": "right",
+            "fingers": [1, 2, 3]
+          }
+        }
+      ],
+      "visual_aids": {
+        "keyboard_highlight": ["C4", "D4", "E4"],
+        "sheet_music": "/assets/sheet_music/k0_2_cde_sequence.svg",
+        "reference_audio": "/assets/audio/k0_2_cde_sequence.mp3"
+      }
+    },
+    {
+      "skill_id": "R2.1",
+      "name": "Play Simple Melody (Right Hand)",
+      "level": 2,
+      "prerequisites": ["K0.2", "R1.5"],
+      "encompasses": {
+        "K0.2": 0.5,
+        "R1.5": 0.7
+      },
+      "test_criteria": {
+        "notes": ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"],
+        "timing_pattern": [1, 1, 2, 1, 1, 2, 1, 4],
+        "tempo": 80,
+        "bars": 4,
+        "success_threshold": {
+          "proficient": {
+            "pitch_accuracy": ">75%",
+            "timing_accuracy": ">65%",
+            "expression": ">50%",
+            "consecutive_attempts": 3
+          },
+          "mastered": {
+            "pitch_accuracy": ">90%",
+            "timing_accuracy": ">85%",
+            "expression": ">75%",
+            "consecutive_attempts": 5
+          }
+        }
+      },
+      "common_errors": [
+        {
+          "type": "rhythm",
+          "pattern": "rushing through eighth notes",
+          "drill": "slow_practice",
+          "parameters": {
+            "start_tempo": 50,
+            "increment": 5,
+            "target_tempo": 80
+          }
+        },
+        {
+          "type": "articulation",
+          "pattern": "choppy transitions between notes",
+          "drill": "legato_practice",
+          "parameters": {
+            "focus_measures": [2, 3],
+            "tempo": 60
+          }
+        }
+      ],
+      "visual_aids": {
+        "keyboard_highlight": ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"],
+        "sheet_music": "/assets/sheet_music/r2_1_simple_melody.svg",
+        "reference_audio": "/assets/audio/r2_1_simple_melody.mp3"
+      }
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2026-01-24",
+    "total_skills": 3,
+    "difficulty_levels": {
+      "0": "Beginner - Basic key identification",
+      "1": "Elementary - Simple sequences",
+      "2": "Intermediate - Short melodies",
+      "3": "Advanced - Complex patterns"
+    }
+  }
+}

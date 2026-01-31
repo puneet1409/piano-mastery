@@ -1,0 +1,405 @@
+/* ============================================
+   Key Slot (Fixed Container - No Reflow)
+   ============================================ */
+
+.keySlot {
+  position: relative;
+  /* Fixed size prevents layout shift */
+}
+
+/* ============================================
+   Key Face (Animated Content)
+   ============================================ */
+
+.keyFace {
+  position: absolute;
+  inset: 0;
+  border-radius: 0 0 4px 4px;
+  cursor: pointer;
+  user-select: none;
+
+  /* Only animate transform, opacity, box-shadow */
+  transition: transform 0.08s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================
+   White Keys - Ivory Material
+   ============================================ */
+
+.whiteKey {
+  background: linear-gradient(180deg,
+    #fffefb 0%,
+    #f4f1ea 95%,
+    #e0dcd5 100%
+  );
+
+  border-bottom: 4px solid #ccc;
+
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.whiteKey .keyLabel {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 10px;
+  font-family: 'Courier New', monospace;
+  color: #999;
+  pointer-events: none;
+}
+
+/* ============================================
+   Black Keys - Ebony Material
+   ============================================ */
+
+.blackKey {
+  background: linear-gradient(180deg,
+    #3a3a3a 0%,
+    #1a1a1a 80%,
+    #000 100%
+  );
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.blackKey .keyLabel {
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 8px;
+  font-family: 'Courier New', monospace;
+  color: #fff;
+  pointer-events: none;
+}
+
+/* Black key lacquer shine */
+.blackKeyShine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+}
+
+/* ============================================
+   White Key Separator
+   ============================================ */
+
+.whiteKeySeparator {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.1) 20%,
+    rgba(0, 0, 0, 0.1) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* ============================================
+   Base States
+   ============================================ */
+
+.state-idle {
+  /* Default state - no special styling */
+}
+
+.state-expected {
+  animation: breathe 1.4s ease-in-out infinite;
+  background: linear-gradient(180deg,
+    #dbeafe 0%,
+    #bfdbfe 95%,
+    #93c5fd 100%
+  ) !important;
+}
+
+.state-expected.whiteKey {
+  border-bottom-color: #3b82f6 !important;
+}
+
+.state-expected.blackKey {
+  background: linear-gradient(180deg,
+    #3b82f6 0%,
+    #2563eb 80%,
+    #1d4ed8 100%
+  ) !important;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.8), inset 0 0 20px rgba(59, 130, 246, 0.3);
+    filter: brightness(1.2);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(59, 130, 246, 1), inset 0 0 30px rgba(59, 130, 246, 0.5);
+    filter: brightness(1.4);
+  }
+}
+
+.state-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   Interaction Overlays
+   ============================================ */
+
+.overlay-pressed {
+  transform: translateY(4px);
+}
+
+.overlay-pressed.whiteKey {
+  border-bottom: 1px solid #ccc;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.overlay-hitCorrect {
+  animation: correctPulse 0.3s ease-out;
+  background: linear-gradient(180deg,
+    #d1fae5 0%,
+    #a7f3d0 95%,
+    #6ee7b7 100%
+  ) !important;
+}
+
+.overlay-hitCorrect.whiteKey {
+  border-bottom-color: #10b981 !important;
+}
+
+.overlay-hitCorrect.blackKey {
+  background: linear-gradient(180deg,
+    #10b981 0%,
+    #059669 80%,
+    #047857 100%
+  ) !important;
+}
+
+@keyframes correctPulse {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(16, 185, 129, 0.9),
+      inset 0 0 40px rgba(16, 185, 129, 0.7);
+    filter: brightness(1.3);
+  }
+  100% {
+    box-shadow:
+      0 0 0 30px rgba(16, 185, 129, 0),
+      inset 0 0 25px rgba(16, 185, 129, 0.5);
+    filter: brightness(1.1);
+  }
+}
+
+.overlay-hitWrong {
+  animation: shake 0.25s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+  box-shadow:
+    0 0 0 2px #FF4757,
+    0 0 20px rgba(255, 71, 87, 0.4);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* Overlay Flash Effect */
+.overlayFlash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+  animation: flashFade 0.3s ease-out;
+}
+
+@keyframes flashFade {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ============================================
+   Piano Container
+   ============================================ */
+
+.pianoContainer {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 4px;
+  background: transparent;
+  border-radius: 4px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.keyboard {
+  position: relative;
+  width: 100%;
+  background: #d0d0d0;
+  border: 1px solid #999;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.whiteKeysLayer {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.blackKeysLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.blackKeysLayer .keySlot {
+  pointer-events: auto;
+}
+
+/* ============================================
+   Responsive Breakpoints
+   ============================================ */
+
+/* Desktop: 3 octaves (default) */
+@media (min-width: 1024px) {
+  .keyboard {
+    /* Default: 3 octaves */
+  }
+}
+
+/* Tablet: 2 octaves */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .pianoContainer {
+    padding: 16px;
+  }
+}
+
+/* Mobile: 1 octave */
+@media (max-width: 639px) {
+  .pianoContainer {
+    padding: 12px;
+  }
+
+  .keyboard {
+    border-width: 1px;
+  }
+}
+
+/* ============================================
+   Compact Keyboard (fixed-bottom waterfall layout)
+   ============================================ */
+
+.compactContainer {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  align-items: stretch;
+}
+
+.compactContainer .keyboard {
+  border-radius: 0;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   Character Stage
+   ============================================ */
+
+.characterStage {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.notaSection {
+  flex: 0 0 auto;
+}
+
+.scoreSection {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ============================================
+   Score Display
+   ============================================ */
+
+.scoreDisplay {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.scoreStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.scoreLabel {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.scoreValue {
+  font-size: 28px;
+  font-weight: 900;
+  color: white;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   Responsive Adjustments
+   ============================================ */
+
+@media (max-width: 640px) {
+  .characterStage {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .scoreSection {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .scoreDisplay {
+    gap: 16px;
+  }
+
+  .scoreValue {
+    font-size: 24px;
+  }
+}

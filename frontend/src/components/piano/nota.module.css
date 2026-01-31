@@ -1,0 +1,99 @@
+.notaContainer {
+  display: inline-block;
+  position: relative;
+}
+
+/* ============================================
+   Idle State - Gentle Bounce
+   ============================================ */
+
+.idle {
+  animation: gentleBounce 2s ease-in-out infinite;
+}
+
+@keyframes gentleBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ============================================
+   Excited State - Bigger Bounce + Rotate
+   ============================================ */
+
+.excited {
+  animation: excitedBounce 0.6s ease-in-out infinite;
+}
+
+@keyframes excitedBounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-15px) rotate(-5deg); }
+  75% { transform: translateY(-15px) rotate(5deg); }
+}
+
+.excited .sparkles {
+  animation: sparkle 1s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ============================================
+   Sad State - Slump
+   ============================================ */
+
+.sad {
+  animation: slump 2s ease-out;
+}
+
+@keyframes slump {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(5px) scale(0.95); }
+}
+
+/* ============================================
+   Confused State - Head Tilt
+   ============================================ */
+
+.confused {
+  animation: headTilt 1.5s ease-in-out infinite;
+}
+
+@keyframes headTilt {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-15deg); }
+}
+
+.confused .questionMark {
+  animation: floatQuestion 2s ease-in-out infinite;
+}
+
+@keyframes floatQuestion {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ============================================
+   SVG Part Animations
+   ============================================ */
+
+.noteBody {
+  transform-origin: center;
+}
+
+.noteStem {
+  transform-origin: bottom;
+}
+
+.noteFlag {
+  transform-origin: bottom left;
+}
+
+.eyes {
+  transform-origin: center;
+}
+
+.mouth {
+  transform-origin: center;
+}

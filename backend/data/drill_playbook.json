@@ -1,0 +1,48 @@
+{
+  "drills": {
+    "isolate_beat_4": {
+      "name": "Isolate Beat 4",
+      "description": "Practice only beat 4 to fix rushing",
+      "base_tempo": 50,
+      "pattern": "Play bass note on beat 1, hold, then play chord on beat 4",
+      "parameters": {
+        "target_beat": {"type": "int", "required": true},
+        "tempo_reduction": {"type": "int", "default": 20}
+      },
+      "success_criteria": {
+        "timing_deviation": "<50ms",
+        "attempts_required": 5,
+        "consecutive": true
+      },
+      "visual_aids": {
+        "highlight_beats": [1, 4],
+        "metronome_emphasis": [1, 4]
+      }
+    },
+    "slow_tempo": {
+      "name": "Slow Full Pattern",
+      "description": "Play complete pattern at reduced tempo",
+      "base_tempo": 50,
+      "pattern": "Full 6-beat pattern at slower tempo",
+      "parameters": {
+        "tempo_reduction": {"type": "int", "required": true}
+      },
+      "success_criteria": {
+        "timing_deviation": "<100ms",
+        "pitch_accuracy": ">90%",
+        "attempts_required": 3
+      }
+    },
+    "hands_separate": {
+      "name": "Hands Separate Practice",
+      "description": "Practice left hand only to build muscle memory",
+      "base_tempo": 50,
+      "pattern": "Left hand pattern only, focus on consistency",
+      "parameters": {},
+      "success_criteria": {
+        "timing_deviation": "<50ms",
+        "attempts_required": 5
+      }
+    }
+  }
+}
