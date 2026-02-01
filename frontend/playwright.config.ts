@@ -11,6 +11,15 @@ export default defineConfig({
     baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
+    // Enable fake media for audio testing
+    launchOptions: {
+      args: [
+        '--use-fake-ui-for-media-stream',
+        '--use-fake-device-for-media-stream',
+        '--autoplay-policy=no-user-gesture-required',
+      ],
+    },
+    permissions: ['microphone'],
   },
 
   projects: [
