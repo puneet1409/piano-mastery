@@ -274,45 +274,29 @@ function detectWithScoreAwareness(samples, sampleRate, expectedNotes) {
 }
 
 // ============================================================================
-// WAV READER
+// AUDIO READER (supports MP3, WAV, WebM via ffmpeg)
 // ============================================================================
 
-function readWavFile(filePath) {
-  const buffer = fs.readFileSync(filePath);
+import { execSync } from 'child_process';
+import { tmpdir } from 'os';
 
-  let offset = 12;
-  let header = null;
-  while (offset < buffer.length - 8) {
-    const chunkId = buffer.toString('utf8', offset, offset + 4);
-    const chunkSize = buffer.readUInt32LE(offset + 4);
-    if (chunkId === 'fmt ') {
-      header = {
-        numChannels: buffer.readUInt16LE(offset + 10),
-        sampleRate: buffer.readUInt32LE(offset + 12),
-        bitsPerSample: buffer.readUInt16LE(offset + 22),
-      };
-    }
-    if (chunkId === 'data' && header) {
-      const dataOffset = offset + 8;
-      const bytesPerSample = header.bitsPerSample / 8;
-      const numSamples = chunkSize / bytesPerSample / header.numChannels;
-      const samples = new Float32Array(numSamples);
+function readAudioFile(filePath) {
+  const tempFile = path.join(tmpdir(), `wrong_note_${Date.now()}.raw`);
+  const sampleRate = 44100;
 
-      for (let i = 0; i < numSamples; i++) {
-        const sampleOffset = dataOffset + i * bytesPerSample * header.numChannels;
-        if (header.bitsPerSample === 16) {
-          samples[i] = buffer.readInt16LE(sampleOffset) / 32768;
-        } else if (header.bitsPerSample === 32) {
-          samples[i] = buffer.readFloatLE(sampleOffset);
-        } else if (header.bitsPerSample === 8) {
-          samples[i] = (buffer.readUInt8(sampleOffset) - 128) / 128;
-        }
-      }
-      return { samples, sampleRate: header.sampleRate };
-    }
-    offset += 8 + chunkSize;
+  try {
+    execSync(`ffmpeg -y -i "${filePath}" -f f32le -acodec pcm_f32le -ac 1 -ar ${sampleRate} "${tempFile}"`, {
+      stdio: 'pipe'
+    });
+  } catch (err) {
+    throw new Error(`ffmpeg failed: ${err.message}`);
   }
-  throw new Error('Invalid WAV file');
+
+  const buffer = fs.readFileSync(tempFile);
+  const samples = new Float32Array(buffer.buffer, buffer.byteOffset, buffer.length / 4);
+  fs.unlinkSync(tempFile);
+
+  return { samples, sampleRate };
 }
 
 // ============================================================================
@@ -320,7 +304,7 @@ function readWavFile(filePath) {
 // ============================================================================
 
 function testWrongNoteDetection(filePath, expectedNotes, shiftSemitones) {
-  const { samples, sampleRate } = readWavFile(filePath);
+  const { samples, sampleRate } = readAudioFile(filePath);
 
   // Apply pitch shift
   const shiftedSamples = pitchShift(samples, shiftSemitones);
@@ -383,13 +367,13 @@ console.log();
 
 const testFiles = [
   // Simple files
-  { file: 'test_c4_sustained.wav', dir: '../backend', expected: ['C4'], label: 'Simple C4' },
-  { file: 'test_c_major_scale.wav', dir: '../backend', expected: ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'], label: 'C Major Scale' },
+  { file: 'test_c4_sustained.mp3', dir: '../.worktrees/piano-academy/backend', expected: ['C4'], label: 'Simple C4' },
+  { file: 'test_c_major_scale.mp3', dir: '../.worktrees/piano-academy/backend', expected: ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'], label: 'C Major Scale' },
 
   // Complex songs
-  { file: 'kaise_hua.wav', dir: 'test-audio', expected: ['E4', 'B4', 'G4', 'F#4', 'A4'], label: 'Kaise Hua' },
-  { file: 'tum_hi_ho.wav', dir: 'test-audio', expected: ['D4', 'A4', 'F#4', 'E4', 'G4'], label: 'Tum Hi Ho' },
-  { file: 'fur_elise_real.wav', dir: 'test-audio', expected: ['E5', 'D#5', 'B4', 'D5', 'C5', 'A4'], label: 'Fur Elise' },
+  { file: 'kaisehua_cover.mp3', dir: '../.worktrees/piano-academy/backend/test_songs', expected: ['E4', 'B4', 'G4', 'F#4', 'A4'], label: 'Kaise Hua' },
+  { file: 'tumhiho_slow.mp3', dir: '../.worktrees/piano-academy/backend/test_songs', expected: ['D4', 'A4', 'F#4', 'E4', 'G4'], label: 'Tum Hi Ho' },
+  { file: 'lagjagale_cover.mp3', dir: '../.worktrees/piano-academy/backend/test_songs', expected: ['G4', 'C4', 'D4', 'E4', 'F4'], label: 'Lag Ja Gale' },
 ];
 
 // Semitone shifts to test (0 = original, others = wrong notes)

@@ -1,0 +1,2134 @@
+{
+  "summary": {
+    "totalFrames": 20832,
+    "totalDuration": 241.84743764172336,
+    "silentFrames": 15189,
+    "detectedFrames": 5154,
+    "lowConfidenceFrames": 163,
+    "onsetCount": 107,
+    "uniqueNotes": [
+      "C4",
+      "C3",
+      "C5",
+      "C#4",
+      "D4",
+      "D#4",
+      "E4",
+      "F4",
+      "F#4",
+      "G4",
+      "G#4",
+      "A4",
+      "A5",
+      "A#4",
+      "B4",
+      "E3",
+      "G3",
+      "B5",
+      "C6",
+      "E5",
+      "E6",
+      "D#6",
+      "G6",
+      "C#5",
+      "D5",
+      "D#5"
+    ],
+    "notesByFrequency": {
+      "C4": 34,
+      "C3": 6,
+      "C5": 7,
+      "C#4": 8,
+      "D4": 5,
+      "D#4": 2,
+      "E4": 9,
+      "F4": 1,
+      "F#4": 2,
+      "G4": 9,
+      "G#4": 2,
+      "A4": 2,
+      "A5": 1,
+      "A#4": 2,
+      "B4": 1,
+      "E3": 2,
+      "G3": 1,
+      "B5": 1,
+      "C6": 3,
+      "E5": 1,
+      "E6": 2,
+      "D#6": 1,
+      "G6": 1,
+      "C#5": 1,
+      "D5": 1,
+      "D#5": 2
+    }
+  },
+  "tests": [
+    {
+      "name": "Silence Rejection (0-12s)",
+      "passed": true,
+      "details": [
+        "No false positives during silence"
+      ]
+    },
+    {
+      "name": "Confidence Distribution",
+      "passed": true,
+      "details": [
+        "Average confidence: 92.1%",
+        "Low confidence detections (< 65%): 0"
+      ]
+    },
+    {
+      "name": "Octave Accuracy",
+      "passed": false,
+      "details": [
+        "Found 1 potential octave errors"
+      ],
+      "errors": [
+        {
+          "time": 43769.61451247166,
+          "from": "C4",
+          "to": "C3",
+          "timeDiff": 92.87981859410502
+        }
+      ]
+    },
+    {
+      "name": "Note Stability",
+      "passed": false,
+      "details": [
+        "Found 7 note oscillations (instability)"
+      ],
+      "oscillations": [
+        {
+          "time": 122612.97052154195,
+          "pattern": "E6→D#6→E6"
+        },
+        {
+          "time": 206645.9863945578,
+          "pattern": "C#4→D4→C#4"
+        },
+        {
+          "time": 206738.86621315192,
+          "pattern": "C#4→C4→C#4"
+        },
+        {
+          "time": 206843.3560090703,
+          "pattern": "C4→C#4→C4"
+        },
+        {
+          "time": 207029.1156462585,
+          "pattern": "C#4→C4→C#4"
+        },
+        {
+          "time": 207226.48526077098,
+          "pattern": "C#4→D4→C#4"
+        },
+        {
+          "time": 207330.97505668935,
+          "pattern": "C#4→C4→C#4"
+        }
+      ]
+    },
+    {
+      "name": "Chromatic Coverage",
+      "passed": true,
+      "details": [
+        "Found 13/13 chromatic notes: C4, C#4, D4, D#4, E4, F4, F#4, G4, G#4, A4, A#4, B4, C5"
+      ]
+    },
+    {
+      "name": "Detection Consistency",
+      "passed": true,
+      "details": [
+        "Short note count: 5 (acceptable)"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "type": "octave-error",
+      "time": 43769.61451247166,
+      "note": "C4→C3",
+      "description": "Rapid octave jump in 93ms"
+    },
+    {
+      "type": "instability",
+      "description": "7 oscillations between adjacent notes"
+    }
+  ],
+  "timeline": [
+    {
+      "startTime": 0,
+      "endTime": 10,
+      "onsetCount": 0,
+      "uniqueNotes": [],
+      "avgConfidence": 0
+    },
+    {
+      "startTime": 10,
+      "endTime": 20,
+      "onsetCount": 1,
+      "uniqueNotes": [
+        "C4"
+      ],
+      "avgConfidence": 0.9474499076604843
+    },
+    {
+      "startTime": 20,
+      "endTime": 30,
+      "onsetCount": 1,
+      "uniqueNotes": [
+        "C4"
+      ],
+      "avgConfidence": 0.9245572686195374
+    },
+    {
+      "startTime": 30,
+      "endTime": 40,
+      "onsetCount": 2,
+      "uniqueNotes": [
+        "C4"
+      ],
+      "avgConfidence": 0.9705725987441838
+    },
+    {
+      "startTime": 40,
+      "endTime": 50,
+      "onsetCount": 9,
+      "uniqueNotes": [
+        "C4",
+        "C3",
+        "C5"
+      ],
+      "avgConfidence": 0.9401329081609018
+    },
+    {
+      "startTime": 50,
+      "endTime": 60,
+      "onsetCount": 2,
+      "uniqueNotes": [
+        "C4",
+        "C#4"
+      ],
+      "avgConfidence": 0.906244557350874
+    },
+    {
+      "startTime": 60,
+      "endTime": 70,
+      "onsetCount": 14,
+      "uniqueNotes": [
+        "D4",
+        "D#4",
+        "E4",
+        "F4",
+        "F#4",
+        "G4",
+        "G#4",
+        "A4",
+        "A5",
+        "A#4",
+        "B4",
+        "C5"
+      ],
+      "avgConfidence": 0.932723466439971
+    },
+    {
+      "startTime": 70,
+      "endTime": 80,
+      "onsetCount": 0,
+      "uniqueNotes": [],
+      "avgConfidence": 0
+    },
+    {
+      "startTime": 80,
+      "endTime": 90,
+      "onsetCount": 7,
+      "uniqueNotes": [
+        "C4",
+        "C3"
+      ],
+      "avgConfidence": 0.9123360657000116
+    },
+    {
+      "startTime": 90,
+      "endTime": 100,
+      "onsetCount": 1,
+      "uniqueNotes": [
+        "C4"
+      ],
+      "avgConfidence": 0.987910645082593
+    },
+    {
+      "startTime": 100,
+      "endTime": 110,
+      "onsetCount": 2,
+      "uniqueNotes": [
+        "E3",
+        "G3"
+      ],
+      "avgConfidence": 0.9160057678818703
+    },
+    {
+      "startTime": 110,
+      "endTime": 120,
+      "onsetCount": 0,
+      "uniqueNotes": [],
+      "avgConfidence": 0
+    },
+    {
+      "startTime": 120,
+      "endTime": 130,
+      "onsetCount": 8,
+      "uniqueNotes": [
+        "B5",
+        "C6",
+        "E5",
+        "E6",
+        "D#6",
+        "D#4",
+        "G6"
+      ],
+      "avgConfidence": 0.9142229940916877
+    },
+    {
+      "startTime": 130,
+      "endTime": 140,
+      "onsetCount": 2,
+      "uniqueNotes": [
+        "C6"
+      ],
+      "avgConfidence": 0.928784841671586
+    },
+    {
+      "startTime": 140,
+      "endTime": 150,
+      "onsetCount": 4,
+      "uniqueNotes": [
+        "C4",
+        "E4",
+        "G4",
+        "C5"
+      ],
+      "avgConfidence": 0.9179901452735066
+    },
+    {
+      "startTime": 150,
+      "endTime": 160,
+      "onsetCount": 2,
+      "uniqueNotes": [
+        "C4"
+      ],
+      "avgConfidence": 0.9245105236768723
+    },
+    {
+      "startTime": 160,
+      "endTime": 170,
+      "onsetCount": 2,
+      "uniqueNotes": [
+        "C4"
+      ],
+      "avgConfidence": 0.9307194091379642
+    },
+    {
+      "startTime": 170,
+      "endTime": 180,
+      "onsetCount": 7,
+      "uniqueNotes": [
+        "F#4",
+        "G#4",
+        "A#4",
+        "C#5",
+        "D5",
+        "D#5"
+      ],
+      "avgConfidence": 0.8872146420180798
+    },
+    {
+      "startTime": 180,
+      "endTime": 190,
+      "onsetCount": 3,
+      "uniqueNotes": [
+        "C4",
+        "E4",
+        "G4"
+      ],
+      "avgConfidence": 0.8836265827218691
+    },
+    {
+      "startTime": 190,
+      "endTime": 200,
+      "onsetCount": 18,
+      "uniqueNotes": [
+        "C4",
+        "E3",
+        "E4",
+        "G4"
+      ],
+      "avgConfidence": 0.9205896886479523
+    },
+    {
+      "startTime": 200,
+      "endTime": 210,
+      "onsetCount": 16,
+      "uniqueNotes": [
+        "C4",
+        "C#4",
+        "D4"
+      ],
+      "avgConfidence": 0.918919570860453
+    },
+    {
+      "startTime": 210,
+      "endTime": 220,
+      "onsetCount": 3,
+      "uniqueNotes": [
+        "C4",
+        "C3",
+        "C5"
+      ],
+      "avgConfidence": 0.8859497328909735
+    },
+    {
+      "startTime": 220,
+      "endTime": 230,
+      "onsetCount": 1,
+      "uniqueNotes": [
+        "C5"
+      ],
+      "avgConfidence": 0.9861810337752104
+    },
+    {
+      "startTime": 230,
+      "endTime": 240,
+      "onsetCount": 2,
+      "uniqueNotes": [
+        "C4",
+        "E4"
+      ],
+      "avgConfidence": 0.9117680191993713
+    },
+    {
+      "startTime": 240,
+      "endTime": 250,
+      "onsetCount": 0,
+      "uniqueNotes": [],
+      "avgConfidence": 0
+    }
+  ],
+  "detections": [
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 12353.015873015875,
+      "frequency": 261.79298801748297,
+      "confidence": 0.9474499076604843
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 13142.494331065758,
+      "duration": 789.4784580498836,
+      "avgConfidence": 0.9907644239975718,
+      "frameCount": 66
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 20839.909297052156,
+      "frequency": 264.11812064587775,
+      "confidence": 0.9245572686195374
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 21234.648526077097,
+      "duration": 394.73922902494087,
+      "avgConfidence": 0.9826743540397729,
+      "frameCount": 32
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 33819.86394557823,
+      "frequency": 264.7849300080043,
+      "confidence": 0.951171588152647
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 36095.41950113379,
+      "duration": 2275.5555555555547,
+      "avgConfidence": 0.9950140394173207,
+      "frameCount": 194
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 36176.689342403624,
+      "frequency": 261.07347158116147,
+      "confidence": 0.9899736093357205
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 37302.857142857145,
+      "duration": 1126.1678004535206,
+      "avgConfidence": 0.9922308940170823,
+      "frameCount": 95
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 43049.795918367345,
+      "frequency": 259.56311400876154,
+      "confidence": 0.8049595654010773
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 43456.14512471655,
+      "duration": 406.34920634920854,
+      "avgConfidence": 0.809469545017118,
+      "frameCount": 23
+    },
+    {
+      "type": "onset",
+      "note": "C3",
+      "midi": 48,
+      "time": 43456.14512471655,
+      "frequency": 130.19506968080535,
+      "confidence": 0.9959395215846598
+    },
+    {
+      "type": "noteOff",
+      "note": "C3",
+      "time": 43676.73469387755,
+      "duration": 220.5895691609985,
+      "avgConfidence": 0.9937772310804576,
+      "frameCount": 12
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 43676.73469387755,
+      "frequency": 259.7974304738467,
+      "confidence": 0.9831490535289049
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 43769.61451247166,
+      "duration": 92.87981859410502,
+      "avgConfidence": 0.9831490535289049,
+      "frameCount": 1
+    },
+    {
+      "type": "onset",
+      "note": "C3",
+      "midi": 48,
+      "time": 43769.61451247166,
+      "frequency": 130.52615852296668,
+      "confidence": 0.9727302622050047
+    },
+    {
+      "type": "noteOff",
+      "note": "C3",
+      "time": 44326.89342403628,
+      "duration": 557.2789115646228,
+      "avgConfidence": 0.9742749806993255,
+      "frameCount": 41
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 44326.89342403628,
+      "frequency": 259.92826636934007,
+      "confidence": 0.9889140846207738
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 44442.99319727891,
+      "duration": 116.09977324263309,
+      "avgConfidence": 0.9891087313493093,
+      "frameCount": 3
+    },
+    {
+      "type": "onset",
+      "note": "C3",
+      "midi": 48,
+      "time": 44442.99319727891,
+      "frequency": 130.1226912384917,
+      "confidence": 0.9914466524496675
+    },
+    {
+      "type": "noteOff",
+      "note": "C3",
+      "time": 44628.75283446712,
+      "duration": 185.75963718821004,
+      "avgConfidence": 0.9721380949486047,
+      "frameCount": 6
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 45232.4716553288,
+      "frequency": 264.2006627491843,
+      "confidence": 0.9030326008796692
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 46532.78911564626,
+      "duration": 1300.3174603174557,
+      "avgConfidence": 0.9910086367665578,
+      "frameCount": 110
+    },
+    {
+      "type": "onset",
+      "note": "C5",
+      "midi": 72,
+      "time": 47391.92743764172,
+      "frequency": 525.9935154853774,
+      "confidence": 0.8377045840024948
+    },
+    {
+      "type": "noteOff",
+      "note": "C5",
+      "time": 48123.356009070296,
+      "duration": 731.4285714285725,
+      "avgConfidence": 0.9889098353766012,
+      "frameCount": 61
+    },
+    {
+      "type": "onset",
+      "note": "C5",
+      "midi": 72,
+      "time": 48239.45578231292,
+      "frequency": 518.0392494145536,
+      "confidence": 0.9833198487758636
+    },
+    {
+      "type": "noteOff",
+      "note": "C5",
+      "time": 48738.684807256235,
+      "duration": 499.22902494331356,
+      "avgConfidence": 0.9934242789508638,
+      "frameCount": 41
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 58514.28571428571,
+      "frequency": 263.29232214816784,
+      "confidence": 0.8783068731427193
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 59419.863945578225,
+      "duration": 905.5782312925148,
+      "avgConfidence": 0.9906336657702923,
+      "frameCount": 75
+    },
+    {
+      "type": "onset",
+      "note": "C#4",
+      "midi": 61,
+      "time": 59419.863945578225,
+      "frequency": 275.25453488239515,
+      "confidence": 0.9341822415590286
+    },
+    {
+      "type": "noteOff",
+      "note": "C#4",
+      "time": 60244.17233560091,
+      "duration": 824.3083900226848,
+      "avgConfidence": 0.9935812974429649,
+      "frameCount": 69
+    },
+    {
+      "type": "onset",
+      "note": "D4",
+      "midi": 62,
+      "time": 60244.17233560091,
+      "frequency": 289.6851664008337,
+      "confidence": 0.889455996453762
+    },
+    {
+      "type": "noteOff",
+      "note": "D4",
+      "time": 61045.26077097505,
+      "duration": 801.0884353741421,
+      "avgConfidence": 0.9860789900412783,
+      "frameCount": 67
+    },
+    {
+      "type": "onset",
+      "note": "D#4",
+      "midi": 63,
+      "time": 61045.26077097505,
+      "frequency": 307.8415264584005,
+      "confidence": 0.917885959148407
+    },
+    {
+      "type": "noteOff",
+      "note": "D#4",
+      "time": 61892.78911564626,
+      "duration": 847.5283446712056,
+      "avgConfidence": 0.9903672570862782,
+      "frameCount": 71
+    },
+    {
+      "type": "onset",
+      "note": "E4",
+      "midi": 64,
+      "time": 61892.78911564626,
+      "frequency": 328.9489571572848,
+      "confidence": 0.9505266398191452
+    },
+    {
+      "type": "noteOff",
+      "note": "E4",
+      "time": 62786.75736961451,
+      "duration": 893.9682539682544,
+      "avgConfidence": 0.9940033465367427,
+      "frameCount": 74
+    },
+    {
+      "type": "onset",
+      "note": "F4",
+      "midi": 65,
+      "time": 62786.75736961451,
+      "frequency": 343.44143847561946,
+      "confidence": 0.9430888257920742
+    },
+    {
+      "type": "noteOff",
+      "note": "F4",
+      "time": 63645.89569160998,
+      "duration": 859.138321995466,
+      "avgConfidence": 0.9947019987456669,
+      "frameCount": 72
+    },
+    {
+      "type": "onset",
+      "note": "F#4",
+      "midi": 66,
+      "time": 63645.89569160998,
+      "frequency": 368.6282117825032,
+      "confidence": 0.9201455637812614
+    },
+    {
+      "type": "noteOff",
+      "note": "F#4",
+      "time": 64458.59410430839,
+      "duration": 812.6984126984098,
+      "avgConfidence": 0.9830960296511427,
+      "frameCount": 67
+    },
+    {
+      "type": "onset",
+      "note": "G4",
+      "midi": 67,
+      "time": 64458.59410430839,
+      "frequency": 391.81051168420316,
+      "confidence": 0.9435601085424423
+    },
+    {
+      "type": "noteOff",
+      "note": "G4",
+      "time": 65282.902494331065,
+      "duration": 824.3083900226775,
+      "avgConfidence": 0.9897363753550672,
+      "frameCount": 69
+    },
+    {
+      "type": "onset",
+      "note": "G#4",
+      "midi": 68,
+      "time": 65282.902494331065,
+      "frequency": 410.7085565557379,
+      "confidence": 0.8924444317817688
+    },
+    {
+      "type": "noteOff",
+      "note": "G#4",
+      "time": 66083.9909297052,
+      "duration": 801.0884353741421,
+      "avgConfidence": 0.9885649318051891,
+      "frameCount": 66
+    },
+    {
+      "type": "onset",
+      "note": "A4",
+      "midi": 69,
+      "time": 66083.9909297052,
+      "frequency": 441.82737347932266,
+      "confidence": 0.9181048795580864
+    },
+    {
+      "type": "noteOff",
+      "note": "A4",
+      "time": 66583.21995464852,
+      "duration": 499.22902494331356,
+      "avgConfidence": 0.9860748015667519,
+      "frameCount": 36
+    },
+    {
+      "type": "onset",
+      "note": "A5",
+      "midi": 81,
+      "time": 66583.21995464852,
+      "frequency": 885.5853397293914,
+      "confidence": 0.9098916575312614
+    },
+    {
+      "type": "noteOff",
+      "note": "A5",
+      "time": 66687.7097505669,
+      "duration": 104.48979591837269,
+      "avgConfidence": 0.8839738555252552,
+      "frameCount": 2
+    },
+    {
+      "type": "onset",
+      "note": "A4",
+      "midi": 69,
+      "time": 66687.7097505669,
+      "frequency": 442.705708487494,
+      "confidence": 0.9881327440962195
+    },
+    {
+      "type": "noteOff",
+      "note": "A4",
+      "time": 66896.68934240364,
+      "duration": 208.97959183674539,
+      "avgConfidence": 0.9682844601338729,
+      "frameCount": 16
+    },
+    {
+      "type": "onset",
+      "note": "A#4",
+      "midi": 70,
+      "time": 66896.68934240364,
+      "frequency": 460.0215864096184,
+      "confidence": 0.9520209543406963
+    },
+    {
+      "type": "noteOff",
+      "note": "A#4",
+      "time": 67697.77777777777,
+      "duration": 801.0884353741276,
+      "avgConfidence": 0.9885711086298853,
+      "frameCount": 67
+    },
+    {
+      "type": "onset",
+      "note": "B4",
+      "midi": 71,
+      "time": 67697.77777777777,
+      "frequency": 490.29101936174,
+      "confidence": 0.9316483587026596
+    },
+    {
+      "type": "noteOff",
+      "note": "B4",
+      "time": 68568.5260770975,
+      "duration": 870.7482993197336,
+      "avgConfidence": 0.9930069675602893,
+      "frameCount": 73
+    },
+    {
+      "type": "onset",
+      "note": "C5",
+      "midi": 72,
+      "time": 68568.5260770975,
+      "frequency": 520.2965934987326,
+      "confidence": 0.9155735522508621
+    },
+    {
+      "type": "noteOff",
+      "note": "C5",
+      "time": 69299.95464852608,
+      "duration": 731.4285714285797,
+      "avgConfidence": 0.9910028235057414,
+      "frameCount": 61
+    },
+    {
+      "type": "onset",
+      "note": "C5",
+      "midi": 72,
+      "time": 69404.44444444445,
+      "frequency": 518.0214882949284,
+      "confidence": 0.9856488583609462
+    },
+    {
+      "type": "noteOff",
+      "note": "C5",
+      "time": 69764.3537414966,
+      "duration": 359.9092970521451,
+      "avgConfidence": 0.9917388764804165,
+      "frameCount": 29
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 81780.68027210885,
+      "frequency": 258.6634182498242,
+      "confidence": 0.7596274614334106
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 82326.3492063492,
+      "duration": 545.6689342403552,
+      "avgConfidence": 0.7702453136444092,
+      "frameCount": 33
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 83394.4671201814,
+      "frequency": 258.63780744939106,
+      "confidence": 0.84808149933815
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 83777.59637188209,
+      "duration": 383.12925170068047,
+      "avgConfidence": 0.8047180318314097,
+      "frameCount": 23
+    },
+    {
+      "type": "onset",
+      "note": "C3",
+      "midi": 48,
+      "time": 83777.59637188209,
+      "frequency": 130.18326536032444,
+      "confidence": 0.9967824425548315
+    },
+    {
+      "type": "noteOff",
+      "note": "C3",
+      "time": 84636.73469387756,
+      "duration": 859.1383219954732,
+      "avgConfidence": 0.9795995544711197,
+      "frameCount": 54
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 84636.73469387756,
+      "frequency": 259.9643292958001,
+      "confidence": 0.9910479178652167
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 84764.44444444445,
+      "duration": 127.70975056689349,
+      "avgConfidence": 0.9905271544121206,
+      "frameCount": 2
+    },
+    {
+      "type": "onset",
+      "note": "C3",
+      "midi": 48,
+      "time": 84764.44444444445,
+      "frequency": 130.09691542318956,
+      "confidence": 0.991643538698554
+    },
+    {
+      "type": "noteOff",
+      "note": "C3",
+      "time": 85809.34240362812,
+      "duration": 1044.8979591836687,
+      "avgConfidence": 0.9949490675625081,
+      "frameCount": 60
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 85809.34240362812,
+      "frequency": 259.2588615470485,
+      "confidence": 0.8764954283833504
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 86482.72108843537,
+      "duration": 673.3786848072486,
+      "avgConfidence": 0.9155068171245081,
+      "frameCount": 54
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 88096.50793650793,
+      "frequency": 264.04708318388947,
+      "confidence": 0.9226741716265678
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 90139.86394557822,
+      "duration": 2043.3560090702958,
+      "avgConfidence": 0.9944897959853158,
+      "frameCount": 174
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 90813.24263038549,
+      "frequency": 261.28718953499924,
+      "confidence": 0.987910645082593
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 91289.25170068027,
+      "duration": 476.0090702947782,
+      "avgConfidence": 0.9893181026578904,
+      "frameCount": 39
+    },
+    {
+      "type": "onset",
+      "note": "E3",
+      "midi": 52,
+      "time": 100925.5328798186,
+      "frequency": 165.3015373409192,
+      "confidence": 0.8999481648206711
+    },
+    {
+      "type": "noteOff",
+      "note": "E3",
+      "time": 103189.4784580499,
+      "duration": 2263.9455782313016,
+      "avgConfidence": 0.9867106997284126,
+      "frameCount": 188
+    },
+    {
+      "type": "onset",
+      "note": "G3",
+      "midi": 55,
+      "time": 103944.12698412698,
+      "frequency": 194.70430947683676,
+      "confidence": 0.9320633709430695
+    },
+    {
+      "type": "noteOff",
+      "note": "G3",
+      "time": 107218.14058956916,
+      "duration": 3274.0136054421746,
+      "avgConfidence": 0.9811237245521094,
+      "frameCount": 274
+    },
+    {
+      "type": "onset",
+      "note": "B5",
+      "midi": 83,
+      "time": 120743.7641723356,
+      "frequency": 1014.0084213982761,
+      "confidence": 0.9041838720440865
+    },
+    {
+      "type": "noteOff",
+      "note": "B5",
+      "time": 120778.5941043084,
+      "duration": 34.82993197279575,
+      "avgConfidence": 0.9041838720440865,
+      "frameCount": 1
+    },
+    {
+      "type": "onset",
+      "note": "C6",
+      "midi": 84,
+      "time": 120778.5941043084,
+      "frequency": 1060.6619688107892,
+      "confidence": 0.9687068797647953
+    },
+    {
+      "type": "noteOff",
+      "note": "C6",
+      "time": 121080.45351473923,
+      "duration": 301.8594104308286,
+      "avgConfidence": 0.991789142077323,
+      "frameCount": 24
+    },
+    {
+      "type": "onset",
+      "note": "E5",
+      "midi": 76,
+      "time": 122403.99092970522,
+      "frequency": 662.5539413019123,
+      "confidence": 0.7867096066474915
+    },
+    {
+      "type": "noteOff",
+      "note": "E5",
+      "time": 122508.48072562358,
+      "duration": 104.48979591835814,
+      "avgConfidence": 0.8306230753660202,
+      "frameCount": 2
+    },
+    {
+      "type": "onset",
+      "note": "E6",
+      "midi": 88,
+      "time": 122508.48072562358,
+      "frequency": 1283.080176552384,
+      "confidence": 0.9868808891624212
+    },
+    {
+      "type": "noteOff",
+      "note": "E6",
+      "time": 122612.97052154195,
+      "duration": 104.48979591837269,
+      "avgConfidence": 0.9895405105448195,
+      "frameCount": 7
+    },
+    {
+      "type": "onset",
+      "note": "D#6",
+      "midi": 87,
+      "time": 122612.97052154195,
+      "frequency": 1280.6017823573695,
+      "confidence": 0.9908664869144559
+    },
+    {
+      "type": "noteOff",
+      "note": "D#6",
+      "time": 122787.1201814059,
+      "duration": 174.14965986394964,
+      "avgConfidence": 0.9930306402608179,
+      "frameCount": 13
+    },
+    {
+      "type": "onset",
+      "note": "E6",
+      "midi": 88,
+      "time": 122787.1201814059,
+      "frequency": 1281.5741467383525,
+      "confidence": 0.9962460126262158
+    },
+    {
+      "type": "noteOff",
+      "note": "E6",
+      "time": 123123.80952380953,
+      "duration": 336.6893424036243,
+      "avgConfidence": 0.9963663961755594,
+      "frameCount": 27
+    },
+    {
+      "type": "onset",
+      "note": "D#4",
+      "midi": 63,
+      "time": 123808.79818594105,
+      "frequency": 312.81036206448823,
+      "confidence": 0.8114138394594193
+    },
+    {
+      "type": "noteOff",
+      "note": "D#4",
+      "time": 123843.62811791383,
+      "duration": 34.829931972781196,
+      "avgConfidence": 0.8273349925875664,
+      "frameCount": 2
+    },
+    {
+      "type": "onset",
+      "note": "G6",
+      "midi": 91,
+      "time": 123843.62811791383,
+      "frequency": 1580.9466287688574,
+      "confidence": 0.8687763661146164
+    },
+    {
+      "type": "noteOff",
+      "note": "G6",
+      "time": 124308.02721088435,
+      "duration": 464.3990929705178,
+      "avgConfidence": 0.9699616633355618,
+      "frameCount": 30
+    },
+    {
+      "type": "onset",
+      "note": "C6",
+      "midi": 84,
+      "time": 130589.02494331065,
+      "frequency": 1061.0581614249327,
+      "confidence": 0.9479409419000149
+    },
+    {
+      "type": "noteOff",
+      "note": "C6",
+      "time": 130902.49433106575,
+      "duration": 313.4693877551035,
+      "avgConfidence": 0.9889600183069706,
+      "frameCount": 25
+    },
+    {
+      "type": "onset",
+      "note": "C6",
+      "midi": 84,
+      "time": 134037.18820861678,
+      "frequency": 1053.2678933094571,
+      "confidence": 0.9096287414431572
+    },
+    {
+      "type": "noteOff",
+      "note": "C6",
+      "time": 134106.84807256237,
+      "duration": 69.6598639455915,
+      "avgConfidence": 0.9396236641332507,
+      "frameCount": 4
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 142616.96145124716,
+      "frequency": 264.3433711503772,
+      "confidence": 0.9424757771193981
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 143174.24036281178,
+      "duration": 557.2789115646156,
+      "avgConfidence": 0.9950377583503723,
+      "frameCount": 45
+    },
+    {
+      "type": "onset",
+      "note": "E4",
+      "midi": 64,
+      "time": 143174.24036281178,
+      "frequency": 328.44133124152665,
+      "confidence": 0.9403579756617546
+    },
+    {
+      "type": "noteOff",
+      "note": "E4",
+      "time": 143928.88888888888,
+      "duration": 754.6485260771005,
+      "avgConfidence": 0.9937673490654091,
+      "frameCount": 62
+    },
+    {
+      "type": "onset",
+      "note": "G4",
+      "midi": 67,
+      "time": 143928.88888888888,
+      "frequency": 390.4331327640259,
+      "confidence": 0.8993992656469345
+    },
+    {
+      "type": "noteOff",
+      "note": "G4",
+      "time": 145205.9863945578,
+      "duration": 1277.097505668935,
+      "avgConfidence": 0.9907841228015497,
+      "frameCount": 108
+    },
+    {
+      "type": "onset",
+      "note": "C5",
+      "midi": 72,
+      "time": 145565.89569160997,
+      "frequency": 527.783563372252,
+      "confidence": 0.8897275626659393
+    },
+    {
+      "type": "noteOff",
+      "note": "C5",
+      "time": 146262.49433106577,
+      "duration": 696.5986394557985,
+      "avgConfidence": 0.991196171768965,
+      "frameCount": 58
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 152183.5827664399,
+      "frequency": 263.820809514897,
+      "confidence": 0.9308058172464371
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 153820.589569161,
+      "duration": 1637.0068027210946,
+      "avgConfidence": 0.9833051674733204,
+      "frameCount": 133
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 159799.72789115648,
+      "frequency": 263.77809827704795,
+      "confidence": 0.9182152301073074
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 160182.85714285713,
+      "duration": 383.12925170065137,
+      "avgConfidence": 0.9841114191090568,
+      "frameCount": 31
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 160774.96598639456,
+      "frequency": 264.51270594787997,
+      "confidence": 0.9349373504519463
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 161367.07482993195,
+      "duration": 592.1088435373968,
+      "avgConfidence": 0.9911808215761178,
+      "frameCount": 49
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 161808.25396825396,
+      "frequency": 264.2754796718961,
+      "confidence": 0.9265014678239822
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 162992.4716553288,
+      "duration": 1184.2176870748226,
+      "avgConfidence": 0.9920111190376337,
+      "frameCount": 100
+    },
+    {
+      "type": "onset",
+      "note": "F#4",
+      "midi": 66,
+      "time": 172860.95238095237,
+      "frequency": 366.04195972812954,
+      "confidence": 0.9124965667724609
+    },
+    {
+      "type": "noteOff",
+      "note": "F#4",
+      "time": 173511.11111111112,
+      "duration": 650.158730158757,
+      "avgConfidence": 0.9829886719971052,
+      "frameCount": 53
+    },
+    {
+      "type": "onset",
+      "note": "G#4",
+      "midi": 68,
+      "time": 173511.11111111112,
+      "frequency": 417.304144959963,
+      "confidence": 0.8881972208619118
+    },
+    {
+      "type": "noteOff",
+      "note": "G#4",
+      "time": 174196.09977324263,
+      "duration": 684.988662131509,
+      "avgConfidence": 0.9835084088993343,
+      "frameCount": 55
+    },
+    {
+      "type": "onset",
+      "note": "A#4",
+      "midi": 70,
+      "time": 174196.09977324263,
+      "frequency": 458.11393297026007,
+      "confidence": 0.9434692040085793
+    },
+    {
+      "type": "noteOff",
+      "note": "A#4",
+      "time": 174927.5283446712,
+      "duration": 731.4285714285797,
+      "avgConfidence": 0.990610336014604,
+      "frameCount": 61
+    },
+    {
+      "type": "onset",
+      "note": "C#5",
+      "midi": 73,
+      "time": 174927.5283446712,
+      "frequency": 559.7521203428988,
+      "confidence": 0.8954203054308891
+    },
+    {
+      "type": "noteOff",
+      "note": "C#5",
+      "time": 175751.83673469388,
+      "duration": 824.3083900226629,
+      "avgConfidence": 0.9791738171416979,
+      "frameCount": 65
+    },
+    {
+      "type": "onset",
+      "note": "D5",
+      "midi": 74,
+      "time": 175867.9365079365,
+      "frequency": 601.0929013487382,
+      "confidence": 0.8544144183397293
+    },
+    {
+      "type": "noteOff",
+      "note": "D5",
+      "time": 175902.7664399093,
+      "duration": 34.829931972781196,
+      "avgConfidence": 0.8544144183397293,
+      "frameCount": 1
+    },
+    {
+      "type": "onset",
+      "note": "D#5",
+      "midi": 75,
+      "time": 175902.7664399093,
+      "frequency": 612.4274502085448,
+      "confidence": 0.9614445678889751
+    },
+    {
+      "type": "noteOff",
+      "note": "D#5",
+      "time": 176343.94557823127,
+      "duration": 441.17913832198246,
+      "avgConfidence": 0.98611230259606,
+      "frameCount": 36
+    },
+    {
+      "type": "onset",
+      "note": "D#5",
+      "midi": 75,
+      "time": 177191.4739229025,
+      "frequency": 616.237954396668,
+      "confidence": 0.7550602108240128
+    },
+    {
+      "type": "noteOff",
+      "note": "D#5",
+      "time": 177760.3628117914,
+      "duration": 568.888888888876,
+      "avgConfidence": 0.9752301316747957,
+      "frameCount": 47
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 186920.6349206349,
+      "frequency": 263.67589036306447,
+      "confidence": 0.895335428416729
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 187187.66439909296,
+      "duration": 267.0294784580474,
+      "avgConfidence": 0.9701953905527122,
+      "frameCount": 13
+    },
+    {
+      "type": "onset",
+      "note": "E4",
+      "midi": 64,
+      "time": 187187.66439909296,
+      "frequency": 324.3921685394267,
+      "confidence": 0.8336198627948761
+    },
+    {
+      "type": "noteOff",
+      "note": "E4",
+      "time": 187385.03401360544,
+      "duration": 197.369614512485,
+      "avgConfidence": 0.9119609103072435,
+      "frameCount": 8
+    },
+    {
+      "type": "onset",
+      "note": "G4",
+      "midi": 67,
+      "time": 187385.03401360544,
+      "frequency": 387.4834292337921,
+      "confidence": 0.9219244569540024
+    },
+    {
+      "type": "noteOff",
+      "note": "G4",
+      "time": 187733.3333333333,
+      "duration": 348.29931972787017,
+      "avgConfidence": 0.9659259131045214,
+      "frameCount": 28
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 190659.0476190476,
+      "frequency": 263.7696557753525,
+      "confidence": 0.9289934486150742
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 191146.6666666667,
+      "duration": 487.61904761908227,
+      "avgConfidence": 0.9922854546873298,
+      "frameCount": 35
+    },
+    {
+      "type": "onset",
+      "note": "E3",
+      "midi": 52,
+      "time": 191146.6666666667,
+      "frequency": 165.16208388347152,
+      "confidence": 0.8794773072004318
+    },
+    {
+      "type": "noteOff",
+      "note": "E3",
+      "time": 191274.37641723355,
+      "duration": 127.70975056686439,
+      "avgConfidence": 0.8690483011305332,
+      "frameCount": 4
+    },
+    {
+      "type": "onset",
+      "note": "E4",
+      "midi": 64,
+      "time": 191274.37641723355,
+      "frequency": 329.753750291698,
+      "confidence": 0.9804831016808748
+    },
+    {
+      "type": "noteOff",
+      "note": "E4",
+      "time": 191483.3560090703,
+      "duration": 208.97959183674539,
+      "avgConfidence": 0.9745201780150334,
+      "frameCount": 15
+    },
+    {
+      "type": "onset",
+      "note": "G4",
+      "midi": 67,
+      "time": 191483.3560090703,
+      "frequency": 386.4969528411671,
+      "confidence": 0.93604926019907
+    },
+    {
+      "type": "noteOff",
+      "note": "G4",
+      "time": 191901.31519274376,
+      "duration": 417.95918367346167,
+      "avgConfidence": 0.9867119487128494,
+      "frameCount": 34
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 192121.90476190476,
+      "frequency": 263.60646245161143,
+      "confidence": 0.8940672799944878
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 192481.81405895692,
+      "duration": 359.9092970521597,
+      "avgConfidence": 0.9819006159534462,
+      "frameCount": 26
+    },
+    {
+      "type": "onset",
+      "note": "E4",
+      "midi": 64,
+      "time": 192481.81405895692,
+      "frequency": 323.17975308671686,
+      "confidence": 0.8647697865962982
+    },
+    {
+      "type": "noteOff",
+      "note": "E4",
+      "time": 192760.45351473923,
+      "duration": 278.6394557823078,
+      "avgConfidence": 0.9744090284886104,
+      "frameCount": 21
+    },
+    {
+      "type": "onset",
+      "note": "G4",
+      "midi": 67,
+      "time": 192760.45351473923,
+      "frequency": 387.41001948898304,
+      "confidence": 0.9156477823853493
+    },
+    {
+      "type": "noteOff",
+      "note": "G4",
+      "time": 193143.5827664399,
+      "duration": 383.12925170068047,
+      "avgConfidence": 0.9836410159815944,
+      "frameCount": 31
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 193294.51247165533,
+      "frequency": 264.2895365742085,
+      "confidence": 0.9351448118686676
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 193631.20181405896,
+      "duration": 336.6893424036389,
+      "avgConfidence": 0.9901106324698776,
+      "frameCount": 25
+    },
+    {
+      "type": "onset",
+      "note": "E4",
+      "midi": 64,
+      "time": 193631.20181405896,
+      "frequency": 326.3391955777039,
+      "confidence": 0.9231242835521698
+    },
+    {
+      "type": "noteOff",
+      "note": "E4",
+      "time": 193944.67120181405,
+      "duration": 313.469387755089,
+      "avgConfidence": 0.9873156201016778,
+      "frameCount": 24
+    },
+    {
+      "type": "onset",
+      "note": "G4",
+      "midi": 67,
+      "time": 193944.67120181405,
+      "frequency": 387.00137589602315,
+      "confidence": 0.9277337267994881
+    },
+    {
+      "type": "noteOff",
+      "note": "G4",
+      "time": 194234.92063492062,
+      "duration": 290.2494331065682,
+      "avgConfidence": 0.9787785198701464,
+      "frameCount": 23
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 194467.12018140592,
+      "frequency": 263.3140621852582,
+      "confidence": 0.9320969358086586
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 194931.51927437642,
+      "duration": 464.39909297050326,
+      "avgConfidence": 0.9870617132054994,
+      "frameCount": 37
+    },
+    {
+      "type": "onset",
+      "note": "E4",
+      "midi": 64,
+      "time": 194931.51927437642,
+      "frequency": 325.7195751422382,
+      "confidence": 0.9030130058526993
+    },
+    {
+      "type": "noteOff",
+      "note": "E4",
+      "time": 195244.98866213154,
+      "duration": 313.4693877551181,
+      "avgConfidence": 0.9680241449922323,
+      "frameCount": 25
+    },
+    {
+      "type": "onset",
+      "note": "G4",
+      "midi": 67,
+      "time": 195465.57823129251,
+      "frequency": 391.0966967765109,
+      "confidence": 0.9460648111999035
+    },
+    {
+      "type": "noteOff",
+      "note": "G4",
+      "time": 196011.2471655329,
+      "duration": 545.6689342403843,
+      "avgConfidence": 0.986790924715913,
+      "frameCount": 45
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 196255.0566893424,
+      "frequency": 263.83280794226516,
+      "confidence": 0.9258899092674255
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 196812.33560090704,
+      "duration": 557.2789115646447,
+      "avgConfidence": 0.9939433183386902,
+      "frameCount": 46
+    },
+    {
+      "type": "onset",
+      "note": "G4",
+      "midi": 67,
+      "time": 197683.08390022677,
+      "frequency": 391.38841850790374,
+      "confidence": 0.8920438513159752
+    },
+    {
+      "type": "noteOff",
+      "note": "G4",
+      "time": 198344.85260770976,
+      "duration": 661.7687074829882,
+      "avgConfidence": 0.9847542662266642,
+      "frameCount": 50
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 198344.85260770976,
+      "frequency": 261.7358874017755,
+      "confidence": 0.9301113858819008
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 198774.42176870746,
+      "duration": 429.56916099769296,
+      "avgConfidence": 0.9896988944350077,
+      "frameCount": 35
+    },
+    {
+      "type": "onset",
+      "note": "E4",
+      "midi": 64,
+      "time": 198890.52154195012,
+      "frequency": 329.4847076929282,
+      "confidence": 0.9404119625687599
+    },
+    {
+      "type": "noteOff",
+      "note": "E4",
+      "time": 199250.43083900225,
+      "duration": 359.90929705213057,
+      "avgConfidence": 0.9858177242567763,
+      "frameCount": 28
+    },
+    {
+      "type": "onset",
+      "note": "G4",
+      "midi": 67,
+      "time": 199250.43083900225,
+      "frequency": 388.371571616638,
+      "confidence": 0.9154917448759079
+    },
+    {
+      "type": "noteOff",
+      "note": "G4",
+      "time": 199691.6099773243,
+      "duration": 441.17913832204067,
+      "avgConfidence": 0.9782351731943587,
+      "frameCount": 36
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 206367.3469387755,
+      "frequency": 264.56995444617615,
+      "confidence": 0.9249104037880898
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 206541.49659863947,
+      "duration": 174.1496598639642,
+      "avgConfidence": 0.9712006937748251,
+      "frameCount": 13
+    },
+    {
+      "type": "onset",
+      "note": "C#4",
+      "midi": 61,
+      "time": 206541.49659863947,
+      "frequency": 273.29606287076774,
+      "confidence": 0.8812602162361145
+    },
+    {
+      "type": "noteOff",
+      "note": "C#4",
+      "time": 206645.9863945578,
+      "duration": 104.48979591834359,
+      "avgConfidence": 0.8942794714655194,
+      "frameCount": 7
+    },
+    {
+      "type": "onset",
+      "note": "D4",
+      "midi": 62,
+      "time": 206645.9863945578,
+      "frequency": 292.9534570895809,
+      "confidence": 0.9411405250430107
+    },
+    {
+      "type": "noteOff",
+      "note": "D4",
+      "time": 206704.03628117914,
+      "duration": 58.0498866213311,
+      "avgConfidence": 0.8921019360423088,
+      "frameCount": 3
+    },
+    {
+      "type": "onset",
+      "note": "C#4",
+      "midi": 61,
+      "time": 206704.03628117914,
+      "frequency": 271.24923406653227,
+      "confidence": 0.9060046970844269
+    },
+    {
+      "type": "noteOff",
+      "note": "C#4",
+      "time": 206738.86621315192,
+      "duration": 34.829931972781196,
+      "avgConfidence": 0.9060046970844269,
+      "frameCount": 1
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 206738.86621315192,
+      "frequency": 263.85582965874653,
+      "confidence": 0.9636540673673153
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 206843.3560090703,
+      "duration": 104.48979591837269,
+      "avgConfidence": 0.9650668866400208,
+      "frameCount": 7
+    },
+    {
+      "type": "onset",
+      "note": "C#4",
+      "midi": 61,
+      "time": 206843.3560090703,
+      "frequency": 276.4308583683873,
+      "confidence": 0.852011188864708
+    },
+    {
+      "type": "noteOff",
+      "note": "C#4",
+      "time": 207029.1156462585,
+      "duration": 185.75963718819548,
+      "avgConfidence": 0.8882436595857144,
+      "frameCount": 10
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 207029.1156462585,
+      "frequency": 264.7099819844496,
+      "confidence": 0.9696950595825911
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 207145.21541950115,
+      "duration": 116.0997732426622,
+      "avgConfidence": 0.971086545730941,
+      "frameCount": 8
+    },
+    {
+      "type": "onset",
+      "note": "C#4",
+      "midi": 61,
+      "time": 207145.21541950115,
+      "frequency": 278.15831514254944,
+      "confidence": 0.8761673867702484
+    },
+    {
+      "type": "noteOff",
+      "note": "C#4",
+      "time": 207226.48526077098,
+      "duration": 81.26984126982279,
+      "avgConfidence": 0.889070725440979,
+      "frameCount": 5
+    },
+    {
+      "type": "onset",
+      "note": "D4",
+      "midi": 62,
+      "time": 207226.48526077098,
+      "frequency": 290.8545254991439,
+      "confidence": 0.9177746772766113
+    },
+    {
+      "type": "noteOff",
+      "note": "D4",
+      "time": 207296.14512471657,
+      "duration": 69.6598639455915,
+      "avgConfidence": 0.8849514760077,
+      "frameCount": 4
+    },
+    {
+      "type": "onset",
+      "note": "C#4",
+      "midi": 61,
+      "time": 207296.14512471657,
+      "frequency": 272.67681699153155,
+      "confidence": 0.9179052785038948
+    },
+    {
+      "type": "noteOff",
+      "note": "C#4",
+      "time": 207330.97505668935,
+      "duration": 34.829931972781196,
+      "avgConfidence": 0.9179052785038948,
+      "frameCount": 1
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 207330.97505668935,
+      "frequency": 265.84092192542374,
+      "confidence": 0.9592848718166351
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 207412.24489795917,
+      "duration": 81.26984126982279,
+      "avgConfidence": 0.9476373374462128,
+      "frameCount": 5
+    },
+    {
+      "type": "onset",
+      "note": "C#4",
+      "midi": 61,
+      "time": 207412.24489795917,
+      "frequency": 280.52573239200933,
+      "confidence": 0.885556161403656
+    },
+    {
+      "type": "noteOff",
+      "note": "C#4",
+      "time": 207470.2947845805,
+      "duration": 58.0498866213311,
+      "avgConfidence": 0.8931838596860567,
+      "frameCount": 3
+    },
+    {
+      "type": "onset",
+      "note": "D4",
+      "midi": 62,
+      "time": 207470.2947845805,
+      "frequency": 289.8166567315088,
+      "confidence": 0.9415478818118572
+    },
+    {
+      "type": "noteOff",
+      "note": "D4",
+      "time": 207551.56462585035,
+      "duration": 81.2698412698519,
+      "avgConfidence": 0.880950327962637,
+      "frameCount": 3
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 207551.56462585035,
+      "frequency": 265.57704200526985,
+      "confidence": 0.9458692334592342
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 207667.664399093,
+      "duration": 116.09977324263309,
+      "avgConfidence": 0.9656794066540897,
+      "frameCount": 8
+    },
+    {
+      "type": "onset",
+      "note": "C#4",
+      "midi": 61,
+      "time": 207667.664399093,
+      "frequency": 274.6167714906085,
+      "confidence": 0.9075204730033875
+    },
+    {
+      "type": "noteOff",
+      "note": "C#4",
+      "time": 207818.5941043084,
+      "duration": 150.9297052154143,
+      "avgConfidence": 0.8955786045302044,
+      "frameCount": 11
+    },
+    {
+      "type": "onset",
+      "note": "D4",
+      "midi": 62,
+      "time": 207818.5941043084,
+      "frequency": 292.1620197017729,
+      "confidence": 0.9124110117554665
+    },
+    {
+      "type": "noteOff",
+      "note": "D4",
+      "time": 207992.74376417234,
+      "duration": 174.14965986393509,
+      "avgConfidence": 0.924953582481696,
+      "frameCount": 13
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 215156.09977324263,
+      "frequency": 259.51392026971064,
+      "confidence": 0.8196647465229034
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 215539.2290249433,
+      "duration": 383.12925170068047,
+      "avgConfidence": 0.7950324853882194,
+      "frameCount": 16
+    },
+    {
+      "type": "onset",
+      "note": "C3",
+      "midi": 48,
+      "time": 215539.2290249433,
+      "frequency": 130.0965530509639,
+      "confidence": 0.9955587000586092
+    },
+    {
+      "type": "noteOff",
+      "note": "C3",
+      "time": 216967.25623582766,
+      "duration": 1428.0272108843492,
+      "avgConfidence": 0.9877565262560761,
+      "frameCount": 97
+    },
+    {
+      "type": "onset",
+      "note": "C5",
+      "midi": 72,
+      "time": 219962.63038548752,
+      "frequency": 526.8832303132327,
+      "confidence": 0.8426257520914078
+    },
+    {
+      "type": "noteOff",
+      "note": "C5",
+      "time": 220717.27891156462,
+      "duration": 754.6485260771005,
+      "avgConfidence": 0.9909658111421213,
+      "frameCount": 63
+    },
+    {
+      "type": "onset",
+      "note": "C5",
+      "midi": 72,
+      "time": 220833.37868480725,
+      "frequency": 518.0245100054999,
+      "confidence": 0.9861810337752104
+    },
+    {
+      "type": "noteOff",
+      "note": "C5",
+      "time": 222029.20634920636,
+      "duration": 1195.827664399112,
+      "avgConfidence": 0.9961756430111023,
+      "frameCount": 101
+    },
+    {
+      "type": "onset",
+      "note": "C4",
+      "midi": 60,
+      "time": 230957.27891156462,
+      "frequency": 264.7061480586075,
+      "confidence": 0.8990220054984093
+    },
+    {
+      "type": "noteOff",
+      "note": "C4",
+      "time": 232977.4149659864,
+      "duration": 2020.136054421775,
+      "avgConfidence": 0.9944064906553967,
+      "frameCount": 172
+    },
+    {
+      "type": "onset",
+      "note": "E4",
+      "midi": 64,
+      "time": 235578.04988662133,
+      "frequency": 328.1133345306773,
+      "confidence": 0.9245140329003334
+    },
+    {
+      "type": "noteOff",
+      "note": "E4",
+      "time": 237203.44671201814,
+      "duration": 1625.396825396805,
+      "avgConfidence": 0.9940090384431338,
+      "frameCount": 138
+    }
+  ]
+}

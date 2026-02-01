@@ -1,0 +1,68 @@
+{
+  "version": "1.0",
+  "audioFile": "pitch-test-latency-test-2026-02-01T04-39-21-001Z.webm",
+  "timestamp": "2026-02-01T04:39:21.001Z",
+  "duration": 17100,
+  "testCase": {
+    "id": "latency-test",
+    "name": "Latency Check",
+    "description": "Measure detection latency",
+    "expectedNotes": []
+  },
+  "parameters": {
+    "minRms": 0.001,
+    "confidenceThreshold": 0.75,
+    "centsTolerance": 35,
+    "debounceMs": 50
+  },
+  "results": {
+    "detectedNotes": [],
+    "uniqueNotes": [],
+    "onsetCount": 0,
+    "frameCount": 0
+  },
+  "remarks": [],
+  "events": [
+    {
+      "type": "debug",
+      "message": "Requesting microphone access...",
+      "timeOffset": -9263
+    },
+    {
+      "type": "debug",
+      "message": "Microphone access granted",
+      "timeOffset": -9068
+    },
+    {
+      "type": "debug",
+      "message": "AudioContext created, sample rate: 44100",
+      "timeOffset": -9040
+    },
+    {
+      "type": "debug",
+      "message": "YIN AudioWorklet loaded",
+      "timeOffset": -9022
+    },
+    {
+      "type": "debug",
+      "message": "Pitch detection started - play a note!",
+      "timeOffset": -9021
+    },
+    {
+      "type": "debug",
+      "message": "Starting test: Latency Check",
+      "timeOffset": -4926
+    },
+    {
+      "type": "debug",
+      "message": "Instructions: Watch the keyboard below. Play any key and observe how quickly it lights up. Should be <100ms.",
+      "timeOffset": -4926
+    },
+    {
+      "type": "debug",
+      "message": "Expected notes: ",
+      "timeOffset": -4926
+    }
+  ],
+  "issueLog": []
+}

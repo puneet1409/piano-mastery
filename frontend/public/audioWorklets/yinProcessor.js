@@ -149,18 +149,13 @@ function isHarmonic(freq1, freq2, tolerance = 0.03) {
 }
 
 /**
- * YIN pitch detection V3 - Proven algorithm with 92%+ accuracy.
+ * YIN pitch detection V4 - Simplified for stability
  *
- * Key differences from V2:
- * - First-minimum search (not multi-candidate) - more reliable
- * - Octave-UP disambiguation (not octave-DOWN) - correct for piano
- * - Stricter threshold (0.20 vs 0.25) - fewer false positives
- *
- * Algorithm:
- * 1. First-minimum CMND search (threshold 0.20)
- * 2. Octave-UP disambiguation (check tau/2, tau/4, tau/8)
- * 3. 130Hz floor with spectral-verified upward shift
- * 4. Reject anything below 130Hz
+ * V3 had complex multi-candidate octave disambiguation that caused
+ * rapid oscillation between C3/C4. V4 simplifies:
+ * - Single first-minimum search (no candidates)
+ * - Aggressive octave-UP preference (always prefer higher octave)
+ * - 200Hz soft floor (most piano testing is C4 and above)
  */
 function detectPitch(samples, sampleRate) {
   if (!samples || samples.length < 1024) {
@@ -179,7 +174,9 @@ function detectPitch(samples, sampleRate) {
   }
 
   const bufferSize = samples.length;
-  const tauMax = Math.min(Math.floor(bufferSize / 2), Math.floor(sampleRate / 50));
+  // Limit search: 80Hz to 2000Hz (tau from ~22 to ~551 at 44100Hz)
+  const tauMax = Math.min(Math.floor(bufferSize / 2), Math.floor(sampleRate / 80));
+  const tauMin = Math.max(2, Math.ceil(sampleRate / 2000));
 
   // Step 1: Difference function
   const difference = new Float32Array(tauMax);
@@ -193,43 +190,36 @@ function detectPitch(samples, sampleRate) {
     difference[tau] = sum;
   }
 
-  // Step 2: CMND (Cumulative Mean Normalized Difference)
+  // Step 2: CMND
   const cmnd = new Float32Array(tauMax);
   cmnd[0] = 1;
   let cumulativeSum = 0;
 
   for (let tau = 1; tau < tauMax; tau++) {
     cumulativeSum += difference[tau];
-    if (cumulativeSum > 0) {
-      cmnd[tau] = (difference[tau] * tau) / cumulativeSum;
-    } else {
-      cmnd[tau] = 1;
-    }
+    cmnd[tau] = cumulativeSum > 0 ? (difference[tau] * tau) / cumulativeSum : 1;
   }
 
-  // Step 3: V3 First-minimum search (NOT multi-candidate)
-  const threshold = 0.20;  // Stricter than V2's 0.25
+  // Step 3: First-minimum search (prefer FIRST = highest frequency)
+  const threshold = 0.15;
   let bestTau = null;
   let cmndMin = 1.0;
 
-  for (let tau = 2; tau < tauMax; tau++) {
+  for (let tau = tauMin; tau < tauMax; tau++) {
     if (cmnd[tau] < threshold) {
-      // Follow to local minimum
-      while (tau + 1 < tauMax && cmnd[tau + 1] < cmnd[tau]) {
-        tau++;
-      }
+      while (tau + 1 < tauMax && cmnd[tau + 1] < cmnd[tau]) tau++;
       bestTau = tau;
       cmndMin = cmnd[tau];
       break;
     }
   }
 
-  // Fallback: global minimum
+  // Fallback: global minimum in 150-1000Hz range (avoid sub-harmonics)
   if (bestTau === null) {
-    const minTau = Math.ceil(sampleRate / 2000);
-    const maxTauSearch = Math.floor(sampleRate / 80);
+    const searchMin = Math.ceil(sampleRate / 1000);  // 1000Hz
+    const searchMax = Math.floor(sampleRate / 150);   // 150Hz
 
-    for (let tau = minTau; tau < Math.min(maxTauSearch, tauMax); tau++) {
+    for (let tau = searchMin; tau < Math.min(searchMax, tauMax); tau++) {
       if (cmnd[tau] < cmndMin) {
         cmndMin = cmnd[tau];
         bestTau = tau;
@@ -237,7 +227,7 @@ function detectPitch(samples, sampleRate) {
     }
   }
 
-  if (bestTau === null) {
+  if (bestTau === null || cmndMin > 0.35) {
     return null;
   }
 
@@ -247,94 +237,39 @@ function detectPitch(samples, sampleRate) {
     const alpha = cmnd[bestTau - 1];
     const beta = cmnd[bestTau];
     const gamma = cmnd[bestTau + 1];
-    const denominator = 2 * (2 * beta - alpha - gamma);
-    if (Math.abs(denominator) > 1e-10) {
-      refinedTau = bestTau + (alpha - gamma) / denominator;
+    const denom = 2 * (2 * beta - alpha - gamma);
+    if (Math.abs(denom) > 1e-10) {
+      refinedTau = bestTau + (alpha - gamma) / denom;
     }
   }
 
   let frequency = sampleRate / refinedTau;
 
-  // Step 5: V3 OCTAVE-UP disambiguation (NOT octave-down!)
-  // Check if HIGHER octave candidates have valid CMND
-  const candidates = [
-    { freq: frequency, cmndVal: cmnd[bestTau], multiplier: 1 }
-  ];
-
-  for (const multiplier of [2, 4, 8]) {
-    const octaveTau = refinedTau / multiplier;
-    if (octaveTau >= 2 && octaveTau < tauMax) {
-      const octaveTauInt = Math.round(octaveTau);
-      const octaveCmnd = cmnd[octaveTauInt];
-      const octaveFreq = sampleRate / octaveTau;
-
-      // Accept if CMND is good and frequency is in valid range
-      if (octaveCmnd < 0.20 && octaveFreq >= 130 && octaveFreq <= 4500) {
-        candidates.push({
-          freq: octaveFreq,
-          cmndVal: octaveCmnd,
-          multiplier
-        });
+  // Step 5: Aggressive octave-UP check
+  // If detected frequency is below 250Hz, ALWAYS check if octave-up is valid
+  // This prevents sub-harmonic detection (C3 when C4 was played)
+  if (frequency < 250 && frequency >= 65) {
+    const halfTau = Math.round(refinedTau / 2);
+    if (halfTau >= tauMin && halfTau < tauMax) {
+      const halfCmnd = cmnd[halfTau];
+      // Accept octave-up if CMND is reasonable (more permissive than before)
+      if (halfCmnd < 0.30) {
+        frequency *= 2;
+        cmndMin = halfCmnd;
       }
     }
   }
 
-  // Score candidates - prefer higher octaves with good CMND
-  let bestCandidate = null;
-  let bestScore = -1;
-
-  for (const cand of candidates) {
-    const clarity = 1.0 - cand.cmndVal;
-
-    // Frequency preference (piano range)
-    let freqPref;
-    if (cand.freq < 80) freqPref = 0.1;
-    else if (cand.freq < 130) freqPref = 0.3;
-    else if (cand.freq < 200) freqPref = 0.6;
-    else if (cand.freq < 600) freqPref = 1.0;  // Sweet spot
-    else if (cand.freq < 1200) freqPref = 0.95;
-    else if (cand.freq < 2400) freqPref = 0.85;
-    else freqPref = 0.7;
-
-    // Octave bonus - prefer higher octaves when CMND is comparable
-    const octaveBonus = 0.1 * Math.log2(cand.multiplier);
-
-    const score = (clarity * 0.4) + (freqPref * 0.5) + (octaveBonus * 0.1);
-
-    if (score > bestScore) {
-      bestScore = score;
-      bestCandidate = cand;
-    }
+  // Step 6: Hard floor at 130Hz, shift up if needed
+  while (frequency < 130 && frequency >= 32) {
+    frequency *= 2;
   }
 
-  if (!bestCandidate) {
+  if (frequency < 130 || frequency > 4500) {
     return null;
   }
 
-  frequency = bestCandidate.freq;
-  const finalCmnd = bestCandidate.cmndVal;
-
-  // Step 6: 130Hz floor with spectral-verified upward shift
-  if (frequency < 130 && frequency >= 32) {
-    const octaveUp = frequency * 2;
-    if (octaveUp <= 4500) {
-      const magLow = getSpectralMagnitude(samples, frequency, sampleRate);
-      const magHigh = getSpectralMagnitude(samples, octaveUp, sampleRate);
-
-      // Shift up if the higher octave has at least 20% of the energy
-      if (magLow > 0 && magHigh > magLow * 0.20) {
-        frequency = octaveUp;
-      }
-    }
-  }
-
-  // Reject anything still below 130Hz - these are usually subharmonics
-  if (frequency < 130) {
-    return null;
-  }
-
-  const confidence = Math.max(0, Math.min(1, 1 - finalCmnd));
-  const velocity = Math.min(1, rms * 10);
+  const confidence = Math.max(0, Math.min(1, 1 - cmndMin));
   const midiPitch = frequencyToMidi(frequency);
   const note = midiToNote(midiPitch);
 
@@ -343,8 +278,8 @@ function detectPitch(samples, sampleRate) {
     frequency,
     midiPitch,
     confidence,
-    velocity,
-    cmndMin: finalCmnd,
+    velocity: Math.min(1, rms * 10),
+    cmndMin,
     rms
   };
 }
@@ -420,17 +355,52 @@ class ScoreAwareYinDetector {
           bestCentsAbs = centsFromTwoOctavesDown;
           break;
         }
+
+        // Check if detected is a harmonic of expected (2x, 2.5x, 3x, 4x)
+        // This catches B5 detected when G4 expected (B5 ≈ 2.52x G4)
+        for (const harmonic of [2, 2.5, 3, 4]) {
+          const harmonicFreq = expectedFreq * harmonic;
+          const centsFromHarmonic = Math.abs(this.centsError(raw.frequency, harmonicFreq));
+          if (centsFromHarmonic <= 80) { // 80 cents tolerance for harmonics
+            bestMatch = { midi: expectedMidi, note: expectedNote, centsError: 0, harmonicCorrected: harmonic };
+            bestCentsAbs = centsFromHarmonic;
+            break;
+          }
+        }
+        if (bestMatch) break;
+      }
+    }
+
+    // Third pass: semitone snap - if detected note is 1-2 semitones away from expected
+    // This catches B3 detected when C4 expected, or E4 when D4 expected
+    if (!bestMatch) {
+      const detectedMidi = raw.midiPitch;
+      for (const [expectedMidi, expectedNote] of this.expectedFrequencies) {
+        const semitoneDiff = Math.abs(detectedMidi - expectedMidi);
+        // If within 2 semitones, snap to expected (with reduced confidence)
+        if (semitoneDiff >= 1 && semitoneDiff <= 2) {
+          const expectedFreq = 440 * Math.pow(2, (expectedMidi - 69) / 12);
+          bestMatch = { midi: expectedMidi, note: expectedNote, centsError: 0, semitoneCorrected: semitoneDiff };
+          bestCentsAbs = semitoneDiff * 100; // Convert semitones to cents for scoring
+          break;
+        }
       }
     }
 
     if (bestMatch) {
       const expectedFreq = 440 * Math.pow(2, (bestMatch.midi - 69) / 12);
+      // Adjust confidence based on correction type
+      let confidenceMultiplier = 1 + (this.centsTolerance - bestCentsAbs) / 100;
+      if (bestMatch.octaveCorrected) confidenceMultiplier = 0.9;
+      if (bestMatch.harmonicCorrected) confidenceMultiplier = 0.85;
+      if (bestMatch.semitoneCorrected) confidenceMultiplier = 0.75; // Lower confidence for semitone snaps
+
       return {
         ...raw,
         note: bestMatch.note,
         frequency: expectedFreq,
         midiPitch: bestMatch.midi,
-        confidence: Math.min(1, raw.confidence * (bestMatch.octaveCorrected ? 0.9 : (1 + (this.centsTolerance - bestCentsAbs) / 100)))
+        confidence: Math.min(1, raw.confidence * confidenceMultiplier)
       };
     }
 
@@ -465,47 +435,24 @@ class YinProcessor extends AudioWorkletProcessor {
     this.isRunning = true;
     this.polyphonyMode = false;
 
-    // Gate thresholds (can be updated via messages)
-    this.gateThresholds = {
-      minRms: 0.001,
-      maxCmnd: 0.35,
-      onsetRatio: 1.1
-    };
-
-    // Octave error rejection: track recently confirmed notes to block sub-harmonic errors
-    this.recentlyConfirmedMidi = null;
-    this.recentlyConfirmedTime = 0;
-    this.OCTAVE_GRACE_PERIOD_MS = 400; // Block octave-down errors for 400ms after confirmation
-
     // RMS tracking for onset detection
     this.prevRms = 0;
     this.rmsHistory = [];
     this.RMS_HISTORY_SIZE = 4;
 
-    // Debounce
-    this.lastDetectedNote = null;
-    this.lastDetectionTime = 0;
-    this.debounceMs = 50;
-
-    // Stability tracking
-    this.recentPitches = [null, null, null];
-    this.STABILITY_WINDOW = 3;
-    this.STABILITY_THRESHOLD = 2;
-
     // Tentative state
     this.tentativeNote = null;
-    this.twoSpeedConfig = {
-      confirmDelayMs: 80,
-      tentativeOnly: false
-    };
+
+    // Active note tracking - prevents re-confirming the same sustained note
+    this.activeConfirmedNote = null;  // The note currently being held
+    this.silenceFrames = 0;           // Count of consecutive silent frames
+    this.SILENCE_FRAMES_FOR_NOTE_OFF = 3; // Need 3 silent frames (~35ms) to consider note-off
 
     // Stats
     this.hopCount = 0;
     this.lastStatsTime = currentTime;
 
-    // Onset tracking
-    this.lastOnsetTime = 0;
-    this.ONSET_REFRACTORY_MS = 30;
+    console.log('[YIN] Processor initialized, sampleRate:', sampleRate);
 
     // Listen for messages from main thread
     this.port.onmessage = (event) => {
@@ -519,28 +466,18 @@ class YinProcessor extends AudioWorkletProcessor {
         this.detector.setExpectedNotes(data.notes || []);
         // Check if any expected notes are low (below C3/130Hz)
         this.updateWindowMode(data.notes || []);
-        break;
-      case 'setGates':
-        if (data.gates) {
-          if (data.gates.minRms !== undefined) this.gateThresholds.minRms = data.gates.minRms;
-          if (data.gates.maxCmnd !== undefined) this.gateThresholds.maxCmnd = data.gates.maxCmnd;
-          if (data.gates.onsetRatio !== undefined) this.gateThresholds.onsetRatio = data.gates.onsetRatio;
-        }
+        console.log('[YIN] Expected notes set:', data.notes?.length || 0);
         break;
       case 'setPolyphonyMode':
         this.polyphonyMode = data.enabled;
         break;
-      case 'setTwoSpeed':
-        if (data.config) {
-          if (data.config.confirmDelayMs !== undefined) this.twoSpeedConfig.confirmDelayMs = data.config.confirmDelayMs;
-          if (data.config.tentativeOnly !== undefined) this.twoSpeedConfig.tentativeOnly = data.config.tentativeOnly;
-        }
-        break;
       case 'reset':
         this.reset();
+        console.log('[YIN] Reset');
         break;
       case 'stop':
         this.isRunning = false;
+        console.log('[YIN] Stopped');
         break;
     }
   }
@@ -573,18 +510,14 @@ class YinProcessor extends AudioWorkletProcessor {
   reset() {
     this.ringBuffer.clear();
     this.samplesSinceLastHop = 0;
-    this.lastDetectedNote = null;
-    this.lastDetectionTime = 0;
     this.prevRms = 0;
     this.rmsHistory = [];
-    this.recentPitches = [null, null, null];
     this.tentativeNote = null;
     this.onsetDetector.reset();
-    this.lastOnsetTime = 0;
-    this.recentlyConfirmedMidi = null;
-    this.recentlyConfirmedTime = 0;
     this.lowNoteMode = false;
     this.currentWindowSize = WINDOW_SAMPLES_STANDARD;
+    this.activeConfirmedNote = null;
+    this.silenceFrames = 0;
   }
 
   process(inputs, outputs, parameters) {
@@ -625,15 +558,17 @@ class YinProcessor extends AudioWorkletProcessor {
     }
     const currentRms = Math.sqrt(rmsSum / window.length);
 
-    // Update RMS history
+    // Debug: log RMS every 100 hops to verify audio flow
+    if (this.hopCount % 100 === 0) {
+      console.log('[YIN] hop:', this.hopCount, 'rms:', currentRms.toFixed(4));
+    }
+
+    // Update RMS history for smoothing
     this.rmsHistory.push(currentRms);
     if (this.rmsHistory.length > this.RMS_HISTORY_SIZE) {
       this.rmsHistory.shift();
     }
     const smoothedRms = this.rmsHistory.reduce((a, b) => a + b, 0) / this.rmsHistory.length;
-
-    // Run YIN
-    const detection = this.detector.detect(window);
 
     // Stats every 500ms
     if (now - this.lastStatsTime > 500) {
@@ -653,107 +588,125 @@ class YinProcessor extends AudioWorkletProcessor {
       this.lastStatsTime = now;
     }
 
-    // 3-Gate system
-    const energyGate = currentRms >= this.gateThresholds.minRms;
-    const confidenceGate = detection ? detection.cmndMin <= this.gateThresholds.maxCmnd : false;
+    // === SIMPLIFIED DETECTION (matching offline algorithm) ===
 
-    const isNewNote = detection?.note !== this.lastDetectedNote;
-
-    // Onset detection
-    const onsetResult = this.onsetDetector.detect(window);
-    const spectralOnset = onsetResult.isOnset && (now - this.lastOnsetTime) > this.ONSET_REFRACTORY_MS;
-    if (spectralOnset) {
-      this.lastOnsetTime = now;
-    }
-
-    const rmsOnset = this.prevRms > 0 && currentRms > this.prevRms * this.gateThresholds.onsetRatio;
-    const isOnset = spectralOnset || rmsOnset;
-
-    const isSustaining = detection?.note === this.lastDetectedNote &&
-                         now - this.lastDetectionTime < 200;
-    const onsetGate = isNewNote || isOnset || isSustaining;
-
-    this.prevRms = smoothedRms;
-
-    const allGatesPass = energyGate && confidenceGate && onsetGate;
-
-    // Stability tracking
-    const currentPitch = (detection && allGatesPass) ? detection.midiPitch : null;
-    this.recentPitches.push(currentPitch);
-    if (this.recentPitches.length > this.STABILITY_WINDOW) {
-      this.recentPitches.shift();
-    }
-
-    const checkStability = (pitch) => {
-      const matches = this.recentPitches.filter(p => p === pitch).length;
-      return matches >= this.STABILITY_THRESHOLD;
-    };
-
-    if (detection && allGatesPass) {
-      // Octave-error rejection: block sub-harmonic errors during grace period
-      // If we recently confirmed a note, reject detections that are 1 or 2 octaves below
-      if (this.recentlyConfirmedMidi !== null &&
-          now - this.recentlyConfirmedTime < this.OCTAVE_GRACE_PERIOD_MS) {
-        const midiDiff = this.recentlyConfirmedMidi - detection.midiPitch;
-        // Block if exactly 12 (one octave) or 24 (two octaves) below
-        // Also block if it's a common harmonic error (e.g., B4→E3 is 19 semitones)
-        if (midiDiff === 12 || midiDiff === 24 || midiDiff === 19 || midiDiff === 7) {
-          // Skip this detection - it's likely a sub-harmonic artifact
-          return;
-        }
-      }
-
-      if (
-        detection.note !== this.lastDetectedNote ||
-        now - this.lastDetectionTime > this.debounceMs
-      ) {
-        // Emit tentative
-        this.port.postMessage({
-          type: 'tentative',
-          detection
-        });
-
-        // Cancel old tentative if different
-        if (this.tentativeNote && this.tentativeNote.note !== detection.note) {
-          this.port.postMessage({
-            type: 'cancelled',
-            note: this.tentativeNote.note
-          });
-        }
-
-        this.tentativeNote = {
-          note: detection.note,
-          timestamp: now,
-          detection
-        };
-
-        this.lastDetectedNote = detection.note;
-        this.lastDetectionTime = now;
-      }
-
-      // Check stability confirmation
-      if (this.tentativeNote && !this.twoSpeedConfig.tentativeOnly) {
-        const isStable = checkStability(detection.midiPitch);
-        if (isStable && this.tentativeNote.note === detection.note) {
-          this.port.postMessage({
-            type: 'confirmed',
-            detection: this.tentativeNote.detection
-          });
-          // Track confirmed note for octave-error rejection
-          this.recentlyConfirmedMidi = this.tentativeNote.detection.midiPitch;
-          this.recentlyConfirmedTime = now;
-          this.tentativeNote = null;
-        }
-      }
-    } else {
-      // Cancel tentative if timeout
-      if (this.tentativeNote && now - this.tentativeNote.timestamp > this.twoSpeedConfig.confirmDelayMs * 2) {
-        this.port.postMessage({
-          type: 'cancelled',
-          note: this.tentativeNote.note
-        });
+    // Gate 1: Silence threshold (must have audio)
+    const SILENCE_THRESHOLD = 0.003;
+    if (currentRms < SILENCE_THRESHOLD) {
+      this.silenceFrames++;
+      if (this.silenceFrames >= this.SILENCE_FRAMES_FOR_NOTE_OFF && this.activeConfirmedNote !== null) {
+        this.port.postMessage({ type: 'noteOff', note: this.activeConfirmedNote });
+        console.log('[YIN] noteOff:', this.activeConfirmedNote);
+        this.activeConfirmedNote = null;
         this.tentativeNote = null;
       }
+      this.prevRms = smoothedRms;
+      return;
+    }
+    this.silenceFrames = 0;
+
+    // Onset detection for re-triggering same note
+    const ONSET_RMS_RATIO = 1.5;
+    const isOnset = this.prevRms > 0.001 && currentRms > this.prevRms * ONSET_RMS_RATIO;
+    if (isOnset && this.activeConfirmedNote !== null) {
+      // Strong onset = new keypress, allow re-trigger
+      console.log('[YIN] onset detected, resetting active note');
+      this.activeConfirmedNote = null;
+    }
+    this.prevRms = smoothedRms;
+
+    // Run YIN pitch detection
+    const detection = this.detector.detect(window);
+
+    // Gate 2: Must have valid detection with good confidence
+    const CONFIDENCE_THRESHOLD = 0.75;  // V5.1: stricter threshold reduces false triggers
+    if (!detection) {
+      return;
+    }
+
+    const confidence = 1 - (detection.cmndMin || 0);
+    if (confidence < CONFIDENCE_THRESHOLD) {
+      // Low confidence - log but don't emit
+      if (this.hopCount % 50 === 0) {
+        console.log('[YIN] low confidence:', detection.note, 'conf:', confidence.toFixed(2));
+      }
+      return;
+    }
+
+    // Debug: log good detections
+    console.log('[YIN] detect:', detection.note, 'freq:', detection.frequency?.toFixed(1), 'conf:', confidence.toFixed(2), 'rms:', currentRms.toFixed(3));
+
+    // Gate 3: Must be different from currently active note (or no active note)
+    if (this.activeConfirmedNote === detection.note) {
+      // Same note still sustaining - send frame update
+      this.port.postMessage({
+        type: 'frame',
+        note: detection.note,
+        frequency: detection.frequency,
+        rms: currentRms,
+        confidence: confidence,
+        timestamp: now
+      });
+      return;
+    }
+
+    // V5 HYSTERESIS: Prevent oscillation between notes
+    // - Octave jumps (12/24 semitones): require 8 frames + 85% confidence
+    // - Semitone jumps (1-2 semitones): require 3 frames to prevent flutter
+    // - Other intervals: default 2 frames
+    let requiredConfirmFrames = 2;  // Default: 2 frames to confirm
+    if (this.activeConfirmedNote !== null) {
+      const activeMidi = noteToMidi(this.activeConfirmedNote);
+      const newMidi = detection.midiPitch;
+      const midiDiff = Math.abs(activeMidi - newMidi);
+
+      if (midiDiff === 12 || midiDiff === 24) {
+        // Octave jump - require strong evidence
+        requiredConfirmFrames = 8;  // ~93ms for octave change
+        if (confidence < 0.85) {
+          return;  // Not confident enough for octave jump
+        }
+      } else if (midiDiff <= 2) {
+        // Semitone/whole-tone - require slightly more evidence to prevent flutter
+        requiredConfirmFrames = 3;
+      }
+    }
+
+    // New note detected! Emit tentative immediately
+    if (!this.tentativeNote || this.tentativeNote.note !== detection.note) {
+      // Cancel old tentative if different
+      if (this.tentativeNote && this.tentativeNote.note !== detection.note) {
+        this.port.postMessage({ type: 'cancelled', note: this.tentativeNote.note });
+      }
+
+      this.tentativeNote = {
+        note: detection.note,
+        timestamp: now,
+        detection: detection,
+        confirmCount: 1,
+        requiredFrames: requiredConfirmFrames
+      };
+
+      this.port.postMessage({ type: 'tentative', detection });
+      console.log('[YIN] tentative:', detection.note, 'requires:', requiredConfirmFrames, 'frames');
+    } else {
+      // Same tentative note - increment confirm count
+      this.tentativeNote.confirmCount++;
+    }
+
+    // Confirm after required consecutive frames
+    if (this.tentativeNote && this.tentativeNote.confirmCount >= this.tentativeNote.requiredFrames) {
+      // If there was an active note, send noteOff first
+      if (this.activeConfirmedNote !== null) {
+        this.port.postMessage({ type: 'noteOff', note: this.activeConfirmedNote });
+        console.log('[YIN] noteOff (transition):', this.activeConfirmedNote);
+      }
+
+      this.port.postMessage({ type: 'confirmed', detection: this.tentativeNote.detection });
+      console.log('[YIN] CONFIRMED:', detection.note);
+
+      this.activeConfirmedNote = detection.note;
+      this.tentativeNote = null;
     }
   }
 }

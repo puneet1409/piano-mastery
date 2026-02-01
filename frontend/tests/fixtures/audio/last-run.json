@@ -1,0 +1,3116 @@
+{
+  "timestamp": "2026-02-01T22:44:24.487Z",
+  "summary": {
+    "passed": 2,
+    "warning": 0,
+    "failed": 0,
+    "skipped": 0,
+    "error": 0
+  },
+  "details": [
+    {
+      "status": "passed",
+      "bundle": {
+        "version": "1.0",
+        "audioFile": "pitch-test-freeform-2026-02-01T16-00-22-922Z.webm",
+        "timestamp": "2026-02-01T16:00:22.922Z",
+        "duration": 242243,
+        "testCase": null,
+        "parameters": {
+          "minRms": 0.001,
+          "confidenceThreshold": 0.75,
+          "centsTolerance": 35,
+          "debounceMs": 50
+        },
+        "results": {
+          "detectedNotes": [],
+          "uniqueNotes": [],
+          "onsetCount": 0,
+          "frameCount": 0
+        },
+        "remarks": [],
+        "events": [
+          {
+            "type": "debug",
+            "message": "Requesting microphone access...",
+            "timeOffset": -1362
+          },
+          {
+            "type": "debug",
+            "message": "Microphone access granted",
+            "timeOffset": -1171
+          },
+          {
+            "type": "debug",
+            "message": "AudioContext created, sample rate: 44100",
+            "timeOffset": -1146
+          },
+          {
+            "type": "debug",
+            "message": "YIN AudioWorklet loaded",
+            "timeOffset": -1110
+          },
+          {
+            "type": "debug",
+            "message": "Pitch detection started - play a note!",
+            "timeOffset": -1110
+          }
+        ],
+        "issueLog": []
+      },
+      "result": {
+        "duration": 241.92,
+        "detections": [
+          {
+            "time": 12376.235827664399,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.3591108311464,
+            "confidence": 0.9060906246304512
+          },
+          {
+            "time": 13142.494331065758,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 20874.739229024945,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 263.6341093022894,
+            "confidence": 0.9394529014825821
+          },
+          {
+            "time": 21234.648526077097,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 33843.08390022676,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.26741056294594,
+            "confidence": 0.9084135666489601
+          },
+          {
+            "time": 36095.41950113379,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 36176.689342403624,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 261.12784130695223,
+            "confidence": 0.9935163767077029
+          },
+          {
+            "time": 37302.857142857145,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 43084.62585034014,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 257.47345986846403,
+            "confidence": 0.875187024474144
+          },
+          {
+            "time": 43549.02494331066,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 43549.02494331066,
+            "type": "onset",
+            "note": "C3",
+            "frequency": 130.15677822642795,
+            "confidence": 0.9942027968354523
+          },
+          {
+            "time": 44628.75283446712,
+            "type": "noteOff",
+            "note": "C3"
+          },
+          {
+            "time": 45267.30158730159,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.72859510761873,
+            "confidence": 0.8946460708975792
+          },
+          {
+            "time": 46532.78911564626,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 47426.75736961451,
+            "type": "onset",
+            "note": "C5",
+            "frequency": 515.8713214014756,
+            "confidence": 0.8888656124472618
+          },
+          {
+            "time": 48123.356009070296,
+            "type": "noteOff",
+            "note": "C5"
+          },
+          {
+            "time": 48239.45578231292,
+            "type": "onset",
+            "note": "C5",
+            "frequency": 518.2435163796326,
+            "confidence": 0.9663501270115376
+          },
+          {
+            "time": 48738.684807256235,
+            "type": "noteOff",
+            "note": "C5"
+          },
+          {
+            "time": 58560.725623582766,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.2651909647771,
+            "confidence": 0.9618999324738979
+          },
+          {
+            "time": 59396.643990929704,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 260.8958664817242,
+            "confidence": 0.9836409520357847
+          },
+          {
+            "time": 59419.863945578225,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 261.47976720593795,
+            "confidence": 0.9677534811198711
+          },
+          {
+            "time": 59466.30385487529,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 59466.30385487529,
+            "type": "onset",
+            "note": "C#4",
+            "frequency": 275.5045681642017,
+            "confidence": 0.9818813279271126
+          },
+          {
+            "time": 60279.0022675737,
+            "type": "noteOff",
+            "note": "C#4"
+          },
+          {
+            "time": 60279.0022675737,
+            "type": "onset",
+            "note": "D4",
+            "frequency": 292.8890411473769,
+            "confidence": 0.8880434185266495
+          },
+          {
+            "time": 61022.04081632653,
+            "type": "onset",
+            "note": "D4",
+            "frequency": 294.8799427385666,
+            "confidence": 0.9961783715989441
+          },
+          {
+            "time": 61091.700680272115,
+            "type": "noteOff",
+            "note": "D4"
+          },
+          {
+            "time": 61091.700680272115,
+            "type": "onset",
+            "note": "D#4",
+            "frequency": 307.3432909002351,
+            "confidence": 0.9576911143958569
+          },
+          {
+            "time": 61881.179138322,
+            "type": "onset",
+            "note": "D#4",
+            "frequency": 310.96426636248356,
+            "confidence": 0.9980442023370415
+          },
+          {
+            "time": 61939.229024943306,
+            "type": "noteOff",
+            "note": "D#4"
+          },
+          {
+            "time": 61939.229024943306,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 328.7782186225942,
+            "confidence": 0.9904262609779835
+          },
+          {
+            "time": 62763.53741496599,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 329.1274396191764,
+            "confidence": 0.9987262638751417
+          },
+          {
+            "time": 62821.5873015873,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 62821.5873015873,
+            "type": "onset",
+            "note": "F4",
+            "frequency": 344.99466848968916,
+            "confidence": 0.9717731177806854
+          },
+          {
+            "time": 63680.725623582766,
+            "type": "noteOff",
+            "note": "F4"
+          },
+          {
+            "time": 63680.725623582766,
+            "type": "onset",
+            "note": "F#4",
+            "frequency": 366.89762999799296,
+            "confidence": 0.9425150230526924
+          },
+          {
+            "time": 64423.76417233559,
+            "type": "onset",
+            "note": "F#4",
+            "frequency": 372.06971481750895,
+            "confidence": 0.9751427099108696
+          },
+          {
+            "time": 64493.42403628118,
+            "type": "noteOff",
+            "note": "F#4"
+          },
+          {
+            "time": 64493.42403628118,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 391.6085509130869,
+            "confidence": 0.9572888240218163
+          },
+          {
+            "time": 65248.07256235828,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 389.05623556349053,
+            "confidence": 0.9964250724297017
+          },
+          {
+            "time": 65317.732426303846,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 65317.732426303846,
+            "type": "onset",
+            "note": "G#4",
+            "frequency": 416.2155608677623,
+            "confidence": 0.9016341865062714
+          },
+          {
+            "time": 66118.820861678,
+            "type": "noteOff",
+            "note": "G#4"
+          },
+          {
+            "time": 66118.820861678,
+            "type": "onset",
+            "note": "A4",
+            "frequency": 439.0297726074802,
+            "confidence": 0.9603524208068848
+          },
+          {
+            "time": 66606.43990929706,
+            "type": "noteOff",
+            "note": "A4"
+          },
+          {
+            "time": 66606.43990929706,
+            "type": "onset",
+            "note": "A5",
+            "frequency": 884.2637479000382,
+            "confidence": 0.9073002263903618
+          },
+          {
+            "time": 66710.92970521541,
+            "type": "noteOff",
+            "note": "A5"
+          },
+          {
+            "time": 66710.92970521541,
+            "type": "onset",
+            "note": "A4",
+            "frequency": 442.7397805230726,
+            "confidence": 0.9910236336290836
+          },
+          {
+            "time": 66919.90929705216,
+            "type": "noteOff",
+            "note": "A4"
+          },
+          {
+            "time": 66919.90929705216,
+            "type": "onset",
+            "note": "A#4",
+            "frequency": 453.55195037623497,
+            "confidence": 0.9431958496570587
+          },
+          {
+            "time": 67662.947845805,
+            "type": "onset",
+            "note": "A#4",
+            "frequency": 463.2796484056155,
+            "confidence": 0.995705796405673
+          },
+          {
+            "time": 67744.21768707484,
+            "type": "noteOff",
+            "note": "A#4"
+          },
+          {
+            "time": 67744.21768707484,
+            "type": "onset",
+            "note": "B4",
+            "frequency": 498.2185535803646,
+            "confidence": 0.9841658342629671
+          },
+          {
+            "time": 68591.74603174602,
+            "type": "noteOff",
+            "note": "B4"
+          },
+          {
+            "time": 68591.74603174602,
+            "type": "onset",
+            "note": "C5",
+            "frequency": 527.6726985550641,
+            "confidence": 0.8818997368216515
+          },
+          {
+            "time": 69299.95464852608,
+            "type": "noteOff",
+            "note": "C5"
+          },
+          {
+            "time": 69404.44444444445,
+            "type": "onset",
+            "note": "C5",
+            "frequency": 518.1119268809537,
+            "confidence": 0.9806481264531612
+          },
+          {
+            "time": 69764.3537414966,
+            "type": "noteOff",
+            "note": "C5"
+          },
+          {
+            "time": 79888.25396825396,
+            "type": "onset",
+            "note": "C3",
+            "frequency": 130.65196429243966,
+            "confidence": 0.9305278211832047
+          },
+          {
+            "time": 80120.45351473923,
+            "type": "noteOff",
+            "note": "C3"
+          },
+          {
+            "time": 80120.45351473923,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 259.78500941271176,
+            "confidence": 0.9822349864989519
+          },
+          {
+            "time": 80921.54195011337,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 80921.54195011337,
+            "type": "onset",
+            "note": "C3",
+            "frequency": 130.0001336024872,
+            "confidence": 0.9507029429078102
+          },
+          {
+            "time": 82326.3492063492,
+            "type": "noteOff",
+            "note": "C3"
+          },
+          {
+            "time": 83429.2970521542,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 261.00828596008637,
+            "confidence": 0.8513059765100479
+          },
+          {
+            "time": 84183.94557823129,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 84183.94557823129,
+            "type": "onset",
+            "note": "C3",
+            "frequency": 130.36702332632973,
+            "confidence": 0.9718857612460852
+          },
+          {
+            "time": 85542.31292517006,
+            "type": "noteOff",
+            "note": "C3"
+          },
+          {
+            "time": 85542.31292517006,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 260.44041716205857,
+            "confidence": 0.9961441289633512
+          },
+          {
+            "time": 86482.72108843537,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 88131.33786848072,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.00643898001954,
+            "confidence": 0.9279740527272224
+          },
+          {
+            "time": 90139.86394557822,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 90813.24263038549,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 261.23945712231205,
+            "confidence": 0.9844523640349507
+          },
+          {
+            "time": 91289.25170068027,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 100948.75283446712,
+            "type": "onset",
+            "note": "E3",
+            "frequency": 165.58204422516235,
+            "confidence": 0.9747368730604649
+          },
+          {
+            "time": 103189.4784580499,
+            "type": "noteOff",
+            "note": "E3"
+          },
+          {
+            "time": 103955.73696145126,
+            "type": "onset",
+            "note": "G3",
+            "frequency": 195.24372434475157,
+            "confidence": 0.9075893610715866
+          },
+          {
+            "time": 107218.14058956916,
+            "type": "noteOff",
+            "note": "G3"
+          },
+          {
+            "time": 120766.98412698413,
+            "type": "onset",
+            "note": "C6",
+            "frequency": 1061.1880291281848,
+            "confidence": 0.9464799053966999
+          },
+          {
+            "time": 121080.45351473923,
+            "type": "noteOff",
+            "note": "C6"
+          },
+          {
+            "time": 122462.04081632654,
+            "type": "onset",
+            "note": "E6",
+            "frequency": 1282.710145615955,
+            "confidence": 0.9615833722054958
+          },
+          {
+            "time": 122705.85034013605,
+            "type": "noteOff",
+            "note": "E6"
+          },
+          {
+            "time": 122705.85034013605,
+            "type": "onset",
+            "note": "D#6",
+            "frequency": 1279.3723078889848,
+            "confidence": 0.9929966432973742
+          },
+          {
+            "time": 122810.34013605442,
+            "type": "noteOff",
+            "note": "D#6"
+          },
+          {
+            "time": 122810.34013605442,
+            "type": "onset",
+            "note": "E6",
+            "frequency": 1281.6470713732936,
+            "confidence": 0.9965779297053814
+          },
+          {
+            "time": 123123.80952380953,
+            "type": "noteOff",
+            "note": "E6"
+          },
+          {
+            "time": 123762.358276644,
+            "type": "onset",
+            "note": "E6",
+            "frequency": 1282.0299716016436,
+            "confidence": 0.9721875619143248
+          },
+          {
+            "time": 123843.62811791383,
+            "type": "noteOff",
+            "note": "E6"
+          },
+          {
+            "time": 123843.62811791383,
+            "type": "onset",
+            "note": "G6",
+            "frequency": 1585.6754306829746,
+            "confidence": 0.8667269796133041
+          },
+          {
+            "time": 124308.02721088435,
+            "type": "noteOff",
+            "note": "G6"
+          },
+          {
+            "time": 130600.63492063491,
+            "type": "onset",
+            "note": "C6",
+            "frequency": 1018.6274019796647,
+            "confidence": 0.9409740343689919
+          },
+          {
+            "time": 130902.49433106575,
+            "type": "noteOff",
+            "note": "C6"
+          },
+          {
+            "time": 134048.79818594106,
+            "type": "onset",
+            "note": "C7",
+            "frequency": 2106.98361808809,
+            "confidence": 0.9340398162603378
+          },
+          {
+            "time": 134106.84807256237,
+            "type": "noteOff",
+            "note": "C7"
+          },
+          {
+            "time": 142640.1814058957,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.44030177350595,
+            "confidence": 0.8666915744543076
+          },
+          {
+            "time": 143151.02040816328,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 260.43626234520605,
+            "confidence": 0.9967798725701869
+          },
+          {
+            "time": 143209.07029478456,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 328.4837513650573,
+            "confidence": 0.9649932309985161
+          },
+          {
+            "time": 143894.0589569161,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 328.8274844356626,
+            "confidence": 0.9857999598607421
+          },
+          {
+            "time": 143952.10884353743,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 143952.10884353743,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 390.75757177106186,
+            "confidence": 0.8756646066904068
+          },
+          {
+            "time": 145205.9863945578,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 145589.11564625852,
+            "type": "onset",
+            "note": "C5",
+            "frequency": 516.9653069769323,
+            "confidence": 0.8685484975576401
+          },
+          {
+            "time": 146262.49433106577,
+            "type": "noteOff",
+            "note": "C5"
+          },
+          {
+            "time": 152218.4126984127,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 263.63426491711476,
+            "confidence": 0.9503074958920479
+          },
+          {
+            "time": 152508.6621315193,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 268.84463805373696,
+            "confidence": 0.9379307292401791
+          },
+          {
+            "time": 153820.589569161,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 159834.55782312923,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 263.8970106443168,
+            "confidence": 0.9207057729363441
+          },
+          {
+            "time": 160182.85714285713,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 160751.74603174604,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 254.48643536769862,
+            "confidence": 0.8358762413263321
+          },
+          {
+            "time": 160809.79591836734,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 261.86495584129403,
+            "confidence": 0.9443795047700405
+          },
+          {
+            "time": 161367.07482993195,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 161843.08390022675,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.0043592162526,
+            "confidence": 0.9409429542720318
+          },
+          {
+            "time": 162992.4716553288,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 172895.78231292518,
+            "type": "onset",
+            "note": "F#4",
+            "frequency": 367.3773419696478,
+            "confidence": 0.9469118416309357
+          },
+          {
+            "time": 173476.2811791383,
+            "type": "onset",
+            "note": "F#4",
+            "frequency": 366.05193970584617,
+            "confidence": 0.9937642687000334
+          },
+          {
+            "time": 173545.9410430839,
+            "type": "noteOff",
+            "note": "F#4"
+          },
+          {
+            "time": 173545.9410430839,
+            "type": "onset",
+            "note": "G#4",
+            "frequency": 416.32434477443746,
+            "confidence": 0.9018860310316086
+          },
+          {
+            "time": 174219.31972789115,
+            "type": "onset",
+            "note": "A#4",
+            "frequency": 459.8607411960676,
+            "confidence": 0.9622606709599495
+          },
+          {
+            "time": 174915.91836734692,
+            "type": "onset",
+            "note": "A#4",
+            "frequency": 463.9839129779852,
+            "confidence": 0.9978809752501547
+          },
+          {
+            "time": 174962.358276644,
+            "type": "noteOff",
+            "note": "A#4"
+          },
+          {
+            "time": 174962.358276644,
+            "type": "onset",
+            "note": "C#5",
+            "frequency": 557.6696264234565,
+            "confidence": 0.9001108780503273
+          },
+          {
+            "time": 175751.83673469388,
+            "type": "noteOff",
+            "note": "C#5"
+          },
+          {
+            "time": 175821.49659863944,
+            "type": "onset",
+            "note": "C#5",
+            "frequency": 549.6991249908574,
+            "confidence": 0.9671611748635769
+          },
+          {
+            "time": 175949.20634920636,
+            "type": "noteOff",
+            "note": "C#5"
+          },
+          {
+            "time": 175949.20634920636,
+            "type": "onset",
+            "note": "D#5",
+            "frequency": 609.0702115562825,
+            "confidence": 0.9786252528429031
+          },
+          {
+            "time": 176343.94557823127,
+            "type": "noteOff",
+            "note": "D#5"
+          },
+          {
+            "time": 177226.3038548753,
+            "type": "onset",
+            "note": "D5",
+            "frequency": 603.2751118815798,
+            "confidence": 0.8197129964828491
+          },
+          {
+            "time": 177284.3537414966,
+            "type": "noteOff",
+            "note": "D5"
+          },
+          {
+            "time": 177284.3537414966,
+            "type": "onset",
+            "note": "D#5",
+            "frequency": 623.0851996688328,
+            "confidence": 0.9721185993403196
+          },
+          {
+            "time": 177760.3628117914,
+            "type": "noteOff",
+            "note": "D#5"
+          },
+          {
+            "time": 186967.07482993195,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.19363982552,
+            "confidence": 0.965253047645092
+          },
+          {
+            "time": 187176.0544217687,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 187176.0544217687,
+            "type": "onset",
+            "note": "C3",
+            "frequency": 131.72719690380936,
+            "confidence": 0.9858112810179591
+          },
+          {
+            "time": 187222.49433106574,
+            "type": "noteOff",
+            "note": "C3"
+          },
+          {
+            "time": 187222.49433106574,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 326.12835908360347,
+            "confidence": 0.9355375841259956
+          },
+          {
+            "time": 187326.9841269841,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 187326.9841269841,
+            "type": "onset",
+            "note": "C3",
+            "frequency": 130.3843011212481,
+            "confidence": 0.891304612159729
+          },
+          {
+            "time": 187408.25396825396,
+            "type": "noteOff",
+            "note": "C3"
+          },
+          {
+            "time": 187408.25396825396,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 386.9282976972807,
+            "confidence": 0.9555914290249348
+          },
+          {
+            "time": 187733.3333333333,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 190693.8775510204,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.0968485680238,
+            "confidence": 0.9400015324354172
+          },
+          {
+            "time": 191158.27664399092,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 191158.27664399092,
+            "type": "onset",
+            "note": "E3",
+            "frequency": 165.6327484664543,
+            "confidence": 0.8838942497968674
+          },
+          {
+            "time": 191262.7664399093,
+            "type": "noteOff",
+            "note": "E3"
+          },
+          {
+            "time": 191262.7664399093,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 329.16019723338616,
+            "confidence": 0.9724604096263647
+          },
+          {
+            "time": 191460.13605442178,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 330.29247872928926,
+            "confidence": 0.968036025762558
+          },
+          {
+            "time": 191518.18594104308,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 191518.18594104308,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 391.77958830649897,
+            "confidence": 0.9662313088774681
+          },
+          {
+            "time": 191901.31519274376,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 192168.34467120183,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 261.7556607510942,
+            "confidence": 0.9673122279345989
+          },
+          {
+            "time": 192516.6439909297,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 192516.6439909297,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 330.1292086661436,
+            "confidence": 0.9439357109367847
+          },
+          {
+            "time": 192795.283446712,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 192795.283446712,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 390.6518820460783,
+            "confidence": 0.9737620186060667
+          },
+          {
+            "time": 193143.5827664399,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 193329.3424036281,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.0554559814195,
+            "confidence": 0.9589754082262516
+          },
+          {
+            "time": 193654.42176870749,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 193654.42176870749,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 332.0837395276006,
+            "confidence": 0.9524220824241638
+          },
+          {
+            "time": 193967.8911564626,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 193967.8911564626,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 391.2003101725885,
+            "confidence": 0.9300149157643318
+          },
+          {
+            "time": 194234.92063492062,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 194513.56009070296,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.4098283940528,
+            "confidence": 0.9869231889024377
+          },
+          {
+            "time": 194954.73922902494,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 194954.73922902494,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 328.90758987723655,
+            "confidence": 0.9454466141760349
+          },
+          {
+            "time": 195244.98866213154,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 195442.358276644,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 329.2602964850618,
+            "confidence": 0.9543996192514896
+          },
+          {
+            "time": 195488.79818594106,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 195488.79818594106,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 385.7522283603479,
+            "confidence": 0.9127122387290001
+          },
+          {
+            "time": 196011.2471655329,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 196289.88662131518,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 266.37004638245014,
+            "confidence": 0.9335895553231239
+          },
+          {
+            "time": 196812.33560090704,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 197717.91383219956,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 382.9041783217638,
+            "confidence": 0.8890469297766685
+          },
+          {
+            "time": 198368.07256235825,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 198368.07256235825,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 265.4168429092907,
+            "confidence": 0.9230604246258736
+          },
+          {
+            "time": 198774.42176870746,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 198867.3015873016,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 260.5540746315126,
+            "confidence": 0.967791024595499
+          },
+          {
+            "time": 198913.74149659864,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 198913.74149659864,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 329.7380728843647,
+            "confidence": 0.956124696880579
+          },
+          {
+            "time": 199227.21088435376,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 329.8929145006194,
+            "confidence": 0.989351375028491
+          },
+          {
+            "time": 199273.6507936508,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 199273.6507936508,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 387.37593989584514,
+            "confidence": 0.8958524763584137
+          },
+          {
+            "time": 199691.6099773243,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 206402.17687074828,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.3021748287412,
+            "confidence": 0.928376816213131
+          },
+          {
+            "time": 206553.1065759637,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 206553.1065759637,
+            "type": "onset",
+            "note": "C#4",
+            "frequency": 274.36096140327385,
+            "confidence": 0.8979605957865715
+          },
+          {
+            "time": 206657.59637188207,
+            "type": "noteOff",
+            "note": "C#4"
+          },
+          {
+            "time": 206657.59637188207,
+            "type": "onset",
+            "note": "D4",
+            "frequency": 289.3719223797002,
+            "confidence": 0.9774392265826464
+          },
+          {
+            "time": 206750.47619047618,
+            "type": "noteOff",
+            "note": "D4"
+          },
+          {
+            "time": 206750.47619047618,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 268.6015817586879,
+            "confidence": 0.9765565525740385
+          },
+          {
+            "time": 206866.57596371882,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 206866.57596371882,
+            "type": "onset",
+            "note": "C#4",
+            "frequency": 276.17199645919027,
+            "confidence": 0.852527529001236
+          },
+          {
+            "time": 206994.2857142857,
+            "type": "noteOff",
+            "note": "C#4"
+          },
+          {
+            "time": 206994.2857142857,
+            "type": "onset",
+            "note": "D4",
+            "frequency": 287.0270690744642,
+            "confidence": 0.8283835649490356
+          },
+          {
+            "time": 207052.33560090704,
+            "type": "noteOff",
+            "note": "D4"
+          },
+          {
+            "time": 207052.33560090704,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 266.398403216437,
+            "confidence": 0.9812510441988707
+          },
+          {
+            "time": 207168.43537414965,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 207168.43537414965,
+            "type": "onset",
+            "note": "C#4",
+            "frequency": 274.9610590063121,
+            "confidence": 0.8865479305386543
+          },
+          {
+            "time": 207249.7052154195,
+            "type": "noteOff",
+            "note": "C#4"
+          },
+          {
+            "time": 207249.7052154195,
+            "type": "onset",
+            "note": "D4",
+            "frequency": 291.816447515035,
+            "confidence": 0.8806639462709427
+          },
+          {
+            "time": 207365.80498866213,
+            "type": "noteOff",
+            "note": "D4"
+          },
+          {
+            "time": 207365.80498866213,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.7795175825529,
+            "confidence": 0.9876686539500952
+          },
+          {
+            "time": 207423.85487528343,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 207423.85487528343,
+            "type": "onset",
+            "note": "C#4",
+            "frequency": 278.5226695618371,
+            "confidence": 0.8203355073928833
+          },
+          {
+            "time": 207470.2947845805,
+            "type": "noteOff",
+            "note": "C#4"
+          },
+          {
+            "time": 207470.2947845805,
+            "type": "onset",
+            "note": "D4",
+            "frequency": 288.48420411553377,
+            "confidence": 0.946276381611824
+          },
+          {
+            "time": 207586.39455782314,
+            "type": "noteOff",
+            "note": "D4"
+          },
+          {
+            "time": 207586.39455782314,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.48342574962896,
+            "confidence": 0.9440654180943966
+          },
+          {
+            "time": 207690.8843537415,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 207690.8843537415,
+            "type": "onset",
+            "note": "C#4",
+            "frequency": 274.52628015373983,
+            "confidence": 0.836725652217865
+          },
+          {
+            "time": 207830.20408163263,
+            "type": "noteOff",
+            "note": "C#4"
+          },
+          {
+            "time": 207830.20408163263,
+            "type": "onset",
+            "note": "D4",
+            "frequency": 292.84252957666314,
+            "confidence": 0.9557702094316483
+          },
+          {
+            "time": 207992.74376417234,
+            "type": "noteOff",
+            "note": "D4"
+          },
+          {
+            "time": 215179.31972789118,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 259.3948825884319,
+            "confidence": 0.9760475866496563
+          },
+          {
+            "time": 215585.66893424038,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 215585.66893424038,
+            "type": "onset",
+            "note": "C3",
+            "frequency": 130.10705002031423,
+            "confidence": 0.9958283142186701
+          },
+          {
+            "time": 216967.25623582766,
+            "type": "noteOff",
+            "note": "C3"
+          },
+          {
+            "time": 219997.4603174603,
+            "type": "onset",
+            "note": "C5",
+            "frequency": 516.3239263981,
+            "confidence": 0.8940868452191353
+          },
+          {
+            "time": 220717.27891156462,
+            "type": "noteOff",
+            "note": "C5"
+          },
+          {
+            "time": 220833.37868480725,
+            "type": "onset",
+            "note": "C5",
+            "frequency": 517.6297752034227,
+            "confidence": 0.9877924229949713
+          },
+          {
+            "time": 222029.20634920636,
+            "type": "noteOff",
+            "note": "C5"
+          },
+          {
+            "time": 230992.1088435374,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.1699008083049,
+            "confidence": 0.8887939974665642
+          },
+          {
+            "time": 232977.4149659864,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 235612.8798185941,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 332.76327636520756,
+            "confidence": 0.9502309374511242
+          },
+          {
+            "time": 237203.44671201814,
+            "type": "noteOff",
+            "note": "E4"
+          }
+        ],
+        "onsets": [
+          {
+            "time": 12376.235827664399,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.3591108311464,
+            "confidence": 0.9060906246304512
+          },
+          {
+            "time": 20874.739229024945,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 263.6341093022894,
+            "confidence": 0.9394529014825821
+          },
+          {
+            "time": 33843.08390022676,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.26741056294594,
+            "confidence": 0.9084135666489601
+          },
+          {
+            "time": 36176.689342403624,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 261.12784130695223,
+            "confidence": 0.9935163767077029
+          },
+          {
+            "time": 43084.62585034014,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 257.47345986846403,
+            "confidence": 0.875187024474144
+          },
+          {
+            "time": 43549.02494331066,
+            "type": "onset",
+            "note": "C3",
+            "frequency": 130.15677822642795,
+            "confidence": 0.9942027968354523
+          },
+          {
+            "time": 45267.30158730159,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.72859510761873,
+            "confidence": 0.8946460708975792
+          },
+          {
+            "time": 47426.75736961451,
+            "type": "onset",
+            "note": "C5",
+            "frequency": 515.8713214014756,
+            "confidence": 0.8888656124472618
+          },
+          {
+            "time": 48239.45578231292,
+            "type": "onset",
+            "note": "C5",
+            "frequency": 518.2435163796326,
+            "confidence": 0.9663501270115376
+          },
+          {
+            "time": 58560.725623582766,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.2651909647771,
+            "confidence": 0.9618999324738979
+          },
+          {
+            "time": 59396.643990929704,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 260.8958664817242,
+            "confidence": 0.9836409520357847
+          },
+          {
+            "time": 59419.863945578225,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 261.47976720593795,
+            "confidence": 0.9677534811198711
+          },
+          {
+            "time": 59466.30385487529,
+            "type": "onset",
+            "note": "C#4",
+            "frequency": 275.5045681642017,
+            "confidence": 0.9818813279271126
+          },
+          {
+            "time": 60279.0022675737,
+            "type": "onset",
+            "note": "D4",
+            "frequency": 292.8890411473769,
+            "confidence": 0.8880434185266495
+          },
+          {
+            "time": 61022.04081632653,
+            "type": "onset",
+            "note": "D4",
+            "frequency": 294.8799427385666,
+            "confidence": 0.9961783715989441
+          },
+          {
+            "time": 61091.700680272115,
+            "type": "onset",
+            "note": "D#4",
+            "frequency": 307.3432909002351,
+            "confidence": 0.9576911143958569
+          },
+          {
+            "time": 61881.179138322,
+            "type": "onset",
+            "note": "D#4",
+            "frequency": 310.96426636248356,
+            "confidence": 0.9980442023370415
+          },
+          {
+            "time": 61939.229024943306,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 328.7782186225942,
+            "confidence": 0.9904262609779835
+          },
+          {
+            "time": 62763.53741496599,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 329.1274396191764,
+            "confidence": 0.9987262638751417
+          },
+          {
+            "time": 62821.5873015873,
+            "type": "onset",
+            "note": "F4",
+            "frequency": 344.99466848968916,
+            "confidence": 0.9717731177806854
+          },
+          {
+            "time": 63680.725623582766,
+            "type": "onset",
+            "note": "F#4",
+            "frequency": 366.89762999799296,
+            "confidence": 0.9425150230526924
+          },
+          {
+            "time": 64423.76417233559,
+            "type": "onset",
+            "note": "F#4",
+            "frequency": 372.06971481750895,
+            "confidence": 0.9751427099108696
+          },
+          {
+            "time": 64493.42403628118,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 391.6085509130869,
+            "confidence": 0.9572888240218163
+          },
+          {
+            "time": 65248.07256235828,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 389.05623556349053,
+            "confidence": 0.9964250724297017
+          },
+          {
+            "time": 65317.732426303846,
+            "type": "onset",
+            "note": "G#4",
+            "frequency": 416.2155608677623,
+            "confidence": 0.9016341865062714
+          },
+          {
+            "time": 66118.820861678,
+            "type": "onset",
+            "note": "A4",
+            "frequency": 439.0297726074802,
+            "confidence": 0.9603524208068848
+          },
+          {
+            "time": 66606.43990929706,
+            "type": "onset",
+            "note": "A5",
+            "frequency": 884.2637479000382,
+            "confidence": 0.9073002263903618
+          },
+          {
+            "time": 66710.92970521541,
+            "type": "onset",
+            "note": "A4",
+            "frequency": 442.7397805230726,
+            "confidence": 0.9910236336290836
+          },
+          {
+            "time": 66919.90929705216,
+            "type": "onset",
+            "note": "A#4",
+            "frequency": 453.55195037623497,
+            "confidence": 0.9431958496570587
+          },
+          {
+            "time": 67662.947845805,
+            "type": "onset",
+            "note": "A#4",
+            "frequency": 463.2796484056155,
+            "confidence": 0.995705796405673
+          },
+          {
+            "time": 67744.21768707484,
+            "type": "onset",
+            "note": "B4",
+            "frequency": 498.2185535803646,
+            "confidence": 0.9841658342629671
+          },
+          {
+            "time": 68591.74603174602,
+            "type": "onset",
+            "note": "C5",
+            "frequency": 527.6726985550641,
+            "confidence": 0.8818997368216515
+          },
+          {
+            "time": 69404.44444444445,
+            "type": "onset",
+            "note": "C5",
+            "frequency": 518.1119268809537,
+            "confidence": 0.9806481264531612
+          },
+          {
+            "time": 79888.25396825396,
+            "type": "onset",
+            "note": "C3",
+            "frequency": 130.65196429243966,
+            "confidence": 0.9305278211832047
+          },
+          {
+            "time": 80120.45351473923,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 259.78500941271176,
+            "confidence": 0.9822349864989519
+          },
+          {
+            "time": 80921.54195011337,
+            "type": "onset",
+            "note": "C3",
+            "frequency": 130.0001336024872,
+            "confidence": 0.9507029429078102
+          },
+          {
+            "time": 83429.2970521542,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 261.00828596008637,
+            "confidence": 0.8513059765100479
+          },
+          {
+            "time": 84183.94557823129,
+            "type": "onset",
+            "note": "C3",
+            "frequency": 130.36702332632973,
+            "confidence": 0.9718857612460852
+          },
+          {
+            "time": 85542.31292517006,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 260.44041716205857,
+            "confidence": 0.9961441289633512
+          },
+          {
+            "time": 88131.33786848072,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.00643898001954,
+            "confidence": 0.9279740527272224
+          },
+          {
+            "time": 90813.24263038549,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 261.23945712231205,
+            "confidence": 0.9844523640349507
+          },
+          {
+            "time": 100948.75283446712,
+            "type": "onset",
+            "note": "E3",
+            "frequency": 165.58204422516235,
+            "confidence": 0.9747368730604649
+          },
+          {
+            "time": 103955.73696145126,
+            "type": "onset",
+            "note": "G3",
+            "frequency": 195.24372434475157,
+            "confidence": 0.9075893610715866
+          },
+          {
+            "time": 120766.98412698413,
+            "type": "onset",
+            "note": "C6",
+            "frequency": 1061.1880291281848,
+            "confidence": 0.9464799053966999
+          },
+          {
+            "time": 122462.04081632654,
+            "type": "onset",
+            "note": "E6",
+            "frequency": 1282.710145615955,
+            "confidence": 0.9615833722054958
+          },
+          {
+            "time": 122705.85034013605,
+            "type": "onset",
+            "note": "D#6",
+            "frequency": 1279.3723078889848,
+            "confidence": 0.9929966432973742
+          },
+          {
+            "time": 122810.34013605442,
+            "type": "onset",
+            "note": "E6",
+            "frequency": 1281.6470713732936,
+            "confidence": 0.9965779297053814
+          },
+          {
+            "time": 123762.358276644,
+            "type": "onset",
+            "note": "E6",
+            "frequency": 1282.0299716016436,
+            "confidence": 0.9721875619143248
+          },
+          {
+            "time": 123843.62811791383,
+            "type": "onset",
+            "note": "G6",
+            "frequency": 1585.6754306829746,
+            "confidence": 0.8667269796133041
+          },
+          {
+            "time": 130600.63492063491,
+            "type": "onset",
+            "note": "C6",
+            "frequency": 1018.6274019796647,
+            "confidence": 0.9409740343689919
+          },
+          {
+            "time": 134048.79818594106,
+            "type": "onset",
+            "note": "C7",
+            "frequency": 2106.98361808809,
+            "confidence": 0.9340398162603378
+          },
+          {
+            "time": 142640.1814058957,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.44030177350595,
+            "confidence": 0.8666915744543076
+          },
+          {
+            "time": 143151.02040816328,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 260.43626234520605,
+            "confidence": 0.9967798725701869
+          },
+          {
+            "time": 143209.07029478456,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 328.4837513650573,
+            "confidence": 0.9649932309985161
+          },
+          {
+            "time": 143894.0589569161,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 328.8274844356626,
+            "confidence": 0.9857999598607421
+          },
+          {
+            "time": 143952.10884353743,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 390.75757177106186,
+            "confidence": 0.8756646066904068
+          },
+          {
+            "time": 145589.11564625852,
+            "type": "onset",
+            "note": "C5",
+            "frequency": 516.9653069769323,
+            "confidence": 0.8685484975576401
+          },
+          {
+            "time": 152218.4126984127,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 263.63426491711476,
+            "confidence": 0.9503074958920479
+          },
+          {
+            "time": 152508.6621315193,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 268.84463805373696,
+            "confidence": 0.9379307292401791
+          },
+          {
+            "time": 159834.55782312923,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 263.8970106443168,
+            "confidence": 0.9207057729363441
+          },
+          {
+            "time": 160751.74603174604,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 254.48643536769862,
+            "confidence": 0.8358762413263321
+          },
+          {
+            "time": 160809.79591836734,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 261.86495584129403,
+            "confidence": 0.9443795047700405
+          },
+          {
+            "time": 161843.08390022675,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.0043592162526,
+            "confidence": 0.9409429542720318
+          },
+          {
+            "time": 172895.78231292518,
+            "type": "onset",
+            "note": "F#4",
+            "frequency": 367.3773419696478,
+            "confidence": 0.9469118416309357
+          },
+          {
+            "time": 173476.2811791383,
+            "type": "onset",
+            "note": "F#4",
+            "frequency": 366.05193970584617,
+            "confidence": 0.9937642687000334
+          },
+          {
+            "time": 173545.9410430839,
+            "type": "onset",
+            "note": "G#4",
+            "frequency": 416.32434477443746,
+            "confidence": 0.9018860310316086
+          },
+          {
+            "time": 174219.31972789115,
+            "type": "onset",
+            "note": "A#4",
+            "frequency": 459.8607411960676,
+            "confidence": 0.9622606709599495
+          },
+          {
+            "time": 174915.91836734692,
+            "type": "onset",
+            "note": "A#4",
+            "frequency": 463.9839129779852,
+            "confidence": 0.9978809752501547
+          },
+          {
+            "time": 174962.358276644,
+            "type": "onset",
+            "note": "C#5",
+            "frequency": 557.6696264234565,
+            "confidence": 0.9001108780503273
+          },
+          {
+            "time": 175821.49659863944,
+            "type": "onset",
+            "note": "C#5",
+            "frequency": 549.6991249908574,
+            "confidence": 0.9671611748635769
+          },
+          {
+            "time": 175949.20634920636,
+            "type": "onset",
+            "note": "D#5",
+            "frequency": 609.0702115562825,
+            "confidence": 0.9786252528429031
+          },
+          {
+            "time": 177226.3038548753,
+            "type": "onset",
+            "note": "D5",
+            "frequency": 603.2751118815798,
+            "confidence": 0.8197129964828491
+          },
+          {
+            "time": 177284.3537414966,
+            "type": "onset",
+            "note": "D#5",
+            "frequency": 623.0851996688328,
+            "confidence": 0.9721185993403196
+          },
+          {
+            "time": 186967.07482993195,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.19363982552,
+            "confidence": 0.965253047645092
+          },
+          {
+            "time": 187176.0544217687,
+            "type": "onset",
+            "note": "C3",
+            "frequency": 131.72719690380936,
+            "confidence": 0.9858112810179591
+          },
+          {
+            "time": 187222.49433106574,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 326.12835908360347,
+            "confidence": 0.9355375841259956
+          },
+          {
+            "time": 187326.9841269841,
+            "type": "onset",
+            "note": "C3",
+            "frequency": 130.3843011212481,
+            "confidence": 0.891304612159729
+          },
+          {
+            "time": 187408.25396825396,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 386.9282976972807,
+            "confidence": 0.9555914290249348
+          },
+          {
+            "time": 190693.8775510204,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.0968485680238,
+            "confidence": 0.9400015324354172
+          },
+          {
+            "time": 191158.27664399092,
+            "type": "onset",
+            "note": "E3",
+            "frequency": 165.6327484664543,
+            "confidence": 0.8838942497968674
+          },
+          {
+            "time": 191262.7664399093,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 329.16019723338616,
+            "confidence": 0.9724604096263647
+          },
+          {
+            "time": 191460.13605442178,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 330.29247872928926,
+            "confidence": 0.968036025762558
+          },
+          {
+            "time": 191518.18594104308,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 391.77958830649897,
+            "confidence": 0.9662313088774681
+          },
+          {
+            "time": 192168.34467120183,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 261.7556607510942,
+            "confidence": 0.9673122279345989
+          },
+          {
+            "time": 192516.6439909297,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 330.1292086661436,
+            "confidence": 0.9439357109367847
+          },
+          {
+            "time": 192795.283446712,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 390.6518820460783,
+            "confidence": 0.9737620186060667
+          },
+          {
+            "time": 193329.3424036281,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.0554559814195,
+            "confidence": 0.9589754082262516
+          },
+          {
+            "time": 193654.42176870749,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 332.0837395276006,
+            "confidence": 0.9524220824241638
+          },
+          {
+            "time": 193967.8911564626,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 391.2003101725885,
+            "confidence": 0.9300149157643318
+          },
+          {
+            "time": 194513.56009070296,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.4098283940528,
+            "confidence": 0.9869231889024377
+          },
+          {
+            "time": 194954.73922902494,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 328.90758987723655,
+            "confidence": 0.9454466141760349
+          },
+          {
+            "time": 195442.358276644,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 329.2602964850618,
+            "confidence": 0.9543996192514896
+          },
+          {
+            "time": 195488.79818594106,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 385.7522283603479,
+            "confidence": 0.9127122387290001
+          },
+          {
+            "time": 196289.88662131518,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 266.37004638245014,
+            "confidence": 0.9335895553231239
+          },
+          {
+            "time": 197717.91383219956,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 382.9041783217638,
+            "confidence": 0.8890469297766685
+          },
+          {
+            "time": 198368.07256235825,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 265.4168429092907,
+            "confidence": 0.9230604246258736
+          },
+          {
+            "time": 198867.3015873016,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 260.5540746315126,
+            "confidence": 0.967791024595499
+          },
+          {
+            "time": 198913.74149659864,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 329.7380728843647,
+            "confidence": 0.956124696880579
+          },
+          {
+            "time": 199227.21088435376,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 329.8929145006194,
+            "confidence": 0.989351375028491
+          },
+          {
+            "time": 199273.6507936508,
+            "type": "onset",
+            "note": "G4",
+            "frequency": 387.37593989584514,
+            "confidence": 0.8958524763584137
+          },
+          {
+            "time": 206402.17687074828,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.3021748287412,
+            "confidence": 0.928376816213131
+          },
+          {
+            "time": 206553.1065759637,
+            "type": "onset",
+            "note": "C#4",
+            "frequency": 274.36096140327385,
+            "confidence": 0.8979605957865715
+          },
+          {
+            "time": 206657.59637188207,
+            "type": "onset",
+            "note": "D4",
+            "frequency": 289.3719223797002,
+            "confidence": 0.9774392265826464
+          },
+          {
+            "time": 206750.47619047618,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 268.6015817586879,
+            "confidence": 0.9765565525740385
+          },
+          {
+            "time": 206866.57596371882,
+            "type": "onset",
+            "note": "C#4",
+            "frequency": 276.17199645919027,
+            "confidence": 0.852527529001236
+          },
+          {
+            "time": 206994.2857142857,
+            "type": "onset",
+            "note": "D4",
+            "frequency": 287.0270690744642,
+            "confidence": 0.8283835649490356
+          },
+          {
+            "time": 207052.33560090704,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 266.398403216437,
+            "confidence": 0.9812510441988707
+          },
+          {
+            "time": 207168.43537414965,
+            "type": "onset",
+            "note": "C#4",
+            "frequency": 274.9610590063121,
+            "confidence": 0.8865479305386543
+          },
+          {
+            "time": 207249.7052154195,
+            "type": "onset",
+            "note": "D4",
+            "frequency": 291.816447515035,
+            "confidence": 0.8806639462709427
+          },
+          {
+            "time": 207365.80498866213,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.7795175825529,
+            "confidence": 0.9876686539500952
+          },
+          {
+            "time": 207423.85487528343,
+            "type": "onset",
+            "note": "C#4",
+            "frequency": 278.5226695618371,
+            "confidence": 0.8203355073928833
+          },
+          {
+            "time": 207470.2947845805,
+            "type": "onset",
+            "note": "D4",
+            "frequency": 288.48420411553377,
+            "confidence": 0.946276381611824
+          },
+          {
+            "time": 207586.39455782314,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.48342574962896,
+            "confidence": 0.9440654180943966
+          },
+          {
+            "time": 207690.8843537415,
+            "type": "onset",
+            "note": "C#4",
+            "frequency": 274.52628015373983,
+            "confidence": 0.836725652217865
+          },
+          {
+            "time": 207830.20408163263,
+            "type": "onset",
+            "note": "D4",
+            "frequency": 292.84252957666314,
+            "confidence": 0.9557702094316483
+          },
+          {
+            "time": 215179.31972789118,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 259.3948825884319,
+            "confidence": 0.9760475866496563
+          },
+          {
+            "time": 215585.66893424038,
+            "type": "onset",
+            "note": "C3",
+            "frequency": 130.10705002031423,
+            "confidence": 0.9958283142186701
+          },
+          {
+            "time": 219997.4603174603,
+            "type": "onset",
+            "note": "C5",
+            "frequency": 516.3239263981,
+            "confidence": 0.8940868452191353
+          },
+          {
+            "time": 220833.37868480725,
+            "type": "onset",
+            "note": "C5",
+            "frequency": 517.6297752034227,
+            "confidence": 0.9877924229949713
+          },
+          {
+            "time": 230992.1088435374,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.1699008083049,
+            "confidence": 0.8887939974665642
+          },
+          {
+            "time": 235612.8798185941,
+            "type": "onset",
+            "note": "E4",
+            "frequency": 332.76327636520756,
+            "confidence": 0.9502309374511242
+          }
+        ],
+        "noteOffs": [
+          {
+            "time": 13142.494331065758,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 21234.648526077097,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 36095.41950113379,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 37302.857142857145,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 43549.02494331066,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 44628.75283446712,
+            "type": "noteOff",
+            "note": "C3"
+          },
+          {
+            "time": 46532.78911564626,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 48123.356009070296,
+            "type": "noteOff",
+            "note": "C5"
+          },
+          {
+            "time": 48738.684807256235,
+            "type": "noteOff",
+            "note": "C5"
+          },
+          {
+            "time": 59466.30385487529,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 60279.0022675737,
+            "type": "noteOff",
+            "note": "C#4"
+          },
+          {
+            "time": 61091.700680272115,
+            "type": "noteOff",
+            "note": "D4"
+          },
+          {
+            "time": 61939.229024943306,
+            "type": "noteOff",
+            "note": "D#4"
+          },
+          {
+            "time": 62821.5873015873,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 63680.725623582766,
+            "type": "noteOff",
+            "note": "F4"
+          },
+          {
+            "time": 64493.42403628118,
+            "type": "noteOff",
+            "note": "F#4"
+          },
+          {
+            "time": 65317.732426303846,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 66118.820861678,
+            "type": "noteOff",
+            "note": "G#4"
+          },
+          {
+            "time": 66606.43990929706,
+            "type": "noteOff",
+            "note": "A4"
+          },
+          {
+            "time": 66710.92970521541,
+            "type": "noteOff",
+            "note": "A5"
+          },
+          {
+            "time": 66919.90929705216,
+            "type": "noteOff",
+            "note": "A4"
+          },
+          {
+            "time": 67744.21768707484,
+            "type": "noteOff",
+            "note": "A#4"
+          },
+          {
+            "time": 68591.74603174602,
+            "type": "noteOff",
+            "note": "B4"
+          },
+          {
+            "time": 69299.95464852608,
+            "type": "noteOff",
+            "note": "C5"
+          },
+          {
+            "time": 69764.3537414966,
+            "type": "noteOff",
+            "note": "C5"
+          },
+          {
+            "time": 80120.45351473923,
+            "type": "noteOff",
+            "note": "C3"
+          },
+          {
+            "time": 80921.54195011337,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 82326.3492063492,
+            "type": "noteOff",
+            "note": "C3"
+          },
+          {
+            "time": 84183.94557823129,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 85542.31292517006,
+            "type": "noteOff",
+            "note": "C3"
+          },
+          {
+            "time": 86482.72108843537,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 90139.86394557822,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 91289.25170068027,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 103189.4784580499,
+            "type": "noteOff",
+            "note": "E3"
+          },
+          {
+            "time": 107218.14058956916,
+            "type": "noteOff",
+            "note": "G3"
+          },
+          {
+            "time": 121080.45351473923,
+            "type": "noteOff",
+            "note": "C6"
+          },
+          {
+            "time": 122705.85034013605,
+            "type": "noteOff",
+            "note": "E6"
+          },
+          {
+            "time": 122810.34013605442,
+            "type": "noteOff",
+            "note": "D#6"
+          },
+          {
+            "time": 123123.80952380953,
+            "type": "noteOff",
+            "note": "E6"
+          },
+          {
+            "time": 123843.62811791383,
+            "type": "noteOff",
+            "note": "E6"
+          },
+          {
+            "time": 124308.02721088435,
+            "type": "noteOff",
+            "note": "G6"
+          },
+          {
+            "time": 130902.49433106575,
+            "type": "noteOff",
+            "note": "C6"
+          },
+          {
+            "time": 134106.84807256237,
+            "type": "noteOff",
+            "note": "C7"
+          },
+          {
+            "time": 143952.10884353743,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 145205.9863945578,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 146262.49433106577,
+            "type": "noteOff",
+            "note": "C5"
+          },
+          {
+            "time": 153820.589569161,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 160182.85714285713,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 161367.07482993195,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 162992.4716553288,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 173545.9410430839,
+            "type": "noteOff",
+            "note": "F#4"
+          },
+          {
+            "time": 174962.358276644,
+            "type": "noteOff",
+            "note": "A#4"
+          },
+          {
+            "time": 175751.83673469388,
+            "type": "noteOff",
+            "note": "C#5"
+          },
+          {
+            "time": 175949.20634920636,
+            "type": "noteOff",
+            "note": "C#5"
+          },
+          {
+            "time": 176343.94557823127,
+            "type": "noteOff",
+            "note": "D#5"
+          },
+          {
+            "time": 177284.3537414966,
+            "type": "noteOff",
+            "note": "D5"
+          },
+          {
+            "time": 177760.3628117914,
+            "type": "noteOff",
+            "note": "D#5"
+          },
+          {
+            "time": 187176.0544217687,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 187222.49433106574,
+            "type": "noteOff",
+            "note": "C3"
+          },
+          {
+            "time": 187326.9841269841,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 187408.25396825396,
+            "type": "noteOff",
+            "note": "C3"
+          },
+          {
+            "time": 187733.3333333333,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 191158.27664399092,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 191262.7664399093,
+            "type": "noteOff",
+            "note": "E3"
+          },
+          {
+            "time": 191518.18594104308,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 191901.31519274376,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 192516.6439909297,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 192795.283446712,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 193143.5827664399,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 193654.42176870749,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 193967.8911564626,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 194234.92063492062,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 194954.73922902494,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 195244.98866213154,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 195488.79818594106,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 196011.2471655329,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 196812.33560090704,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 198368.07256235825,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 198774.42176870746,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 198913.74149659864,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 199273.6507936508,
+            "type": "noteOff",
+            "note": "E4"
+          },
+          {
+            "time": 199691.6099773243,
+            "type": "noteOff",
+            "note": "G4"
+          },
+          {
+            "time": 206553.1065759637,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 206657.59637188207,
+            "type": "noteOff",
+            "note": "C#4"
+          },
+          {
+            "time": 206750.47619047618,
+            "type": "noteOff",
+            "note": "D4"
+          },
+          {
+            "time": 206866.57596371882,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 206994.2857142857,
+            "type": "noteOff",
+            "note": "C#4"
+          },
+          {
+            "time": 207052.33560090704,
+            "type": "noteOff",
+            "note": "D4"
+          },
+          {
+            "time": 207168.43537414965,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 207249.7052154195,
+            "type": "noteOff",
+            "note": "C#4"
+          },
+          {
+            "time": 207365.80498866213,
+            "type": "noteOff",
+            "note": "D4"
+          },
+          {
+            "time": 207423.85487528343,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 207470.2947845805,
+            "type": "noteOff",
+            "note": "C#4"
+          },
+          {
+            "time": 207586.39455782314,
+            "type": "noteOff",
+            "note": "D4"
+          },
+          {
+            "time": 207690.8843537415,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 207830.20408163263,
+            "type": "noteOff",
+            "note": "C#4"
+          },
+          {
+            "time": 207992.74376417234,
+            "type": "noteOff",
+            "note": "D4"
+          },
+          {
+            "time": 215585.66893424038,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 216967.25623582766,
+            "type": "noteOff",
+            "note": "C3"
+          },
+          {
+            "time": 220717.27891156462,
+            "type": "noteOff",
+            "note": "C5"
+          },
+          {
+            "time": 222029.20634920636,
+            "type": "noteOff",
+            "note": "C5"
+          },
+          {
+            "time": 232977.4149659864,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 237203.44671201814,
+            "type": "noteOff",
+            "note": "E4"
+          }
+        ],
+        "uniqueNotes": [
+          "C4",
+          "C3",
+          "C5",
+          "C#4",
+          "D4",
+          "D#4",
+          "E4",
+          "F4",
+          "F#4",
+          "G4",
+          "G#4",
+          "A4",
+          "A5",
+          "A#4",
+          "B4",
+          "E3",
+          "G3",
+          "C6",
+          "E6",
+          "D#6",
+          "G6",
+          "C7",
+          "C#5",
+          "D#5",
+          "D5"
+        ],
+        "onsetCount": 121
+      },
+      "errors": [],
+      "warnings": [],
+      "comparison": {
+        "originalOnsets": 0,
+        "newOnsets": 121,
+        "expectedNotes": [],
+        "detectedNotes": [
+          "C4",
+          "C3",
+          "C5",
+          "C#4",
+          "D4",
+          "D#4",
+          "E4",
+          "F4",
+          "F#4",
+          "G4",
+          "G#4",
+          "A4",
+          "A5",
+          "A#4",
+          "B4",
+          "E3",
+          "G3",
+          "C6",
+          "E6",
+          "D#6",
+          "G6",
+          "C7",
+          "C#5",
+          "D#5",
+          "D5"
+        ]
+      }
+    },
+    {
+      "status": "passed",
+      "bundle": {
+        "version": "1.0",
+        "audioFile": "pitch-test-latency-test-2026-02-01T04-39-21-001Z.webm",
+        "timestamp": "2026-02-01T04:39:21.001Z",
+        "duration": 17100,
+        "testCase": {
+          "id": "latency-test",
+          "name": "Latency Check",
+          "description": "Measure detection latency",
+          "expectedNotes": []
+        },
+        "parameters": {
+          "minRms": 0.001,
+          "confidenceThreshold": 0.75,
+          "centsTolerance": 35,
+          "debounceMs": 50
+        },
+        "results": {
+          "detectedNotes": [],
+          "uniqueNotes": [],
+          "onsetCount": 0,
+          "frameCount": 0
+        },
+        "remarks": [],
+        "events": [
+          {
+            "type": "debug",
+            "message": "Requesting microphone access...",
+            "timeOffset": -9263
+          },
+          {
+            "type": "debug",
+            "message": "Microphone access granted",
+            "timeOffset": -9068
+          },
+          {
+            "type": "debug",
+            "message": "AudioContext created, sample rate: 44100",
+            "timeOffset": -9040
+          },
+          {
+            "type": "debug",
+            "message": "YIN AudioWorklet loaded",
+            "timeOffset": -9022
+          },
+          {
+            "type": "debug",
+            "message": "Pitch detection started - play a note!",
+            "timeOffset": -9021
+          },
+          {
+            "type": "debug",
+            "message": "Starting test: Latency Check",
+            "timeOffset": -4926
+          },
+          {
+            "type": "debug",
+            "message": "Instructions: Watch the keyboard below. Play any key and observe how quickly it lights up. Should be <100ms.",
+            "timeOffset": -4926
+          },
+          {
+            "type": "debug",
+            "message": "Expected notes: ",
+            "timeOffset": -4926
+          }
+        ],
+        "issueLog": []
+      },
+      "result": {
+        "duration": 17.04,
+        "detections": [
+          {
+            "time": 8196.643990929704,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.1276989441373,
+            "confidence": 0.957699365913868
+          },
+          {
+            "time": 8498.503401360544,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 9148.662131519273,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 257.0725289001024,
+            "confidence": 0.8784371688961983
+          },
+          {
+            "time": 9171.8820861678,
+            "type": "onset",
+            "note": "B3",
+            "frequency": 251.07621341186325,
+            "confidence": 0.8704988211393356
+          },
+          {
+            "time": 9218.321995464854,
+            "type": "noteOff",
+            "note": "B3"
+          },
+          {
+            "time": 9218.321995464854,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.5998154435395,
+            "confidence": 0.9849592391401529
+          },
+          {
+            "time": 9508.57142857143,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 10158.730158730159,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 260.35231343447174,
+            "confidence": 0.9386670142412186
+          },
+          {
+            "time": 10205.170068027212,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 263.73596502965296,
+            "confidence": 0.8719397634267807
+          },
+          {
+            "time": 10495.419501133787,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 10994.648526077099,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 267.1225181222751,
+            "confidence": 0.7778143435716629
+          },
+          {
+            "time": 11041.08843537415,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.840208687217,
+            "confidence": 0.9122512638568878
+          },
+          {
+            "time": 11342.947845804989,
+            "type": "noteOff",
+            "note": "C4"
+          }
+        ],
+        "onsets": [
+          {
+            "time": 8196.643990929704,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.1276989441373,
+            "confidence": 0.957699365913868
+          },
+          {
+            "time": 9148.662131519273,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 257.0725289001024,
+            "confidence": 0.8784371688961983
+          },
+          {
+            "time": 9171.8820861678,
+            "type": "onset",
+            "note": "B3",
+            "frequency": 251.07621341186325,
+            "confidence": 0.8704988211393356
+          },
+          {
+            "time": 9218.321995464854,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 262.5998154435395,
+            "confidence": 0.9849592391401529
+          },
+          {
+            "time": 10158.730158730159,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 260.35231343447174,
+            "confidence": 0.9386670142412186
+          },
+          {
+            "time": 10205.170068027212,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 263.73596502965296,
+            "confidence": 0.8719397634267807
+          },
+          {
+            "time": 10994.648526077099,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 267.1225181222751,
+            "confidence": 0.7778143435716629
+          },
+          {
+            "time": 11041.08843537415,
+            "type": "onset",
+            "note": "C4",
+            "frequency": 264.840208687217,
+            "confidence": 0.9122512638568878
+          }
+        ],
+        "noteOffs": [
+          {
+            "time": 8498.503401360544,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 9218.321995464854,
+            "type": "noteOff",
+            "note": "B3"
+          },
+          {
+            "time": 9508.57142857143,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 10495.419501133787,
+            "type": "noteOff",
+            "note": "C4"
+          },
+          {
+            "time": 11342.947845804989,
+            "type": "noteOff",
+            "note": "C4"
+          }
+        ],
+        "uniqueNotes": [
+          "C4",
+          "B3"
+        ],
+        "onsetCount": 8
+      },
+      "errors": [],
+      "warnings": [],
+      "comparison": {
+        "originalOnsets": 0,
+        "newOnsets": 8,
+        "expectedNotes": [],
+        "detectedNotes": [
+          "C4",
+          "B3"
+        ]
+      }
+    }
+  ]
+}

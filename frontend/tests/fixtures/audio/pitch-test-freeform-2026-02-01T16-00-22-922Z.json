@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "audioFile": "pitch-test-freeform-2026-02-01T16-00-22-922Z.webm",
+  "timestamp": "2026-02-01T16:00:22.922Z",
+  "duration": 242243,
+  "testCase": null,
+  "parameters": {
+    "minRms": 0.001,
+    "confidenceThreshold": 0.75,
+    "centsTolerance": 35,
+    "debounceMs": 50
+  },
+  "results": {
+    "detectedNotes": [],
+    "uniqueNotes": [],
+    "onsetCount": 0,
+    "frameCount": 0
+  },
+  "remarks": [],
+  "events": [
+    {
+      "type": "debug",
+      "message": "Requesting microphone access...",
+      "timeOffset": -1362
+    },
+    {
+      "type": "debug",
+      "message": "Microphone access granted",
+      "timeOffset": -1171
+    },
+    {
+      "type": "debug",
+      "message": "AudioContext created, sample rate: 44100",
+      "timeOffset": -1146
+    },
+    {
+      "type": "debug",
+      "message": "YIN AudioWorklet loaded",
+      "timeOffset": -1110
+    },
+    {
+      "type": "debug",
+      "message": "Pitch detection started - play a note!",
+      "timeOffset": -1110
+    }
+  ],
+  "issueLog": []
+}

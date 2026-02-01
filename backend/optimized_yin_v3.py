@@ -176,6 +176,26 @@ def detect_piano_note(samples: list, sample_rate: int = 44100, relaxed: bool = F
     frequency = best_candidate['freq']
     cmnd_val = best_candidate['cmnd']
 
+    # V5.1: Aggressive octave-UP for low frequencies (< 250Hz)
+    # If frequency is low, check if octave-up has reasonable CMND
+    if frequency < 250 and frequency >= 65:
+        half_tau = refined_tau / 2
+        if 2 <= half_tau < tau_max:
+            half_tau_int = int(round(half_tau))
+            half_cmnd = cmnd[half_tau_int]
+            # If octave-up CMND is reasonable (< 0.35), prefer it
+            if half_cmnd < 0.35:
+                frequency *= 2
+
+    # V5.1: Hard 130Hz floor with forced upshift
+    if frequency < 130 and frequency >= 32:
+        while frequency < 130:
+            frequency *= 2
+
+    # Final rejection if still too low
+    if frequency < 130:
+        return None
+
     base_confidence = 1.0 - cmnd_val
     volume_boost = min(0.3, rms * 20)
     confidence = min(0.98, max(0.3, base_confidence + volume_boost * 0.3))

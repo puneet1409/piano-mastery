@@ -1,0 +1,98 @@
+{
+  "version": "1.0",
+  "description": "Audio test fixtures for pitch detection algorithm validation",
+  "tests": [
+    {
+      "id": "single-c4-sustained",
+      "file": "single-c4-sustained.webm",
+      "description": "Single C4 note held for 3 seconds",
+      "expectedNotes": ["C4"],
+      "expectedOnsets": { "min": 1, "max": 1 },
+      "expectedDuration": 3000,
+      "status": "pending"
+    },
+    {
+      "id": "single-c4-staccato",
+      "file": "single-c4-staccato.webm",
+      "description": "Single C4 note, short staccato",
+      "expectedNotes": ["C4"],
+      "expectedOnsets": { "min": 1, "max": 1 },
+      "status": "pending"
+    },
+    {
+      "id": "double-tap-c4",
+      "file": "double-tap-c4.webm",
+      "description": "C4 pressed twice quickly",
+      "expectedNotes": ["C4"],
+      "expectedOnsets": { "min": 2, "max": 2 },
+      "status": "pending"
+    },
+    {
+      "id": "triple-tap-c4",
+      "file": "triple-tap-c4.webm",
+      "description": "C4 pressed three times",
+      "expectedNotes": ["C4"],
+      "expectedOnsets": { "min": 3, "max": 3 },
+      "status": "pending"
+    },
+    {
+      "id": "octaves-c3-c4-c5",
+      "file": "octaves-c3-c4-c5.webm",
+      "description": "C3, then C4, then C5 played slowly",
+      "expectedNotes": ["C3", "C4", "C5"],
+      "expectedOnsets": { "min": 3, "max": 3 },
+      "status": "pending"
+    },
+    {
+      "id": "scale-c-major",
+      "file": "scale-c-major.webm",
+      "description": "C major scale C4 to C5",
+      "expectedNotes": ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"],
+      "expectedOnsets": { "min": 8, "max": 8 },
+      "status": "pending"
+    },
+    {
+      "id": "chromatic-c4-to-c5",
+      "file": "chromatic-c4-to-c5.webm",
+      "description": "Chromatic scale C4 to C5 (all 13 notes)",
+      "expectedNotes": ["C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4", "A4", "A#4", "B4", "C5"],
+      "expectedOnsets": { "min": 13, "max": 13 },
+      "status": "pending"
+    },
+    {
+      "id": "low-notes-c2-c3",
+      "file": "low-notes-c2-c3.webm",
+      "description": "Low notes C2 and C3",
+      "expectedNotes": ["C2", "C3"],
+      "expectedOnsets": { "min": 2, "max": 2 },
+      "status": "pending"
+    },
+    {
+      "id": "dynamics-pp-to-ff",
+      "file": "dynamics-pp-to-ff.webm",
+      "description": "Same note (C4) played at different dynamics: pp, mf, ff",
+      "expectedNotes": ["C4"],
+      "expectedOnsets": { "min": 3, "max": 3 },
+      "status": "pending"
+    },
+    {
+      "id": "fast-arpeggio",
+      "file": "fast-arpeggio.webm",
+      "description": "Fast C-E-G-C arpeggio",
+      "expectedNotes": ["C4", "E4", "G4", "C5"],
+      "expectedOnsets": { "min": 4, "max": 4 },
+      "status": "pending"
+    }
+  ],
+  "recordingInstructions": {
+    "format": "webm (browser MediaRecorder) or wav",
+    "sampleRate": 44100,
+    "channels": 1,
+    "notes": [
+      "Use the /pitch-test page to record",
+      "Name files exactly as specified in 'file' field",
+      "Place recordings in this directory",
+      "Update 'status' to 'recorded' once file exists"
+    ]
+  }
+}
