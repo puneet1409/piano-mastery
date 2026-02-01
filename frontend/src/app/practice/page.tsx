@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import PianoKeyboard from "@/components/piano/PianoKeyboard";
 import FallingNotes, { FallingNote } from "@/components/piano/FallingNotes";
 import NoteRail from "@/components/piano/NoteRail";
+import SheetMusic from "@/components/piano/SheetMusic";
 import DisplayModeToggle, { DisplayMode } from "@/components/piano/DisplayModeToggle";
 import AutoPlayDemo from "@/components/piano/AutoPlayDemo";
 import ClientModeToggle from "@/components/piano/ClientModeToggle";
@@ -22,6 +23,8 @@ import {
   SongData,
 } from "@/lib/scoreFollowerWithValidation";
 import SyncStatusIndicator from "@/components/piano/SyncStatusIndicator";
+// Import audio recorder for debugging - exposes startRecording(), stopRecording(), downloadRecording() to window
+import { autoStartRecording, autoStopAndSaveRecording } from "@/lib/audioRecorder";
 
 interface Exercise {
   id: string;
@@ -390,8 +393,7 @@ export default function PracticePage() {
     wrong: 0,
   });
   const [loopMode, setLoopMode] = useState(false);
-  const [waitMode, setWaitMode] = useState(false); // Training mode: pause until correct note played
-  const [waitingForNote, setWaitingForNote] = useState<string | null>(null); // Current note we're waiting for
+  const [waitMode, setWaitMode] = useState(false); // Learn mode: play at your own pace, no timing
   const [currentBar, setCurrentBar] = useState<number | null>(null);
   const [cleanPasses, setCleanPasses] = useState(0);
   const [barStats, setBarStats] = useState({ wrong: 0, timingOff: 0 });
@@ -468,9 +470,6 @@ export default function PracticePage() {
   const exerciseStartTimeRef = useRef(0);
   // Track last matched note for grace period (sustained notes shouldn't show as wrong)
   const lastMatchedRef = useRef<{ note: string; time: number } | null>(null);
-  // Wait mode: track time offset when paused waiting for note
-  const waitPausedAtRef = useRef<number | null>(null);
-  const waitTimeOffsetRef = useRef<number>(0);
 
   useEffect(() => { currentBarRef.current = currentBar; }, [currentBar]);
   useEffect(() => { barStatsRef.current = barStats; }, [barStats]);
@@ -482,61 +481,42 @@ export default function PracticePage() {
 
   // Time ticker — updates currentTimeMs via requestAnimationFrame
   // Also advances missed notes in client mode
-  // In wait mode, pauses time when an expected note is due until it's played
+  // Time ticker - advances currentTimeMs for falling notes animation
+  // In Learn mode, pauses at each note until it's played correctly
   useEffect(() => {
     if (!isRecording || exerciseStartTime === 0) return;
     let raf: number;
     let lastMissCheck = 0;
     const tick = () => {
-      const rawElapsed = performance.now() - exerciseStartTime;
-      let effectiveElapsed = rawElapsed - waitTimeOffsetRef.current;
+      const elapsed = performance.now() - exerciseStartTime;
 
-      // Wait mode: check if we should pause for an expected note
-      if (waitModeRef.current && clientMode && clientFollowerRef.current) {
-        const expectedNotes = clientFollowerRef.current.getExpectedNotes(effectiveElapsed);
-        const progress = clientFollowerRef.current.getProgress();
-
-        // Find the first pending note that's past due
-        const pendingNotes = fallingNotes.filter((fn, idx) =>
-          fn.status === "pending" && effectiveElapsed > fn.expectedTimeMs + 100
-        );
-
-        if (pendingNotes.length > 0 && progress.pending > 0) {
-          const waitingFor = pendingNotes[0];
-          // Pause: cap effective time at this note's expected time + small buffer
-          if (waitPausedAtRef.current === null) {
-            waitPausedAtRef.current = rawElapsed;
-            setWaitingForNote(waitingFor.note);
-            console.log(`[WAIT-MODE] Pausing at ${waitingFor.note} @ ${waitingFor.expectedTimeMs}ms`);
-          }
-          // Keep effective time at the note's time
-          effectiveElapsed = waitingFor.expectedTimeMs + 100;
+      // In Learn mode, pause time at the next expected note
+      if (waitModeRef.current && autoSyncFollowerRef.current) {
+        const state = autoSyncFollowerRef.current.getState();
+        const nextPosition = state.position + 1;
+        if (nextPosition < fallingNotes.length) {
+          const nextNote = fallingNotes[nextPosition];
+          // Cap time at the next note's expected time (so it pauses at the play line)
+          const cappedTime = Math.min(elapsed, nextNote.expectedTimeMs + 50);
+          setCurrentTimeMs(cappedTime);
         } else {
-          // Resume if we were paused
-          if (waitPausedAtRef.current !== null) {
-            const pauseDuration = rawElapsed - waitPausedAtRef.current;
-            waitTimeOffsetRef.current += pauseDuration;
-            console.log(`[WAIT-MODE] Resuming after ${pauseDuration.toFixed(0)}ms pause`);
-            waitPausedAtRef.current = null;
-            setWaitingForNote(null);
-            effectiveElapsed = rawElapsed - waitTimeOffsetRef.current;
-          }
+          setCurrentTimeMs(elapsed);
         }
-      }
+      } else {
+        setCurrentTimeMs(elapsed);
 
-      setCurrentTimeMs(effectiveElapsed);
-
-      // In client mode (non-wait), periodically check for missed notes
-      if (clientMode && clientFollowerRef.current && !waitModeRef.current && effectiveElapsed - lastMissCheck > 200) {
-        lastMissCheck = effectiveElapsed;
-        const missed = clientFollowerRef.current.advanceMissedNotes(effectiveElapsed);
-        if (missed.length > 0) {
-          console.log(`[CLIENT-TICK] Marking ${missed.length} notes as missed at t=${effectiveElapsed.toFixed(0)}ms`);
-          setFallingNotes((prev) =>
-            prev.map((fn, idx) =>
-              missed.includes(idx) ? { ...fn, status: "missed" as const } : fn
-            )
-          );
+        // In timed mode (Practice), check for missed notes
+        if (clientMode && clientFollowerRef.current && elapsed - lastMissCheck > 200) {
+          lastMissCheck = elapsed;
+          const missed = clientFollowerRef.current.advanceMissedNotes(elapsed);
+          if (missed.length > 0) {
+            console.log(`[CLIENT-TICK] Marking ${missed.length} notes as missed at t=${elapsed.toFixed(0)}ms`);
+            setFallingNotes((prev) =>
+              prev.map((fn, idx) =>
+                missed.includes(idx) ? { ...fn, status: "missed" as const } : fn
+              )
+            );
+          }
         }
       }
 
@@ -623,10 +603,18 @@ export default function PracticePage() {
         soundCuesRef.current.playCorrect();
         // Record for grace period - sustained notes shouldn't trigger "wrong"
         lastMatchedRef.current = { note: result.note, time: performance.now() };
+
+        // Ensure matched note is in nextExpectedNotes for correct visual feedback
+        // (prevents red border on piano key when note was actually correct)
+        setNextExpectedNotes(prev =>
+          prev.includes(result.note) ? prev : [result.note, ...prev].slice(0, 3)
+        );
+
         setDetectedNotes([result.note]);
         setTimeout(() => setDetectedNotes([]), 600);
 
         // Update note status to "hit"
+        console.log(`[FALLING-BAR] ${result.note}[${result.noteIndex}] → HIT (green)`);
         setFallingNotes((prev) =>
           prev.map((fn, idx) =>
             idx === result.noteIndex ? { ...fn, status: "hit" as const } : fn
@@ -660,11 +648,22 @@ export default function PracticePage() {
         }));
       },
       onWrongNote: (note: string, expectedNotesList: string[]) => {
-        // Grace period: if this is the same note we just matched, ignore it (sustained note)
-        const GRACE_PERIOD_MS = 800;
+        // Grace period after any correct match - ignore all wrong detections for a short time
+        // This prevents spurious harmonics/noise from triggering wrong feedback
+        const GRACE_PERIOD_MS = 400; // Cooldown after correct match
+        const SUSTAINED_GRACE_MS = 1000; // Longer grace for same note (sustained through speaker/mic decay)
         const lastMatched = lastMatchedRef.current;
-        if (lastMatched && lastMatched.note === note && (performance.now() - lastMatched.time) < GRACE_PERIOD_MS) {
+        const timeSinceMatch = lastMatched ? performance.now() - lastMatched.time : Infinity;
+
+        // Ignore sustained same note for longer
+        if (lastMatched && lastMatched.note === note && timeSinceMatch < SUSTAINED_GRACE_MS) {
           console.log(`[CLIENT-YIN] Ignoring sustained ${note} (grace period)`);
+          return;
+        }
+
+        // Ignore ANY wrong note shortly after a correct match (noise/harmonics filter)
+        if (timeSinceMatch < GRACE_PERIOD_MS) {
+          console.log(`[CLIENT-YIN] Ignoring ${note} (post-match cooldown ${timeSinceMatch.toFixed(0)}ms)`);
           return;
         }
 
@@ -672,6 +671,11 @@ export default function PracticePage() {
         setFeedback(`Wrong note: ${note}`);
         setLastResult("wrong");
         soundCuesRef.current.playWrong();
+
+        // Ensure wrong note is NOT in nextExpectedNotes so piano key shows RED
+        // (wrong note might be in preview list but not actually matchable now)
+        setNextExpectedNotes(prev => prev.filter(n => n !== note));
+
         setDetectedNotes([note]);
         setTimeout(() => setDetectedNotes([]), 400);
         setTimingStats((prev) => ({ ...prev, wrong: prev.wrong + 1 }));
@@ -679,6 +683,12 @@ export default function PracticePage() {
     });
 
     console.log("[CLIENT-YIN] Initializing with expected notes:", expectedNotes);
+
+    // Expose for E2E testing - allows direct note injection
+    // Note: __exerciseStartTime is updated separately when exercise starts
+    if (typeof window !== 'undefined') {
+      (window as any).__clientFollower = clientFollowerRef.current;
+    }
 
     // Initialize YIN pitch detector with two-speed tentative/confirm system
     const yinDetector = new ClientYinDetector({
@@ -696,7 +706,15 @@ export default function PracticePage() {
         // Clear tentative highlight
         setTentativeNotes([]);
 
-        // If auto-sync mode is enabled, use pattern-based detection
+        // Warmup period: ignore detections before first note's timing window
+        const firstNoteTime = fallingNotes[0]?.expectedTimeMs ?? 1000;
+        const warmupEnd = firstNoteTime - 500;
+        if (elapsed < warmupEnd) {
+          console.log(`[CLIENT-YIN] Ignoring ${detection.note} (warmup period)`);
+          return;
+        }
+
+        // If auto-sync/wait mode is enabled, use pattern-based detection (no timing required)
         if (autoSyncMode && autoSyncFollowerRef.current) {
           console.log(`[CLIENT-YIN] CONFIRMED (auto-sync): ${detection.note}`);
           processAutoSyncNote(detection.note);
@@ -712,14 +730,17 @@ export default function PracticePage() {
         if (clientFollowerRef.current) {
           clientFollowerRef.current.processDetection(detection.note, elapsed);
 
-          // Mark missed notes
-          const missed = clientFollowerRef.current.advanceMissedNotes(elapsed);
-          if (missed.length > 0) {
-            setFallingNotes((prev) =>
-              prev.map((fn, idx) =>
-                missed.includes(idx) ? { ...fn, status: "missed" as const } : fn
-              )
-            );
+          // Mark missed notes (only when NOT in wait mode - wait mode pauses until correct note)
+          if (!waitModeRef.current) {
+            const missed = clientFollowerRef.current.advanceMissedNotes(elapsed);
+            if (missed.length > 0) {
+              console.log(`[FALLING-BAR] Marking ${missed.length} notes as MISSED (red): indices [${missed.join(", ")}]`);
+              setFallingNotes((prev) =>
+                prev.map((fn, idx) =>
+                  missed.includes(idx) ? { ...fn, status: "missed" as const } : fn
+                )
+              );
+            }
           }
         }
       },
@@ -857,8 +878,12 @@ export default function PracticePage() {
       // Add lead-in time so first note isn't at 0ms (give 1 beat of preparation)
       const leadInMs = 60000 / bpm; // One beat lead-in
 
+      // Find minimum bar number to handle 0-indexed or 1-indexed bars
+      const minBar = Math.min(...Array.from(barGroups.keys()));
+
       barGroups.forEach((barNotes, barNum) => {
-        const barStartMs = (barNum - 1) * barDurationMs + leadInMs; // bars are 1-based, add lead-in
+        // Normalize bar number relative to minimum bar, ensuring non-negative times
+        const barStartMs = (barNum - minBar) * barDurationMs + leadInMs;
         console.log(`[buildFallingNotes] Bar ${barNum}: startMs=${barStartMs}, notes=${barNotes.length}`);
         barNotes.forEach((n, idxInBar) => {
           const expectedTimeMs =
@@ -873,11 +898,27 @@ export default function PracticePage() {
               expectedTimeMs,
               status: "pending",
               finger: n.fingers?.[noteIdx],
+              // Duration will be calculated in a second pass
             });
           });
           globalIndex++;
         });
       });
+
+      // Second pass: calculate duration for each note (time until next note or end of beat)
+      const beatDurationMs = 60000 / bpm;
+      for (let i = 0; i < result.length; i++) {
+        const current = result[i];
+        // Find next note (any note after this one)
+        const nextNote = result.find((n, idx) => idx > i && n.expectedTimeMs > current.expectedTimeMs);
+        if (nextNote) {
+          // Duration is time until next note, capped at 2 beats
+          current.durationMs = Math.min(nextNote.expectedTimeMs - current.expectedTimeMs, beatDurationMs * 2);
+        } else {
+          // Last note: default to 1 beat
+          current.durationMs = beatDurationMs;
+        }
+      }
 
       return result;
     },
@@ -922,9 +963,6 @@ export default function PracticePage() {
           setCurrentBar(null);
           setCleanPasses(0);
           setBarStats({ wrong: 0, timingOff: 0 });
-          setWaitingForNote(null);
-          waitPausedAtRef.current = null;
-          waitTimeOffsetRef.current = 0;
 
           // Build falling notes from all_notes data
           console.log("[DEBUG] exercise_started:", {
@@ -951,9 +989,15 @@ export default function PracticePage() {
               const startT = performance.now();
               setExerciseStartTime(startT);
               exerciseStartTimeRef.current = startT;
+              // Update window ref for E2E testing
+              if (typeof window !== 'undefined') {
+                (window as any).__exerciseStartTime = startT;
+              }
               if (metronome.enabled) {
                 metronome.start(bpm, bpb, beatUnit);
               }
+              // Auto-start recording if enabled (for debug/testing)
+              autoStartRecording();
             });
           } else {
             wsClient.send({ type: "count_in_complete", data: {} });
@@ -961,6 +1005,12 @@ export default function PracticePage() {
             const startT = performance.now();
             setExerciseStartTime(startT);
             exerciseStartTimeRef.current = startT;
+            // Update window ref for E2E testing
+            if (typeof window !== 'undefined') {
+              (window as any).__exerciseStartTime = startT;
+            }
+            // Auto-start recording if enabled (for debug/testing)
+            autoStartRecording();
           }
         } else if (event.type === "note_detected") {
           const {
@@ -1147,6 +1197,9 @@ export default function PracticePage() {
   };
 
   const handleStopExercise = () => {
+    // Auto-save recording if enabled (for debug/testing)
+    autoStopAndSaveRecording(selectedExercise?.name);
+
     if (audioCaptureRef.current) {
       audioCaptureRef.current.stop();
       audioCaptureRef.current = null;
@@ -1379,13 +1432,24 @@ export default function PracticePage() {
       {/* ═══ ACTIVE PRACTICE (waterfall layout) ═══ */}
       {isRecording && (
         <div className="h-screen flex flex-col overflow-hidden">
-          {/* Progress bar */}
-          <div className="h-1 bg-slate-800 flex-shrink-0">
-            <div
-              className="h-full bg-emerald-400 transition-all duration-500 shadow-[0_0_12px_rgba(52,211,153,0.5)]"
-              style={{ width: `${progress.completion_percent}%` }}
-            />
-          </div>
+          {/* Progress bar - shows time-based song progress */}
+          {(() => {
+            // Calculate song duration from last note + buffer
+            const lastNoteTime = fallingNotes.length > 0
+              ? Math.max(...fallingNotes.map(n => n.expectedTimeMs + (n.durationMs || 500)))
+              : 0;
+            const songProgressPercent = lastNoteTime > 0
+              ? Math.min(100, Math.round((currentTimeMs / lastNoteTime) * 100))
+              : 0;
+            return (
+              <div className="h-1 bg-slate-800 flex-shrink-0">
+                <div
+                  className="h-full bg-emerald-400 transition-all duration-300 shadow-[0_0_12px_rgba(52,211,153,0.5)]"
+                  style={{ width: `${songProgressPercent}%` }}
+                />
+              </div>
+            );
+          })()}
 
           {/* Top bar */}
           <div className="flex items-center justify-between px-5 py-2.5 bg-slate-900/80 backdrop-blur-md flex-shrink-0 border-b border-white/5">
@@ -1445,32 +1509,46 @@ export default function PracticePage() {
             </div>
           )}
 
-          {/* Visualization area (falling notes or rail) */}
-          {displayMode === "falling" ? (
-            <FallingNotes
-              notes={fallingNotes}
-              currentTimeMs={currentTimeMs}
-              isActive={isRecording && exerciseStartTime > 0}
-              startOctave={octaveRange.start}
-              endOctave={octaveRange.end}
-              bpm={displayBpm || 0}
-              beatsPerBar={exerciseMeta.beatsPerBar || 4}
-              feedbackText={feedback}
-              feedbackType={lastResult}
-            />
-          ) : (
-            <NoteRail
-              notes={fallingNotes}
-              currentTimeMs={currentTimeMs}
-              isActive={isRecording && exerciseStartTime > 0}
-              startOctave={octaveRange.start}
-              endOctave={octaveRange.end}
-              bpm={displayBpm || 0}
-              beatsPerBar={exerciseMeta.beatsPerBar || 4}
-              feedbackText={feedback}
-              feedbackType={lastResult}
-            />
-          )}
+          {/* Visualization area - px-3 matches keyboard container */}
+          <div className="flex-1 min-h-0 px-3">
+            {displayMode === "falling" && (
+              <FallingNotes
+                notes={fallingNotes}
+                currentTimeMs={currentTimeMs}
+                isActive={isRecording && exerciseStartTime > 0}
+                startOctave={octaveRange.start}
+                endOctave={octaveRange.end}
+                bpm={displayBpm || 0}
+                beatsPerBar={exerciseMeta.beatsPerBar || 4}
+                feedbackText={feedback}
+                feedbackType={lastResult}
+              />
+            )}
+            {displayMode === "rail" && (
+              <NoteRail
+                notes={fallingNotes}
+                currentTimeMs={currentTimeMs}
+                isActive={isRecording && exerciseStartTime > 0}
+                startOctave={octaveRange.start}
+                endOctave={octaveRange.end}
+                bpm={displayBpm || 0}
+                beatsPerBar={exerciseMeta.beatsPerBar || 4}
+                feedbackText={feedback}
+                feedbackType={lastResult}
+              />
+            )}
+            {displayMode === "sheet" && (
+              <SheetMusic
+                notes={fallingNotes}
+                currentTimeMs={currentTimeMs}
+                isActive={isRecording && exerciseStartTime > 0}
+                bpm={displayBpm || 0}
+                beatsPerBar={exerciseMeta.beatsPerBar || 4}
+                feedbackText={feedback}
+                feedbackType={lastResult}
+              />
+            )}
+          </div>
 
           {/* Piano keyboard tray */}
           <div className="flex-shrink-0 bg-slate-800/80 ring-1 ring-white/5 shadow-[0_-10px_30px_rgba(0,0,0,0.4)] px-3 pt-3 pb-1">
@@ -1526,36 +1604,25 @@ export default function PracticePage() {
               {loopMode ? `Loop (${cleanPasses}/3)` : "Loop"}
             </button>
 
-            {/* Wait mode - training: pause until correct note played */}
+            {/* Learn mode - play at your own pace (no timing required) */}
             <button
-              onClick={() => setWaitMode((prev) => !prev)}
+              onClick={() => {
+                const newMode = !waitMode;
+                setWaitMode(newMode);
+                setAutoSyncMode(newMode);
+              }}
               className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-medium transition-all duration-200 ring-1 ring-white/10 ${
                 waitMode
                   ? "bg-green-500/20 text-green-300"
                   : "bg-slate-800/70 text-slate-400 hover:bg-slate-700/70"
               }`}
-              title="Training mode: pauses until you play the correct note"
+              title="Learn mode: play at your own pace, no timing pressure"
             >
-              {waitMode ? (waitingForNote ? `Wait: ${waitingForNote}` : "Wait ON") : "Wait"}
-            </button>
-
-            {/* Auto-sync mode - pattern-based position detection */}
-            <button
-              onClick={() => setAutoSyncMode((prev) => !prev)}
-              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-medium transition-all duration-200 ring-1 ring-white/10 ${
-                autoSyncMode
-                  ? "bg-cyan-500/20 text-cyan-300"
-                  : "bg-slate-800/70 text-slate-400 hover:bg-slate-700/70"
-              }`}
-              title="Auto-sync: detects position from note sequence (no timing required)"
-            >
-              {autoSyncMode
-                ? autoSyncState.mode === "locked"
-                  ? `Sync: ${autoSyncState.position + 1}/${fallingNotes.length}`
-                  : autoSyncState.mode === "syncing"
-                  ? "Syncing..."
-                  : "Re-sync..."
-                : "Auto-Sync"}
+              {waitMode
+                ? autoSyncState.expectedNext
+                  ? `Next: ${autoSyncState.expectedNext}`
+                  : "Learn ON"
+                : "Learn"}
             </button>
 
             {/* Client-side detection mode (low latency YIN) */}
@@ -1584,11 +1651,8 @@ export default function PracticePage() {
               notes={fallingNotes}
               currentTimeMs={currentTimeMs}
               isActive={isRecording && exerciseStartTime > 0}
-              waitingForNote={
-                autoSyncMode && autoSyncState.mode === "locked"
-                  ? autoSyncState.expectedNext
-                  : waitingForNote
-              }
+              waitingForNote={autoSyncState.expectedNext}
+              waitModeEnabled={waitMode}
             />
 
             {/* Tempo slider */}

@@ -2,7 +2,7 @@
 
 import React from "react";
 
-export type DisplayMode = "falling" | "rail";
+export type DisplayMode = "falling" | "rail" | "sheet";
 
 interface DisplayModeToggleProps {
   mode: DisplayMode;
@@ -19,7 +19,7 @@ export default function DisplayModeToggle({ mode, onChange }: DisplayModeToggleP
             ? "bg-slate-600 text-white shadow-sm"
             : "text-slate-400 hover:text-slate-300"
         }`}
-        title="Vertical falling notes"
+        title="Vertical falling notes (Synthesia style)"
       >
         Falling
       </button>
@@ -33,6 +33,17 @@ export default function DisplayModeToggle({ mode, onChange }: DisplayModeToggleP
         title="Horizontal scrolling rail"
       >
         Rail
+      </button>
+      <button
+        onClick={() => onChange("sheet")}
+        className={`px-3 py-1.5 text-[10px] font-medium rounded-full transition-all duration-200 ${
+          mode === "sheet"
+            ? "bg-slate-600 text-white shadow-sm"
+            : "text-slate-400 hover:text-slate-300"
+        }`}
+        title="Traditional sheet music notation"
+      >
+        Sheet
       </button>
     </div>
   );

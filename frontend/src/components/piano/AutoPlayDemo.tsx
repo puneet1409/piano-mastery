@@ -12,10 +12,10 @@ interface AutoPlayDemoProps {
   isActive: boolean;
   /** Callback when demo mode changes */
   onDemoModeChange?: (active: boolean) => void;
-  /** Callback to simulate a hit (client-only mode) */
-  onSimulateHit?: (noteIndex: number, noteName: string) => void;
   /** Note we're waiting for in wait mode (hint to user) */
   waitingForNote?: string | null;
+  /** Is wait mode enabled (pauses until correct note played) */
+  waitModeEnabled?: boolean;
 }
 
 // Piano note frequencies (A4 = 440Hz)
@@ -43,6 +43,7 @@ export default function AutoPlayDemo({
   isActive,
   onDemoModeChange,
   waitingForNote,
+  waitModeEnabled = false,
 }: AutoPlayDemoProps) {
   const [demoActive, setDemoActive] = useState(false);
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -64,6 +65,8 @@ export default function AutoPlayDemo({
   }, []);
 
   // Play a single piano note
+  // Uses pure sine wave for strong fundamental - harmonics were causing detection issues
+  // when played through speakers (speaker/mic path emphasizes upper harmonics)
   const playNote = useCallback((noteName: string, duration: number = 0.6) => {
     const ctx = getAudioContext();
     const gain = gainNodeRef.current;
@@ -72,19 +75,19 @@ export default function AutoPlayDemo({
     const freq = noteToFrequency(noteName);
     const now = ctx.currentTime;
 
-    // Create oscillators for a piano-like sound
+    // Pure sine wave for strong fundamental (best for YIN detection through speakers)
     const osc1 = ctx.createOscillator();
-    const osc2 = ctx.createOscillator();
     const noteGain = ctx.createGain();
 
-    osc1.type = "triangle";
+    osc1.type = "sine";  // Pure sine = strongest fundamental, no harmonics
     osc1.frequency.value = freq;
 
-    osc2.type = "sine";
-    osc2.frequency.value = freq * 2; // Octave harmonic
-
+    // Optional: very subtle 2nd harmonic for warmth (1/n^2 rolloff = 0.25)
+    const osc2 = ctx.createOscillator();
     const osc2Gain = ctx.createGain();
-    osc2Gain.gain.value = 0.3;
+    osc2.type = "sine";
+    osc2.frequency.value = freq * 2;
+    osc2Gain.gain.value = 0.1;  // Reduced from 0.3 to 0.1 (steep rolloff)
 
     osc1.connect(noteGain);
     osc2.connect(osc2Gain);
@@ -104,35 +107,41 @@ export default function AutoPlayDemo({
     osc2.stop(now + duration);
   }, [getAudioContext]);
 
-  // Auto-play notes as they become due
+  // Auto-play notes as they become due (only when wait mode is OFF)
   useEffect(() => {
     if (!demoActive || !isActive || notes.length === 0) return;
 
-    // Play notes EARLY to compensate for audio capture/detection latency
-    // Latency chain: speaker→mic→buffer→WebSocket→ML = ~300-500ms
-    const PLAY_EARLY_MS = 350; // Play 350ms before expected time
+    // In wait mode, don't auto-advance at all - we'll play via the waitingForNote system
+    // This keeps audio in sync with the paused visual position
+    if (waitModeEnabled) return;
+
+    // Without wait mode: play slightly early to compensate for YIN detection latency (~100-200ms)
+    const PLAY_EARLY_MS = 150; // Reduced from 350ms - client YIN is faster than server
+
+    // Minimum delay before first note - give YIN time to initialize and start capturing
+    // This prevents first notes from being missed due to audio setup latency
+    const MIN_STARTUP_DELAY_MS = 500;
 
     // Find notes that should be played now
-    // Use a wider catch-up window to handle React timing jitter on exercise start
     const notesToPlay = notes.filter((note, idx) => {
       if (playedIndicesRef.current.has(idx)) return false;
+      // Don't play any notes until MIN_STARTUP_DELAY_MS has passed
+      if (currentTimeMs < MIN_STARTUP_DELAY_MS) return false;
       const playTime = note.expectedTimeMs - PLAY_EARLY_MS;
-      // Window: from playTime until expectedTime + 100ms (catch-up for early notes)
-      // This allows playing notes that were missed due to React state update delays
-      return currentTimeMs >= playTime && currentTimeMs < note.expectedTimeMs + 100;
+      // Window: from playTime until expectedTime + 300ms
+      return currentTimeMs >= playTime && currentTimeMs < note.expectedTimeMs + 300;
     });
 
     notesToPlay.forEach((note, i) => {
       const idx = notes.indexOf(note);
       if (idx >= 0 && !playedIndicesRef.current.has(idx)) {
         playedIndicesRef.current.add(idx);
-        const timingDelta = currentTimeMs - note.expectedTimeMs;
-        console.log(`[DEMO] Playing ${note.note} | expected=${note.expectedTimeMs.toFixed(0)}ms | current=${currentTimeMs.toFixed(0)}ms | playingEarly=${PLAY_EARLY_MS}ms | index=${idx}`);
+        console.log(`[DEMO] Playing ${note.note} | expected=${note.expectedTimeMs.toFixed(0)}ms | current=${currentTimeMs.toFixed(0)}ms | index=${idx}`);
         // Stagger chord notes slightly
         setTimeout(() => playNote(note.note), i * 15);
       }
     });
-  }, [demoActive, isActive, notes, currentTimeMs, playNote]);
+  }, [demoActive, isActive, notes, currentTimeMs, playNote, waitModeEnabled]);
 
   // Reset played notes when exercise restarts
   useEffect(() => {
@@ -141,17 +150,26 @@ export default function AutoPlayDemo({
     }
   }, [isActive]);
 
-  // In wait mode, play the expected note periodically as a hint
+  // In wait mode, play the expected note - immediately on first wait, then every 1.5s
   const lastWaitHintRef = useRef<number>(0);
+  const lastWaitNoteRef = useRef<string | null>(null);
   useEffect(() => {
-    if (!demoActive || !isActive || !waitingForNote) return;
+    if (!demoActive || !isActive || !waitingForNote) {
+      lastWaitNoteRef.current = null;
+      return;
+    }
 
-    // Play hint every 1.5 seconds while waiting
     const now = Date.now();
-    if (now - lastWaitHintRef.current > 1500) {
+    // Play immediately if this is a new note we're waiting for
+    const isNewNote = waitingForNote !== lastWaitNoteRef.current;
+    // Or play every 1.5 seconds as a reminder hint
+    const shouldRepeat = now - lastWaitHintRef.current > 1500;
+
+    if (isNewNote || shouldRepeat) {
       lastWaitHintRef.current = now;
-      console.log(`[DEMO-HINT] Playing hint: ${waitingForNote}`);
-      playNote(waitingForNote, 0.4); // Shorter duration for hint
+      lastWaitNoteRef.current = waitingForNote;
+      console.log(`[DEMO-WAIT] Playing ${waitingForNote} (${isNewNote ? 'new' : 'repeat'})`);
+      playNote(waitingForNote, 0.5);
     }
   }, [demoActive, isActive, waitingForNote, playNote, currentTimeMs]);
 

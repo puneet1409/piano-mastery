@@ -31,6 +31,12 @@ export class ClientScoreFollower {
   private matchedIndices: Set<number> = new Set();
   private missedIndices: Set<number> = new Set();
   private options: Required<ScoreFollowerOptions>;
+  // Track last match WALL-CLOCK time per note pitch to prevent sustained notes from stealing next match
+  // Uses performance.now() for monotonic time independent of wait mode effective time
+  private lastMatchWallTimeByNote: Map<string, number> = new Map();
+  // Minimum time between matching the same note (prevents sustained note double-match)
+  // Set to match Demo note duration (600ms) to prevent sustained notes from stealing next match
+  private static readonly MIN_SAME_NOTE_GAP_MS = 600;
 
   constructor(notes: FallingNote[], options: ScoreFollowerOptions = {}) {
     this.notes = notes;
@@ -60,6 +66,16 @@ export class ClientScoreFollower {
 
     const progress = this.getProgress();
     console.log(`[SCORE] Checking ${detectedNote} @ t=${timestampMs.toFixed(0)}ms | pending: ${upcomingNotes.join(", ")} | matched=${progress.matched} missed=${progress.missed} | window=±${this.options.maxTimingWindowMs}ms`);
+
+    // Check if same note was just matched (sustained note protection)
+    // Use wall-clock time (performance.now) for reliable gap tracking across wait mode pauses
+    const nowWall = performance.now();
+    const lastMatchWallTime = this.lastMatchWallTimeByNote.get(detectedNote);
+    const timeSinceLastMatch = lastMatchWallTime !== undefined ? nowWall - lastMatchWallTime : Infinity;
+    if (timeSinceLastMatch < ClientScoreFollower.MIN_SAME_NOTE_GAP_MS) {
+      console.log(`[SCORE] ⏸ Ignoring ${detectedNote} (same note gap: ${timeSinceLastMatch.toFixed(0)}ms < ${ClientScoreFollower.MIN_SAME_NOTE_GAP_MS}ms)`);
+      return null; // Don't call onWrongNote - this is likely a sustained note
+    }
 
     for (let i = 0; i < this.notes.length; i++) {
       if (this.matchedIndices.has(i)) continue;
@@ -93,6 +109,7 @@ export class ClientScoreFollower {
     const best = candidates[0];
 
     this.matchedIndices.add(best.index);
+    this.lastMatchWallTimeByNote.set(detectedNote, nowWall); // Track for sustained note protection (wall-clock)
     console.log(`[SCORE] ✓ MATCHED: ${best.note.note}[${best.index}] @ expected=${best.note.expectedTimeMs}ms, played=${timestampMs.toFixed(0)}ms, delta=${best.delta.toFixed(0)}ms`);
 
     // Determine timing status
@@ -194,11 +211,25 @@ export class ClientScoreFollower {
   }
 
   /**
+   * Get the next pending note (not matched, not missed).
+   * Used by wait mode to determine what note we're waiting for.
+   */
+  getNextPendingNote(): FallingNote | null {
+    for (let i = 0; i < this.notes.length; i++) {
+      if (!this.matchedIndices.has(i) && !this.missedIndices.has(i)) {
+        return this.notes[i];
+      }
+    }
+    return null;
+  }
+
+  /**
    * Reset the follower for replay.
    */
   reset(): void {
     this.currentIndex = 0;
     this.matchedIndices.clear();
     this.missedIndices.clear();
+    this.lastMatchWallTimeByNote.clear();
   }
 }

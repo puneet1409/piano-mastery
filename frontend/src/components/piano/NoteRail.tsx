@@ -30,8 +30,10 @@ const PX_PER_MS = 0.25;
 /** How far ahead/behind (in ms) to render notes */
 const WINDOW_AHEAD_MS = 5000;
 const WINDOW_BEHIND_MS = 2000;
-/** Note rectangle width (in time direction) */
-const NOTE_WIDTH = 28;
+/** Minimum note width (for very short notes) */
+const MIN_NOTE_WIDTH = 20;
+/** Default note width when duration is unknown */
+const DEFAULT_NOTE_WIDTH = 28;
 /** Note height (pitch direction) */
 const NOTE_HEIGHT = 18;
 /** Play-line offset from left edge */
@@ -148,8 +150,13 @@ export default function NoteRail({
       const noteY = getNoteYPosition(note.note, startOctave, endOctave, height, PITCH_PADDING_TOP, PITCH_PADDING_BOTTOM);
       if (noteY === null) continue;
 
-      // X position based on time delta (future notes to the right)
-      const noteX = playLineX + timeDelta * PX_PER_MS - NOTE_WIDTH / 2;
+      // Calculate width based on duration (variable width like Synthesia)
+      const noteWidth = note.durationMs
+        ? Math.max(MIN_NOTE_WIDTH, note.durationMs * PX_PER_MS)
+        : DEFAULT_NOTE_WIDTH;
+
+      // X position: left edge aligns with expected time
+      const noteX = playLineX + timeDelta * PX_PER_MS;
 
       // Color by status and hand
       let fillColor: string;
@@ -181,12 +188,12 @@ export default function NoteRail({
         ctx.shadowColor = glowColor;
         ctx.shadowBlur = 16;
         ctx.fillStyle = fillColor;
-        roundRect(ctx, noteX, noteY - NOTE_HEIGHT / 2, NOTE_WIDTH, NOTE_HEIGHT, 4);
+        roundRect(ctx, noteX, noteY - NOTE_HEIGHT / 2, noteWidth, NOTE_HEIGHT, 4);
         ctx.fill();
         ctx.restore();
       } else {
         ctx.fillStyle = fillColor;
-        roundRect(ctx, noteX, noteY - NOTE_HEIGHT / 2, NOTE_WIDTH, NOTE_HEIGHT, 4);
+        roundRect(ctx, noteX, noteY - NOTE_HEIGHT / 2, noteWidth, NOTE_HEIGHT, 4);
         ctx.fill();
       }
 
@@ -198,7 +205,7 @@ export default function NoteRail({
         // Draw finger number for pending/active notes with finger data
         if (showFinger) {
           const circleRadius = 7;
-          const circleX = noteX + NOTE_WIDTH / 2;
+          const circleX = noteX + noteWidth / 2;
 
           // Finger circle background
           ctx.beginPath();
@@ -220,7 +227,7 @@ export default function NoteRail({
           ctx.font = "bold 9px system-ui, sans-serif";
           ctx.textAlign = "center";
           ctx.textBaseline = "middle";
-          ctx.fillText(note.note, noteX + NOTE_WIDTH / 2, noteY);
+          ctx.fillText(note.note, noteX + noteWidth / 2, noteY);
         }
       }
     }
@@ -275,7 +282,7 @@ export default function NoteRail({
   }, [render]);
 
   return (
-    <div ref={containerRef} className="relative flex-1 w-full min-h-0 overflow-hidden bg-slate-950">
+    <div ref={containerRef} className="relative w-full h-full overflow-hidden bg-slate-950">
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"

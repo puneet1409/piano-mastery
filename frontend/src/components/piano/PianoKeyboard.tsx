@@ -82,36 +82,50 @@ export default function PianoKeyboard({
   // Update overlays when detectedNotes changes
   React.useEffect(() => {
     if (detectedNotes.length > 0) {
-      const newOverlays: Record<string, KeyOverlay> = {};
+      setKeyOverlays(prev => {
+        const newOverlays = { ...prev };
+        let changed = false;
 
-      detectedNotes.forEach(note => {
-        // Check if correct
-        if (expectedNotes.includes(note)) {
-          newOverlays[note] = 'hitCorrect';
-        } else {
-          newOverlays[note] = 'hitWrong';
-        }
+        detectedNotes.forEach(note => {
+          // Check if correct
+          const overlayType: KeyOverlay = expectedNotes.includes(note) ? 'hitCorrect' : 'hitWrong';
+
+          // Only set if not already the same overlay (prevents timer restart)
+          if (prev[note] !== overlayType) {
+            newOverlays[note] = overlayType;
+            changed = true;
+            console.log(`[PIANO-KEY] ${note} → ${overlayType === 'hitCorrect' ? 'GREEN' : 'RED'} (${overlayType === 'hitCorrect' ? 'correct' : 'wrong'}, expected: [${expectedNotes.join(', ')}])`);
+          }
+        });
+
+        return changed ? newOverlays : prev;
       });
-
-      setKeyOverlays(prev => ({ ...prev, ...newOverlays }));
     }
   }, [detectedNotes, expectedNotes]);
 
   // Update overlays for tentative notes (instant visual feedback)
   React.useEffect(() => {
     if (tentativeNotes.length > 0) {
-      const newOverlays: Record<string, KeyOverlay> = {};
+      setKeyOverlays(prev => {
+        const newOverlays = { ...prev };
+        let changed = false;
 
-      tentativeNotes.forEach(note => {
-        // Tentative uses same visual as correct for instant feedback
-        // (will be confirmed or cancelled shortly)
-        if (expectedNotes.includes(note)) {
-          newOverlays[note] = 'hitCorrect';
-        }
-        // Don't show wrong for tentative - wait for confirmation
+        tentativeNotes.forEach(note => {
+          // Tentative uses same visual as correct for instant feedback
+          // (will be confirmed or cancelled shortly)
+          if (expectedNotes.includes(note)) {
+            // Only set if not already hitCorrect (prevents timer restart)
+            if (prev[note] !== 'hitCorrect') {
+              newOverlays[note] = 'hitCorrect';
+              changed = true;
+              console.log(`[PIANO-KEY] ${note} → GREEN (tentative, in expected: [${expectedNotes.join(', ')}])`);
+            }
+          }
+          // Don't show wrong for tentative - wait for confirmation
+        });
+
+        return changed ? newOverlays : prev;
       });
-
-      setKeyOverlays(prev => ({ ...prev, ...newOverlays }));
     }
   }, [tentativeNotes, expectedNotes]);
 

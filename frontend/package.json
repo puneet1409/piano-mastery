@@ -13,6 +13,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@playwright/test": "^1.58.1",
     "@types/node": "^25.0.10",
     "@types/react": "^19.2.9",
     "midi-parser-js": "^4.0.4",
@@ -24,6 +25,7 @@
     "@magenta/music": "^1.23.1",
     "@tailwindcss/postcss": "^4.1.18",
     "@tensorflow/tfjs": "^4.22.0",
+    "lightningcss-win32-arm64-msvc": "^1.31.1",
     "next": "^16.1.4",
     "pitchy": "^4.1.0",
     "react": "^19.2.3",

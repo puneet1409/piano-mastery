@@ -257,18 +257,20 @@ export function detectPitch(
 
   let frequency = sampleRate / refinedTau;
 
-  // Step 5: V3 OCTAVE-UP disambiguation (NOT octave-down!)
+  // Step 5: OCTAVE-UP disambiguation
   // Check if HIGHER octave candidates have valid CMND
   interface OctaveCandidate {
     freq: number;
     cmndVal: number;
     multiplier: number;
+    direction: 'up' | 'down' | 'base';
   }
 
   const candidates: OctaveCandidate[] = [
-    { freq: frequency, cmndVal: cmnd[bestTau], multiplier: 1 }
+    { freq: frequency, cmndVal: cmnd[bestTau], multiplier: 1, direction: 'base' }
   ];
 
+  // Check higher octaves (tau/2, tau/4, tau/8)
   for (const multiplier of [2, 4, 8]) {
     const octaveTau = refinedTau / multiplier;
     if (octaveTau >= 2 && octaveTau < tauMax) {
@@ -281,33 +283,74 @@ export function detectPitch(
         candidates.push({
           freq: octaveFreq,
           cmndVal: octaveCmnd,
-          multiplier
+          multiplier,
+          direction: 'up'
         });
       }
     }
   }
 
-  // Score candidates - prefer higher octaves with good CMND
+  // Step 5b: OCTAVE-DOWN disambiguation (for speaker/mic harmonic emphasis)
+  // If we detected a high frequency, check if a lower octave is the true fundamental
+  // by validating harmonic consistency using spectral magnitude
+  for (const divisor of [2, 3, 4]) {
+    const lowerFreq = frequency / divisor;
+    const lowerTau = sampleRate / lowerFreq;
+
+    if (lowerTau >= 2 && lowerTau < tauMax && lowerFreq >= 130) {
+      const lowerTauInt = Math.round(lowerTau);
+      const lowerCmnd = cmnd[lowerTauInt];
+
+      // Check harmonic consistency: if lower freq has harmonics at 2x, 3x, 4x
+      // that match our detected frequency, it's likely the true fundamental
+      const magLower = getSpectralMagnitude(samples, lowerFreq, sampleRate);
+      const magDetected = getSpectralMagnitude(samples, frequency, sampleRate);
+      const mag2x = getSpectralMagnitude(samples, lowerFreq * 2, sampleRate);
+      const mag3x = getSpectralMagnitude(samples, lowerFreq * 3, sampleRate);
+
+      // Harmonic consistency score: fundamental should have harmonics
+      const harmonicEnergy = mag2x + mag3x;
+      const hasHarmonicStructure = harmonicEnergy > magLower * 0.3;
+
+      // Accept if CMND is reasonable AND has harmonic structure
+      if (lowerCmnd < 0.35 && hasHarmonicStructure && magLower > 0.001) {
+        candidates.push({
+          freq: lowerFreq,
+          cmndVal: lowerCmnd,
+          multiplier: 1 / divisor,
+          direction: 'down'
+        });
+      }
+    }
+  }
+
+  // Score candidates - balance clarity, frequency preference, and direction
   let bestCandidate: OctaveCandidate | null = null;
   let bestScore = -1;
 
   for (const cand of candidates) {
     const clarity = 1.0 - cand.cmndVal;
 
-    // Frequency preference (piano range)
+    // Frequency preference (piano range - favor middle range)
     let freqPref: number;
     if (cand.freq < 80) freqPref = 0.1;
     else if (cand.freq < 130) freqPref = 0.3;
-    else if (cand.freq < 200) freqPref = 0.6;
-    else if (cand.freq < 600) freqPref = 1.0;  // Sweet spot
-    else if (cand.freq < 1200) freqPref = 0.95;
-    else if (cand.freq < 2400) freqPref = 0.85;
-    else freqPref = 0.7;
+    else if (cand.freq < 200) freqPref = 0.7;
+    else if (cand.freq < 600) freqPref = 1.0;  // Sweet spot (C4-D5)
+    else if (cand.freq < 1200) freqPref = 0.85;
+    else if (cand.freq < 2400) freqPref = 0.6;
+    else freqPref = 0.4;  // Very high frequencies less likely to be fundamentals
 
-    // Octave bonus - prefer higher octaves when CMND is comparable
-    const octaveBonus = 0.1 * Math.log2(cand.multiplier);
+    // Direction bonus: slightly prefer fundamentals over harmonics
+    let directionBonus = 0;
+    if (cand.direction === 'down') {
+      // Octave-down candidates get a bonus if they're in the sweet spot
+      directionBonus = (cand.freq >= 200 && cand.freq <= 600) ? 0.15 : 0.05;
+    } else if (cand.direction === 'up') {
+      directionBonus = 0.05 * Math.log2(cand.multiplier);
+    }
 
-    const score = (clarity * 0.4) + (freqPref * 0.5) + (octaveBonus * 0.1);
+    const score = (clarity * 0.35) + (freqPref * 0.5) + (directionBonus * 0.15);
 
     if (score > bestScore) {
       bestScore = score;

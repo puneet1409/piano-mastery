@@ -19,6 +19,8 @@ export interface FallingNote {
   status: "pending" | "active" | "hit" | "missed";
   /** Finger number 1-5 (1=thumb, 5=pinky) */
   finger?: number;
+  /** Note duration in ms (for Synthesia-style variable bar height) */
+  durationMs?: number;
 }
 
 interface FallingNotesProps {
@@ -46,8 +48,10 @@ const PX_PER_MS = 0.25;
 /** How far ahead/behind (in ms) to render notes */
 const WINDOW_AHEAD_MS = 5000;
 const WINDOW_BEHIND_MS = 2000;
-/** Note rectangle height */
-const NOTE_HEIGHT = 28;
+/** Minimum note rectangle height (for very short notes) */
+const MIN_NOTE_HEIGHT = 20;
+/** Default note height when duration is unknown */
+const DEFAULT_NOTE_HEIGHT = 28;
 /** Play-line offset from bottom */
 const PLAYLINE_BOTTOM = 40;
 
@@ -154,7 +158,13 @@ export default function FallingNotes({
       const pos = getNoteXPosition(note.note, startOctave, whiteKeyWidth, blackKeyWidth);
       if (!pos) continue;
 
-      const noteY = playLineY - timeDelta * PX_PER_MS - NOTE_HEIGHT / 2;
+      // Calculate height based on duration (Synthesia-style variable height)
+      const noteHeight = note.durationMs
+        ? Math.max(MIN_NOTE_HEIGHT, note.durationMs * PX_PER_MS)
+        : DEFAULT_NOTE_HEIGHT;
+
+      // Position note so bottom edge aligns with expected time
+      const noteY = playLineY - timeDelta * PX_PER_MS - noteHeight;
 
       // Color by status and hand
       let fillColor: string;
@@ -186,12 +196,12 @@ export default function FallingNotes({
         ctx.shadowColor = glowColor;
         ctx.shadowBlur = 16;
         ctx.fillStyle = fillColor;
-        roundRect(ctx, pos.x - pos.width / 2, noteY, pos.width, NOTE_HEIGHT, 6);
+        roundRect(ctx, pos.x - pos.width / 2, noteY, pos.width, noteHeight, 6);
         ctx.fill();
         ctx.restore();
       } else {
         ctx.fillStyle = fillColor;
-        roundRect(ctx, pos.x - pos.width / 2, noteY, pos.width, NOTE_HEIGHT, 6);
+        roundRect(ctx, pos.x - pos.width / 2, noteY, pos.width, noteHeight, 6);
         ctx.fill();
       }
 
@@ -203,7 +213,7 @@ export default function FallingNotes({
         // Draw finger number circle for pending/active notes with finger data
         if (showFinger) {
           const circleRadius = 9;
-          const circleY = noteY + NOTE_HEIGHT / 2;
+          const circleY = noteY + noteHeight / 2;
 
           // Finger circle background
           ctx.beginPath();
@@ -225,7 +235,7 @@ export default function FallingNotes({
           ctx.font = "bold 10px system-ui, sans-serif";
           ctx.textAlign = "center";
           ctx.textBaseline = "middle";
-          ctx.fillText(note.note, pos.x, noteY + NOTE_HEIGHT / 2);
+          ctx.fillText(note.note, pos.x, noteY + noteHeight / 2);
         }
       }
     }
@@ -267,7 +277,7 @@ export default function FallingNotes({
   }, [render]);
 
   return (
-    <div ref={containerRef} className="relative flex-1 w-full min-h-0 overflow-hidden bg-slate-950">
+    <div ref={containerRef} className="relative w-full h-full overflow-hidden bg-slate-950">
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
