@@ -182,6 +182,15 @@ def detect_piano_note(samples: list, sample_rate: int = 44100, min_frequency: fl
 
             frequency = sample_rate / refined_tau
 
+            # V5.1: Aggressive octave-UP for low frequencies (< 250Hz)
+            if frequency < 250 and frequency >= 65:
+                half_tau = refined_tau / 2
+                if 2 <= half_tau < tau_max:
+                    half_tau_int = int(round(half_tau))
+                    half_cmnd = cmnd[half_tau_int]
+                    if half_cmnd < 0.35:
+                        frequency *= 2
+
             # Filter out frequencies below min_frequency (default C2=65Hz)
             # This eliminates false positives in octaves 0-1 from harmonics
             if min_frequency <= frequency <= 4500:
